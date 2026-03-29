@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Augmentation - Complete Guide with Examples</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.8em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+        
+        .intro-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 3px solid #667eea;
+        }
+        
+        .intro-title {
+            font-size: 1.6em;
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .intro-text {
+            line-height: 1.8;
+            color: #2d3436;
+            font-size: 1.05em;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .technique-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border: 3px solid #667eea;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .technique-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .technique-header {
+            font-size: 1.5em;
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .technique-description {
+            line-height: 1.7;
+            color: #2d3436;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+        
+        .visual-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .demo-box {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            text-align: center;
+        }
+        
+        .demo-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .demo-image {
+            width: 100%;
+            height: 200px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            border: 2px dashed #667eea;
+            font-size: 3em;
+        }
+        
+        .code-box {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            border: 2px solid #667eea;
+        }
+        
+        .code-title {
+            color: #74b9ff;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .code-line {
+            line-height: 1.6;
+        }
+        
+        .keyword {
+            color: #fd79a8;
+        }
+        
+        .string {
+            color: #55efc4;
+        }
+        
+        .comment {
+            color: #b2bec3;
+        }
+        
+        .function {
+            color: #ffeaa7;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .pros-box {
+            background: linear-gradient(135deg, #d4f1d4 0%, #a8e6a8 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border: 3px solid #27ae60;
+        }
+        
+        .cons-box {
+            background: linear-gradient(135deg, #ffd4d4 0%, #ffb3b3 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border: 3px solid #e74c3c;
+        }
+        
+        .pros-title, .cons-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .pros-title {
+            color: #27ae60;
+        }
+        
+        .cons-title {
+            color: #e74c3c;
+        }
+        
+        .pros-list, .cons-list {
+            line-height: 1.8;
+        }
+        
+        .pros-list li, .cons-list li {
+            margin-bottom: 10px;
+        }
+        
+        .formula-box {
+            background: #e8eaf6;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 3px solid #5c6bc0;
+        }
+        
+        .formula-title {
+            font-weight: bold;
+            color: #3f51b5;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            color: #333;
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border: 3px solid #ffc107;
+            margin: 20px 0;
+        }
+        
+        .warning-title {
+            color: #856404;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .warning-text {
+            color: #333;
+            line-height: 1.7;
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border: 3px solid #17a2b8;
+            margin: 20px 0;
+        }
+        
+        .tip-title {
+            color: #0c5460;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .comparison-table tr:hover {
+            background: #e9ecef;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 3px solid #e17055;
+        }
+        
+        .highlight-title {
+            font-size: 1.5em;
+            color: #d63031;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .highlight-text {
+            color: #2d3436;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+        
+        .interactive-demo {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #667eea;
+            margin: 20px 0;
+        }
+        
+        .canvas-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        canvas {
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .control-panel {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        button:hover {
+            background: #764ba2;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+            .visual-demo {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Data Augmentation Complete Guide</h1>
+        <div class="subtitle">Manual Examples, Image Resizing & Practical Implementation</div>
+        
+        <!-- Introduction -->
+        <div class="intro-box">
+            <div class="intro-title">📚 Data Augmentation Kya Hai?</div>
+            <div class="intro-text">
+                <strong>Data Augmentation</strong> ek technique hai jismein hum existing training images ko artificially modify karke nayi images create karte hain. Isse model ko zyada diverse data milta hai aur overfitting reduce hota hai.<br><br>
+                
+                <strong>Kyun zaroori hai?</strong><br>
+                ✓ Limited dataset ko expand karta hai<br>
+                ✓ Model ko robust banata hai<br>
+                ✓ Overfitting reduce karta hai<br>
+                ✓ Model ki generalization ability improve hoti hai<br>
+                ✓ Different variations handle karne ki capability milti hai<br><br>
+                
+                <strong>Example:</strong> Agar aapke paas 1000 dog images hain, augmentation se aap 10,000+ unique variations create kar sakte ho!
+            </div>
+        </div>
+        
+        <!-- Section 1: Common Augmentation Techniques -->
+        <div class="section">
+            <div class="section-title">
+                🔧 Common Augmentation Techniques
+            </div>
+            
+            <!-- Technique 1: Rotation -->
+            <div class="technique-card">
+                <div class="technique-header">1️⃣ Rotation (घुमाना)</div>
+                <div class="technique-description">
+                    Image ko kisi angle se rotate karna. Common angles: 90°, 180°, 270° ya random angles (5°-30°)
+                </div>
+                
+                <div class="visual-demo">
+                    <div class="demo-box">
+                        <div class="demo-title">Original</div>
+                        <div class="demo-image">🐕</div>
+                        <div>0° Rotation</div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">90° Rotated</div>
+                        <div class="demo-image" style="transform: rotate(90deg);">🐕</div>
+                        <div>Clockwise 90°</div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">180° Rotated</div>
+                        <div class="demo-image" style="transform: rotate(180deg);">🐕</div>
+                        <div>180° Flip</div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">270° Rotated</div>
+                        <div class="demo-image" style="transform: rotate(270deg);">🐕</div>
+                        <div>Counter-clockwise 90°</div>
+                    </div>
+                </div>
+                
+                <div class="code-box">
+                    <div class="code-title">🐍 Python Code Example:</div>
+                    <div class="code-line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div>
+                    <div class="code-line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Image load karein</span></div>
+                    <div class="code-line">img = Image.<span class="function">open</span>(<span class="string">'dog.jpg'</span>)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># 90 degree rotate</span></div>
+                    <div class="code-line">rotated_90 = img.<span class="function">rotate</span>(<span class="keyword">90</span>)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Random rotation (15 degrees)</span></div>
+                    <div class="code-line">rotated_random = img.<span class="function">rotate</span>(<span class="keyword">15</span>, expand=<span class="keyword">True</span>)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Save karein</span></div>
+                    <div class="code-line">rotated_90.<span class="function">save</span>(<span class="string">'dog_rotated_90.jpg'</span>)</div>
+                </div>
+                
+                <div class="formula-box">
+                    <div class="formula-title">📐 Manual Calculation:</div>
+                    <div class="formula">
+                        <strong>Rotation Matrix for angle θ:</strong><br>
+                        x' = x × cos(θ) - y × sin(θ)<br>
+                        y' = x × sin(θ) + y × cos(θ)<br><br>
+                        
+                        <strong>Example: Point (100, 50) को 90° rotate करने पर:</strong><br>
+                        θ = 90° = π/2 radians<br>
+                        cos(90°) = 0, sin(90°) = 1<br>
+                        x' = 100 × 0 - 50 × 1 = -50<br>
+                        y' = 100 × 1 + 50 × 0 = 100<br>
+                        <strong>New Point: (-50, 100)</strong>
+                    </div>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros-box">
+                        <div class="pros-title">✅ Advantages:</div>
+                        <ul class="pros-list">
+                            <li>Different orientations handle karne ki capability</li>
+                            <li>Real-world scenarios simulate karta hai</li>
+                            <li>Model ko rotation-invariant banata hai</li>
+                            <li>Simple aur effective technique</li>
+                        </ul>
+                    </div>
+                    <div class="cons-box">
+                        <div class="cons-title">❌ Disadvantages:</div>
+                        <ul class="cons-list">
+                            <li>Large angles (>30°) se image distort ho sakti hai</li>
+                            <li>Black/empty areas aa sakte hain corners mein</li>
+                            <li>Computational cost thoda zyada</li>
+                            <li>Kuch objects ke liye unrealistic (text, faces)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technique 2: Flipping -->
+            <div class="technique-card">
+                <div class="technique-header">2️⃣ Flipping (पलटना)</div>
+                <div class="technique-description">
+                    Image ko horizontally ya vertically flip karna. Mirror image banata hai.
+                </div>
+                
+                <div class="visual-demo">
+                    <div class="demo-box">
+                        <div class="demo-title">Original</div>
+                        <div class="demo-image">👉🐕</div>
+                        <div>Normal Image</div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">Horizontal Flip</div>
+                        <div class="demo-image" style="transform: scaleX(-1);">👉🐕</div>
+                        <div>Left-Right Mirror</div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">Vertical Flip</div>
+                        <div class="demo-image" style="transform: scaleY(-1);">👉🐕</div>
+                        <div>Top-Bottom Mirror</div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">Both Flips</div>
+                        <div class="demo-image" style="transform: scale(-1, -1);">👉🐕</div>
+                        <div>180° equivalent</div>
+                    </div>
+                </div>
+                
+                <div class="code-box">
+                    <div class="code-title">🐍 Python Code Example:</div>
+                    <div class="code-line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageOps</div>
+                    <div class="code-line"></div>
+                    <div class="code-line">img = Image.<span class="function">open</span>(<span class="string">'dog.jpg'</span>)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Horizontal flip (left-right)</span></div>
+                    <div class="code-line">h_flip = ImageOps.<span class="function">mirror</span>(img)</div>
+                    <div class="code-line"><span class="comment"># Ya</span></div>
+                    <div class="code-line">h_flip = img.<span class="function">transpose</span>(Image.FLIP_LEFT_RIGHT)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Vertical flip (top-bottom)</span></div>
+                    <div class="code-line">v_flip = img.<span class="function">transpose</span>(Image.FLIP_TOP_BOTTOM)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Using NumPy</span></div>
+                    <div class="code-line">img_array = np.<span class="function">array</span>(img)</div>
+                    <div class="code-line">h_flip_np = np.<span class="function">fliplr</span>(img_array)  <span class="comment"># Horizontal</span></div>
+                    <div class="code-line">v_flip_np = np.<span class="function">flipud</span>(img_array)  <span class="comment"># Vertical</span></div>
+                </div>
+                
+                <div class="formula-box">
+                    <div class="formula-title">📐 Manual Calculation:</div>
+                    <div class="formula">
+                        <strong>Horizontal Flip (Width = W):</strong><br>
+                        x' = W - x - 1<br>
+                        y' = y<br><br>
+                        
+                        <strong>Vertical Flip (Height = H):</strong><br>
+                        x' = x<br>
+                        y' = H - y - 1<br><br>
+                        
+                        <strong>Example: Image size 200×200, Point (150, 80)</strong><br>
+                        Horizontal Flip: x' = 200 - 150 - 1 = 49, y' = 80<br>
+                        <strong>New Point: (49, 80)</strong><br><br>
+                        
+                        Vertical Flip: x' = 150, y' = 200 - 80 - 1 = 119<br>
+                        <strong>New Point: (150, 119)</strong>
+                    </div>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros-box">
+                        <div class="pros-title">✅ Advantages:</div>
+                        <ul class="pros-list">
+                            <li>Bahut fast operation (O(1) complexity)</li>
+                            <li>No quality loss</li>
+                            <li>Perfect mirror images</li>
+                            <li>Natural variations create karta hai</li>
+                            <li>Sabse simple augmentation</li>
+                        </ul>
+                    </div>
+                    <div class="cons-box">
+                        <div class="cons-title">❌ Disadvantages:</div>
+                        <ul class="cons-list">
+                            <li>Asymmetric objects ke liye suitable nahi (text, numbers)</li>
+                            <li>Sirf 2-3 variations hi ban sakte hain</li>
+                            <li>Kuch contexts mein unrealistic (traffic signs)</li>
+                            <li>Limited diversity</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technique 3: Cropping -->
+            <div class="technique-card">
+                <div class="technique-header">3️⃣ Random Cropping (काटना)</div>
+                <div class="technique-description">
+                    Image ke kisi random portion ko cut kar ke naya image banana. Object ka partial view milta hai.
+                </div>
+                
+                <div class="visual-demo">
+                    <div class="demo-box">
+                        <div class="demo-title">Original (224×224)</div>
+                        <div class="demo-image" style="border: 3px solid #667eea;">
+                            <div style="font-size: 0.6em; text-align: center;">
+                                🌳🐕🏠<br>
+                                🌸🐕🌼<br>
+                                🌿🐕🌻
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">Center Crop</div>
+                        <div class="demo-image" style="border: 3px solid #e74c3c;">
+                            <div style="font-size: 1.5em;">🐕</div>
+                        </div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">Top-Left Crop</div>
+                        <div class="demo-image" style="border: 3px solid #27ae60;">
+                            <div style="font-size: 1em; text-align: left;">🌳🐕<br>🌸🐕</div>
+                        </div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">Random Crop</div>
+                        <div class="demo-image" style="border: 3px solid #f39c12;">
+                            <div style="font-size: 1em;">🐕🌼<br>🐕🌻</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="code-box">
+                    <div class="code-title">🐍 Python Code Example:</div>
+                    <div class="code-line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div>
+                    <div class="code-line"><span class="keyword">import</span> random</div>
+                    <div class="code-line"></div>
+                    <div class="code-line">img = Image.<span class="function">open</span>(<span class="string">'dog.jpg'</span>)</div>
+                    <div class="code-line">width, height = img.size</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Center crop (200x200)</span></div>
+                    <div class="code-line">left = (width - <span class="keyword">200</span>) // <span class="keyword">2</span></div>
+                    <div class="code-line">top = (height - <span class="keyword">200</span>) // <span class="keyword">2</span></div>
+                    <div class="code-line">right = left + <span class="keyword">200</span></div>
+                    <div class="code-line">bottom = top + <span class="keyword">200</span></div>
+                    <div class="code-line">center_crop = img.<span class="function">crop</span>((left, top, right, bottom))</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Random crop</span></div>
+                    <div class="code-line">crop_size = <span class="keyword">200</span></div>
+                    <div class="code-line">left = random.<span class="function">randint</span>(<span class="keyword">0</span>, width - crop_size)</div>
+                    <div class="code-line">top = random.<span class="function">randint</span>(<span class="keyword">0</span>, height - crop_size)</div>
+                    <div class="code-line">random_crop = img.<span class="function">crop</span>((left, top, left+crop_size, top+crop_size))</div>
+                </div>
+                
+                <div class="formula-box">
+                    <div class="formula-title">📐 Manual Calculation:</div>
+                    <div class="formula">
+                        <strong>Center Crop Calculation:</strong><br>
+                        Original Image: 300×300<br>
+                        Desired Crop: 200×200<br><br>
+                        
+                        Left = (300 - 200) / 2 = 50<br>
+                        Top = (300 - 200) / 2 = 50<br>
+                        Right = 50 + 200 = 250<br>
+                        Bottom = 50 + 200 = 250<br><br>
+                        
+                        <strong>Crop Box: (50, 50, 250, 250)</strong><br><br>
+                        
+                        <strong>Random Crop Calculation:</strong><br>
+                        Max Left = 300 - 200 = 100<br>
+                        Max Top = 300 - 200 = 100<br>
+                        Random Left = random(0, 100) → suppose 30<br>
+                        Random Top = random(0, 100) → suppose 70<br>
+                        <strong>Crop Box: (30, 70, 230, 270)</strong>
+                    </div>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros-box">
+                        <div class="pros-title">✅ Advantages:</div>
+                        <ul class="pros-list">
+                            <li>Object detection mein bahut useful</li>
+                            <li>Partial occlusion handle karne mein madad</li>
+                            <li>Focus on different parts of image</li>
+                            <li>Multi-scale learning promote karta hai</li>
+                            <li>Dataset diversity badhata hai</li>
+                        </ul>
+                    </div>
+                    <div class="cons-box">
+                        <div class="cons-title">❌ Disadvantages:</div>
+                        <ul class="cons-list">
+                            <li>Important parts crop out ho sakte hain</li>
+                            <li>Information loss ho sakta hai</li>
+                            <li>Small objects completely miss ho sakte hain</li>
+                            <li>Classification tasks ke liye risky</li>
+                            <li>Careful tuning required</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technique 4: Brightness & Contrast -->
+            <div class="technique-card">
+                <div class="technique-header">4️⃣ Brightness & Contrast Adjustment</div>
+                <div class="technique-description">
+                    Image ki brightness (चमक) aur contrast (तीव्रता) ko change karna. Different lighting conditions simulate karta hai.
+                </div>
+                
+                <div class="visual-demo">
+                    <div class="demo-box">
+                        <div class="demo-title">Original</div>
+                        <div class="demo-image" style="background: #999;">🐕</div>
+                        <div>Normal Brightness</div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">Brighter (+50%)</div>
+                        <div class="demo-image" style="background: #ddd;">🐕</div>
+                        <div>Increased Brightness</div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">Darker (-50%)</div>
+                        <div class="demo-image" style="background: #555;">🐕</div>
+                        <div>Decreased Brightness</div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">High Contrast</div>
+                        <div class="demo-image" style="background: linear-gradient(#000, #fff);">🐕</div>
+                        <div>Increased Contrast</div>
+                    </div>
+                </div>
+                
+                <div class="code-box">
+                    <div class="code-title">🐍 Python Code Example:</div>
+                    <div class="code-line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageEnhance</div>
+                    <div class="code-line"></div>
+                    <div class="code-line">img = Image.<span class="function">open</span>(<span class="string">'dog.jpg'</span>)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Brightness adjustment</span></div>
+                    <div class="code-line">enhancer = ImageEnhance.<span class="function">Brightness</span>(img)</div>
+                    <div class="code-line">brighter = enhancer.<span class="function">enhance</span>(<span class="keyword">1.5</span>)  <span class="comment"># 50% brighter</span></div>
+                    <div class="code-line">darker = enhancer.<span class="function">enhance</span>(<span class="keyword">0.5</span>)    <span class="comment"># 50% darker</span></div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Contrast adjustment</span></div>
+                    <div class="code-line">contrast = ImageEnhance.<span class="function">Contrast</span>(img)</div>
+                    <div class="code-line">high_contrast = contrast.<span class="function">enhance</span>(<span class="keyword">2.0</span>)  <span class="comment"># 2x contrast</span></div>
+                    <div class="code-line">low_contrast = contrast.<span class="function">enhance</span>(<span class="keyword">0.5</span>)   <span class="comment"># Half contrast</span></div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Using NumPy (manual)</span></div>
+                    <div class="code-line">img_array = np.<span class="function">array</span>(img, dtype=np.float32)</div>
+                    <div class="code-line">brighter_np = np.<span class="function">clip</span>(img_array * <span class="keyword">1.5</span>, <span class="keyword">0</span>, <span class="keyword">255</span>)</div>
+                </div>
+                
+                <div class="formula-box">
+                    <div class="formula-title">📐 Manual Calculation:</div>
+                    <div class="formula">
+                        <strong>Brightness Adjustment:</strong><br>
+                        New_Pixel = Old_Pixel × Factor<br>
+                        Clip to range [0, 255]<br><br>
+                        
+                        <strong>Example: Pixel value = 120, Factor = 1.5</strong><br>
+                        New_Pixel = 120 × 1.5 = 180<br>
+                        <strong>Result: 180</strong><br><br>
+                        
+                        <strong>Contrast Adjustment:</strong><br>
+                        Mean = Average of all pixels<br>
+                        New_Pixel = Mean + (Old_Pixel - Mean) × Factor<br><br>
+                        
+                        <strong>Example: Pixel = 120, Mean = 100, Factor = 2.0</strong><br>
+                        New_Pixel = 100 + (120 - 100) × 2.0<br>
+                        New_Pixel = 100 + 40 = 140<br>
+                        <strong>Result: 140</strong>
+                    </div>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros-box">
+                        <div class="pros-title">✅ Advantages:</div>
+                        <ul class="pros-list">
+                            <li>Different lighting conditions simulate</li>
+                            <li>Day/night variations handle kar sakta hai</li>
+                            <li>Real-world scenarios ke liye robust</li>
+                            <li>Indoor/outdoor variations</li>
+                            <li>Simple aur effective</li>
+                        </ul>
+                    </div>
+                    <div class="cons-box">
+                        <div class="cons-title">❌ Disadvantages:</div>
+                        <ul class="cons-list">
+                            <li>Too much adjustment se details loss</li>
+                            <li>Color information distort ho sakta hai</li>
+                            <li>Pixel saturation (255) ya clipping (0)</li>
+                            <li>Unnatural images ban sakte hain</li>
+                            <li>Careful range selection needed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technique 5: Zooming -->
+            <div class="technique-card">
+                <div class="technique-header">5️⃣ Zooming (Scale Variation)</div>
+                <div class="technique-description">
+                    Image ko zoom in/out karna. Object ke size variation simulate karta hai.
+                </div>
+                
+                <div class="visual-demo">
+                    <div class="demo-box">
+                        <div class="demo-title">Original</div>
+                        <div class="demo-image">
+                            <div style="font-size: 2em;">🐕</div>
+                        </div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">Zoom In (1.5x)</div>
+                        <div class="demo-image">
+                            <div style="font-size: 3em;">🐕</div>
+                        </div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">Zoom Out (0.7x)</div>
+                        <div class="demo-image">
+                            <div style="font-size: 1.4em;">🐕</div>
+                        </div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">Random Zoom</div>
+                        <div class="demo-image">
+                            <div style="font-size: 2.5em;">🐕</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="code-box">
+                    <div class="code-title">🐍 Python Code Example:</div>
+                    <div class="code-line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div>
+                    <div class="code-line"><span class="keyword">import</span> cv2</div>
+                    <div class="code-line"></div>
+                    <div class="code-line">img = Image.<span class="function">open</span>(<span class="string">'dog.jpg'</span>)</div>
+                    <div class="code-line">width, height = img.size</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Zoom in (1.5x) - crop and resize</span></div>
+                    <div class="code-line">zoom_factor = <span class="keyword">1.5</span></div>
+                    <div class="code-line">new_w = <span class="function">int</span>(width / zoom_factor)</div>
+                    <div class="code-line">new_h = <span class="function">int</span>(height / zoom_factor)</div>
+                    <div class="code-line">left = (width - new_w) // <span class="keyword">2</span></div>
+                    <div class="code-line">top = (height - new_h) // <span class="keyword">2</span></div>
+                    <div class="code-line">zoomed = img.<span class="function">crop</span>((left, top, left+new_w, top+new_h))</div>
+                    <div class="code-line">zoomed = zoomed.<span class="function">resize</span>((width, height))</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Using cv2</span></div>
+                    <div class="code-line">img_cv = cv2.<span class="function">imread</span>(<span class="string">'dog.jpg'</span>)</div>
+                    <div class="code-line">zoomed_cv = cv2.<span class="function">resize</span>(img_cv, (<span class="keyword">None</span>), fx=<span class="keyword">1.5</span>, fy=<span class="keyword">1.5</span>)</div>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros-box">
+                        <div class="pros-title">✅ Advantages:</div>
+                        <ul class="pros-list">
+                            <li>Different object scales handle karta hai</li>
+                            <li>Distance variation simulate karta hai</li>
+                            <li>Scale-invariant features learn karta hai</li>
+                            <li>Real-world camera zoom simulate</li>
+                        </ul>
+                    </div>
+                    <div class="cons-box">
+                        <div class="cons-title">❌ Disadvantages:</div>
+                        <ul class="cons-list">
+                            <li>Zoom in se quality loss (pixelation)</li>
+                            <li>Zoom out se small details miss</li>
+                            <li>Computational overhead</li>
+                            <li>Interpolation artifacts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 2: Image Resizing -->
+        <div class="section">
+            <div class="section-title">
+                📏 Image Resizing for CNN Architectures
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">🎯 Resizing Kyun Zaroori Hai?</div>
+                <div class="highlight-text">
+                    CNN models fixed input size expect karte hain:<br>
+                    • <strong>VGG-16:</strong> 224×224×3<br>
+                    • <strong>Inception:</strong> 224×224×3 (or 299×299×3 for InceptionV3)<br>
+                    • <strong>ResNet:</strong> 224×224×3<br>
+                    • <strong>MobileNet:</strong> 224×224×3<br><br>
+                    
+                    Real-world images different sizes mein aate hain, isliye resize karna padta hai!
+                </div>
+            </div>
+            
+            <!-- Resizing Methods -->
+            <div class="technique-card">
+                <div class="technique-header">🔧 Common Resizing Methods</div>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Description</th>
+                            <th>Quality</th>
+                            <th>Speed</th>
+                            <th>Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Nearest Neighbor</strong></td>
+                            <td>Sabse paas ka pixel value use karta hai</td>
+                            <td>Low</td>
+                            <td>Very Fast</td>
+                            <td>Pixel art, icons</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bilinear</strong></td>
+                            <td>4 neighboring pixels ka weighted average</td>
+                            <td>Medium</td>
+                            <td>Fast</td>
+                            <td>General purpose</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bicubic</strong></td>
+                            <td>16 neighboring pixels ka cubic interpolation</td>
+                            <td>High</td>
+                            <td>Medium</td>
+                            <td>Photos, high-quality</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lanczos</strong></td>
+                            <td>Sinc function based resampling</td>
+                            <td>Very High</td>
+                            <td>Slow</td>
+                            <td>Professional photos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Area</strong></td>
+                            <td>Pixel area relation use karta hai</td>
+                            <td>High</td>
+                            <td>Fast</td>
+                            <td>Downsampling</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="code-box" style="margin-top: 20px;">
+                    <div class="code-title">🐍 Resizing Code Examples:</div>
+                    <div class="code-line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div>
+                    <div class="code-line"><span class="keyword">import</span> cv2</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Method 1: PIL (Python Imaging Library)</span></div>
+                    <div class="code-line">img = Image.<span class="function">open</span>(<span class="string">'photo.jpg'</span>)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Nearest Neighbor</span></div>
+                    <div class="code-line">resized = img.<span class="function">resize</span>((<span class="keyword">224</span>, <span class="keyword">224</span>), Image.NEAREST)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Bilinear</span></div>
+                    <div class="code-line">resized = img.<span class="function">resize</span>((<span class="keyword">224</span>, <span class="keyword">224</span>), Image.BILINEAR)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Bicubic (RECOMMENDED for CNNs)</span></div>
+                    <div class="code-line">resized = img.<span class="function">resize</span>((<span class="keyword">224</span>, <span class="keyword">224</span>), Image.BICUBIC)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Lanczos (Highest Quality)</span></div>
+                    <div class="code-line">resized = img.<span class="function">resize</span>((<span class="keyword">224</span>, <span class="keyword">224</span>), Image.LANCZOS)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Method 2: OpenCV</span></div>
+                    <div class="code-line">img = cv2.<span class="function">imread</span>(<span class="string">'photo.jpg'</span>)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Bilinear</span></div>
+                    <div class="code-line">resized = cv2.<span class="function">resize</span>(img, (<span class="keyword">224</span>, <span class="keyword">224</span>), interpolation=cv2.INTER_LINEAR)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Bicubic</span></div>
+                    <div class="code-line">resized = cv2.<span class="function">resize</span>(img, (<span class="keyword">224</span>, <span class="keyword">224</span>), interpolation=cv2.INTER_CUBIC)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Area (Best for shrinking)</span></div>
+                    <div class="code-line">resized = cv2.<span class="function">resize</span>(img, (<span class="keyword">224</span>, <span class="keyword">224</span>), interpolation=cv2.INTER_AREA)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Lanczos</span></div>
+                    <div class="code-line">resized = cv2.<span class="function">resize</span>(img, (<span class="keyword">224</span>, <span class="keyword">224</span>), interpolation=cv2.INTER_LANCZOS4)</div>
+                </div>
+                
+                <div class="formula-box">
+                    <div class="formula-title">📐 Bilinear Interpolation Manual Calculation:</div>
+                    <div class="formula">
+                        <strong>Scenario:</strong> 400×300 image को 224×224 resize karna hai<br><br>
+                        
+                        <strong>Scale Factors:</strong><br>
+                        x_scale = 400 / 224 = 1.786<br>
+                        y_scale = 300 / 224 = 1.339<br><br>
+                        
+                        <strong>New position (100, 100) के लिए original position:</strong><br>
+                        x_original = 100 × 1.786 = 178.6<br>
+                        y_original = 100 × 1.339 = 133.9<br><br>
+                        
+                        <strong>4 Nearest Pixels:</strong><br>
+                        P1 (178, 133), P2 (179, 133)<br>
+                        P3 (178, 134), P4 (179, 134)<br><br>
+                        
+                        <strong>Bilinear Interpolation:</strong><br>
+                        dx = 0.6 (decimal part of 178.6)<br>
+                        dy = 0.9 (decimal part of 133.9)<br><br>
+                        
+                        Value = P1×(1-dx)×(1-dy) + P2×dx×(1-dy) + P3×(1-dx)×dy + P4×dx×dy<br><br>
+                        
+                        <strong>Example with pixel values:</strong><br>
+                        P1=120, P2=130, P3=125, P4=135<br>
+                        Value = 120×0.4×0.1 + 130×0.6×0.1 + 125×0.4×0.9 + 135×0.6×0.9<br>
+                        Value = 4.8 + 7.8 + 45 + 72.9 = 130.5<br>
+                        <strong>New Pixel Value: 131 (rounded)</strong>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aspect Ratio Preservation -->
+            <div class="technique-card">
+                <div class="technique-header">⚖️ Aspect Ratio Handling</div>
+                <div class="technique-description">
+                    Original image ka aspect ratio preserve karna ya stretch karna - dono ke apne pros/cons hain.
+                </div>
+                
+                <div class="visual-demo">
+                    <div class="demo-box">
+                        <div class="demo-title">Original (400×300)</div>
+                        <div class="demo-image" style="height: 150px; width: 200px; border: 3px solid #667eea;">
+                            🏞️
+                        </div>
+                        <div>Aspect Ratio: 4:3</div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">Direct Resize (224×224)</div>
+                        <div class="demo-image" style="height: 200px; width: 200px; border: 3px solid #e74c3c;">
+                            🏞️
+                        </div>
+                        <div>Stretched (Distorted)</div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">Resize + Crop (224×224)</div>
+                        <div class="demo-image" style="height: 200px; width: 200px; border: 3px solid #27ae60;">
+                            🏞️
+                        </div>
+                        <div>No distortion, cropped</div>
+                    </div>
+                    <div class="demo-box">
+                        <div class="demo-title">Resize + Padding (224×224)</div>
+                        <div class="demo-image" style="height: 160px; width: 200px; border: 3px solid #f39c12; padding: 20px 0;">
+                            🏞️
+                        </div>
+                        <div>Padded with black bars</div>
+                    </div>
+                </div>
+                
+                <div class="code-box">
+                    <div class="code-title">🐍 Aspect Ratio Preservation Code:</div>
+                    <div class="code-line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageOps</div>
+                    <div class="code-line"></div>
+                    <div class="code-line">img = Image.<span class="function">open</span>(<span class="string">'photo.jpg'</span>)</div>
+                    <div class="code-line">target_size = (<span class="keyword">224</span>, <span class="keyword">224</span>)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Method 1: Direct resize (stretches image - NOT RECOMMENDED)</span></div>
+                    <div class="code-line">stretched = img.<span class="function">resize</span>(target_size, Image.BICUBIC)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Method 2: Resize and crop (maintains aspect ratio)</span></div>
+                    <div class="code-line">resized_crop = ImageOps.<span class="function">fit</span>(img, target_size, Image.BICUBIC)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Method 3: Resize and pad (maintains aspect ratio)</span></div>
+                    <div class="code-line">img.<span class="function">thumbnail</span>(target_size, Image.BICUBIC)</div>
+                    <div class="code-line">padded = Image.<span class="function">new</span>(<span class="string">'RGB'</span>, target_size, (<span class="keyword">0</span>, <span class="keyword">0</span>, <span class="keyword">0</span>))</div>
+                    <div class="code-line">offset = ((target_size[<span class="keyword">0</span>] - img.width) // <span class="keyword">2</span>,</div>
+                    <div class="code-line">          (target_size[<span class="keyword">1</span>] - img.height) // <span class="keyword">2</span>)</div>
+                    <div class="code-line">padded.<span class="function">paste</span>(img, offset)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Method 4: Custom resize maintaining aspect ratio</span></div>
+                    <div class="code-line"><span class="keyword">def</span> <span class="function">resize_with_aspect</span>(img, target_size):</div>
+                    <div class="code-line">    w, h = img.size</div>
+                    <div class="code-line">    aspect = w / h</div>
+                    <div class="code-line">    </div>
+                    <div class="code-line">    <span class="keyword">if</span> aspect > <span class="keyword">1</span>:  <span class="comment"># Width > Height</span></div>
+                    <div class="code-line">        new_w = target_size[<span class="keyword">0</span>]</div>
+                    <div class="code-line">        new_h = <span class="function">int</span>(new_w / aspect)</div>
+                    <div class="code-line">    <span class="keyword">else</span>:  <span class="comment"># Height > Width</span></div>
+                    <div class="code-line">        new_h = target_size[<span class="keyword">1</span>]</div>
+                    <div class="code-line">        new_w = <span class="function">int</span>(new_h * aspect)</div>
+                    <div class="code-line">    </div>
+                    <div class="code-line">    <span class="keyword">return</span> img.<span class="function">resize</span>((new_w, new_h), Image.BICUBIC)</div>
+                </div>
+                
+                <div class="formula-box">
+                    <div class="formula-title">📐 Aspect Ratio Calculation:</div>
+                    <div class="formula">
+                        <strong>Original Image: 400×300 pixels</strong><br>
+                        Aspect Ratio = Width / Height = 400 / 300 = 1.333 (या 4:3)<br><br>
+                        
+                        <strong>Target Size: 224×224</strong><br><br>
+                        
+                        <strong>Method 1: Resize to fit width</strong><br>
+                        New Width = 224<br>
+                        New Height = 224 / 1.333 = 168<br>
+                        Result: 224×168 (then pad to 224×224)<br><br>
+                        
+                        <strong>Method 2: Resize to fit height</strong><br>
+                        New Height = 224<br>
+                        New Width = 224 × 1.333 = 299<br>
+                        Result: 299×224 (then crop to 224×224)<br><br>
+                        
+                        <strong>Padding Calculation (Method 1):</strong><br>
+                        Vertical padding needed = 224 - 168 = 56<br>
+                        Top padding = 56 / 2 = 28<br>
+                        Bottom padding = 28<br><br>
+                        
+                        <strong>Crop Calculation (Method 2):</strong><br>
+                        Horizontal crop needed = 299 - 224 = 75<br>
+                        Left crop = 75 / 2 = 37.5<br>
+                        Right crop = 37.5
+                    </div>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros-box">
+                        <div class="pros-title">✅ Resize + Crop Advantages:</div>
+                        <ul class="pros-list">
+                            <li>No distortion - original proportions maintained</li>
+                            <li>Full image coverage</li>
+                            <li>Better for object detection</li>
+                            <li>Natural looking images</li>
+                            <li>Works well with data augmentation</li>
+                        </ul>
+                    </div>
+                    <div class="cons-box">
+                        <div class="cons-title">❌ Resize + Crop Disadvantages:</div>
+                        <ul class="cons-list">
+                            <li>Important parts may be cropped out</li>
+                            <li>Information loss</li>
+                            <li>Not suitable for images where edges matter</li>
+                            <li>May miss important features</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="pros-cons" style="margin-top: 20px;">
+                    <div class="pros-box">
+                        <div class="pros-title">✅ Resize + Padding Advantages:</div>
+                        <ul class="pros-list">
+                            <li>No information loss - entire image visible</li>
+                            <li>Perfect for classification tasks</li>
+                            <li>All features preserved</li>
+                            <li>Safer option</li>
+                        </ul>
+                    </div>
+                    <div class="cons-box">
+                        <div class="cons-title">❌ Resize + Padding Disadvantages:</div>
+                        <ul class="cons-list">
+                            <li>Black bars waste CNN receptive field</li>
+                            <li>Reduced effective image area</li>
+                            <li>May confuse some models</li>
+                            <li>Not natural looking</li>
+                            <li>Padding color choice matters</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Advanced Techniques -->
+        <div class="section">
+            <div class="section-title">
+                🚀 Advanced Augmentation Techniques
+            </div>
+            
+            <!-- Color Jittering -->
+            <div class="technique-card">
+                <div class="technique-header">6️⃣ Color Jittering</div>
+                <div class="technique-description">
+                    Image ke color properties (Hue, Saturation, Value) ko randomly change karna.
+                </div>
+                
+                <div class="code-box">
+                    <div class="code-title">🐍 Python Code:</div>
+                    <div class="code-line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageEnhance</div>
+                    <div class="code-line"><span class="keyword">import</span> random</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="keyword">def</span> <span class="function">color_jitter</span>(img):</div>
+                    <div class="code-line">    <span class="comment"># Random brightness (0.7 to 1.3)</span></div>
+                    <div class="code-line">    brightness = ImageEnhance.<span class="function">Brightness</span>(img)</div>
+                    <div class="code-line">    img = brightness.<span class="function">enhance</span>(random.<span class="function">uniform</span>(<span class="keyword">0.7</span>, <span class="keyword">1.3</span>))</div>
+                    <div class="code-line">    </div>
+                    <div class="code-line">    <span class="comment"># Random contrast (0.8 to 1.2)</span></div>
+                    <div class="code-line">    contrast = ImageEnhance.<span class="function">Contrast</span>(img)</div>
+                    <div class="code-line">    img = contrast.<span class="function">enhance</span>(random.<span class="function">uniform</span>(<span class="keyword">0.8</span>, <span class="keyword">1.2</span>))</div>
+                    <div class="code-line">    </div>
+                    <div class="code-line">    <span class="comment"># Random saturation (0.8 to 1.2)</span></div>
+                    <div class="code-line">    saturation = ImageEnhance.<span class="function">Color</span>(img)</div>
+                    <div class="code-line">    img = saturation.<span class="function">enhance</span>(random.<span class="function">uniform</span>(<span class="keyword">0.8</span>, <span class="keyword">1.2</span>))</div>
+                    <div class="code-line">    </div>
+                    <div class="code-line">    <span class="keyword">return</span> img</div>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros-box">
+                        <div class="pros-title">✅ Pros:</div>
+                        <ul class="pros-list">
+                            <li>Different lighting conditions simulate</li>
+                            <li>Color variations handle karta hai</li>
+                            <li>Real-world camera variations</li>
+                        </ul>
+                    </div>
+                    <div class="cons-box">
+                        <div class="cons-title">❌ Cons:</div>
+                        <ul class="cons-list">
+                            <li>Color-critical tasks ke liye risky</li>
+                            <li>Unnatural colors possible</li>
+                            <li>Careful range selection needed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Noise Addition -->
+            <div class="technique-card">
+                <div class="technique-header">7️⃣ Noise Addition (Gaussian/Salt-Pepper)</div>
+                <div class="technique-description">
+                    Image mein random noise add karna. Real-world camera noise simulate karta hai.
+                </div>
+                
+                <div class="code-box">
+                    <div class="code-title">🐍 Python Code:</div>
+                    <div class="code-line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Gaussian Noise</span></div>
+                    <div class="code-line"><span class="keyword">def</span> <span class="function">add_gaussian_noise</span>(img, mean=<span class="keyword">0</span>, sigma=<span class="keyword">25</span>):</div>
+                    <div class="code-line">    img_array = np.<span class="function">array</span>(img, dtype=np.float32)</div>
+                    <div class="code-line">    noise = np.random.<span class="function">normal</span>(mean, sigma, img_array.shape)</div>
+                    <div class="code-line">    noisy = img_array + noise</div>
+                    <div class="code-line">    noisy = np.<span class="function">clip</span>(noisy, <span class="keyword">0</span>, <span class="keyword">255</span>).<span class="function">astype</span>(np.uint8)</div>
+                    <div class="code-line">    <span class="keyword">return</span> Image.<span class="function">fromarray</span>(noisy)</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="comment"># Salt and Pepper Noise</span></div>
+                    <div class="code-line"><span class="keyword">def</span> <span class="function">add_salt_pepper</span>(img, amount=<span class="keyword">0.02</span>):</div>
+                    <div class="code-line">    img_array = np.<span class="function">array</span>(img)</div>
+                    <div class="code-line">    <span class="comment"># Salt (white pixels)</span></div>
+                    <div class="code-line">    salt = np.random.<span class="function">random</span>(img_array.shape[:<span class="keyword">2</span>]) < amount/<span class="keyword">2</span></div>
+                    <div class="code-line">    img_array[salt] = <span class="keyword">255</span></div>
+                    <div class="code-line">    <span class="comment"># Pepper (black pixels)</span></div>
+                    <div class="code-line">    pepper = np.random.<span class="function">random</span>(img_array.shape[:<span class="keyword">2</span>]) < amount/<span class="keyword">2</span></div>
+                    <div class="code-line">    img_array[pepper] = <span class="keyword">0</span></div>
+                    <div class="code-line">    <span class="keyword">return</span> Image.<span class="function">fromarray</span>(img_array)</div>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros-box">
+                        <div class="pros-title">✅ Pros:</div>
+                        <ul class="pros-list">
+                            <li>Camera noise robust banata hai</li>
+                            <li>Low-quality images handle</li>
+                            <li>Real-world scenarios simulate</li>
+                        </ul>
+                    </div>
+                    <div class="cons-box">
+                        <div class="cons-title">❌ Cons:</div>
+                        <ul class="cons-list">
+                            <li>Too much noise se learning difficult</li>
+                            <li>Important features obscure ho sakte hain</li>
+                            <li>Accuracy temporarily drop possible</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cutout / Random Erasing -->
+            <div class="technique-card">
+                <div class="technique-header">8️⃣ Cutout / Random Erasing</div>
+                <div class="technique-description">
+                    Image ke random rectangular regions ko erase/mask karna. Partial occlusion simulate karta hai.
+                </div>
+                
+                <div class="code-box">
+                    <div class="code-title">🐍 Python Code:</div>
+                    <div class="code-line"><span class="keyword">import</span> random</div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="keyword">def</span> <span class="function">random_erasing</span>(img, probability=<span class="keyword">0.5</span>, sl=<span class="keyword">0.02</span>, sh=<span class="keyword">0.4</span>):</div>
+                    <div class="code-line">    <span class="keyword">if</span> random.<span class="function">random</span>() > probability:</div>
+                    <div class="code-line">        <span class="keyword">return</span> img</div>
+                    <div class="code-line">    </div>
+                    <div class="code-line">    img_array = np.<span class="function">array</span>(img)</div>
+                    <div class="code-line">    h, w = img_array.shape[:<span class="keyword">2</span>]</div>
+                    <div class="code-line">    area = h * w</div>
+                    <div class="code-line">    </div>
+                    <div class="code-line">    <span class="comment"># Random area size</span></div>
+                    <div class="code-line">    target_area = random.<span class="function">uniform</span>(sl, sh) * area</div>
+                    <div class="code-line">    aspect_ratio = random.<span class="function">uniform</span>(<span class="keyword">0.3</span>, <span class="keyword">3.3</span>)</div>
+                    <div class="code-line">    </div>
+                    <div class="code-line">    h_erase = <span class="function">int</span>(np.<span class="function">sqrt</span>(target_area * aspect_ratio))</div>
+                    <div class="code-line">    w_erase = <span class="function">int</span>(np.<span class="function">sqrt</span>(target_area / aspect_ratio))</div>
+                    <div class="code-line">    </div>
+                    <div class="code-line">    <span class="keyword">if</span> h_erase < h <span class="keyword">and</span> w_erase < w:</div>
+                    <div class="code-line">        y = random.<span class="function">randint</span>(<span class="keyword">0</span>, h - h_erase)</div>
+                    <div class="code-line">        x = random.<span class="function">randint</span>(<span class="keyword">0</span>, w - w_erase)</div>
+                    <div class="code-line">        img_array[y:y+h_erase, x:x+w_erase] = random.<span class="function">randint</span>(<span class="keyword">0</span>, <span class="keyword">255</span>)</div>
+                    <div class="code-line">    </div>
+                    <div class="code-line">    <span class="keyword">return</span> Image.<span class="function">fromarray</span>(img_array)</div>
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros-box">
+                        <div class="pros-title">✅ Pros:</div>
+                        <ul class="pros-list">
+                            <li>Occlusion robust banata hai</li>
+                            <li>Overfitting significantly reduce</li>
+                            <li>ImageNet pe proven technique</li>
+                            <li>Partial views handle karna sikhata hai</li>
+                        </ul>
+                    </div>
+                    <div class="cons-box">
+                        <div class="cons-title">❌ Cons:</div>
+                        <ul class="cons-list">
+                            <li>Too large cutouts se learning difficult</li>
+                            <li>Key features erase ho sakte hain</li>
+                            <li>Hyperparameter tuning needed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Best Practices -->
+        <div class="section">
+            <div class="section-title">
+                💡 Best Practices & Recommendations
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">🎯 Recommended Augmentation Pipeline</div>
+                <div class="highlight-text">
+                    <strong>1. For Image Classification (VGG, Inception, ResNet):</strong><br>
+                    • Resize to target size + slight zoom (224×224 or 299×299)<br>
+                    • Random horizontal flip (probability=0.5)<br>
+                    • Random rotation (±15°)<br>
+                    • Color jitter (brightness, contrast, saturation)<br>
+                    • Random crop (0.8 to 1.0 scale)<br>
+                    • Normalization (mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])<br><br>
+                    
+                    <strong>2. For Object Detection (YOLO, SSD, Faster R-CNN):</strong><br>
+                    • Resize maintaining aspect ratio<br>
+                    • Random horizontal flip<br>
+                    • Random scaling (0.5x to 1.5x)<br>
+                    • Color jitter<br>
+                    • Random crop (with bounding box adjustment)<br>
+                    • Mosaic augmentation (advanced)<br><br>
+                    
+                    <strong>3. For Medical Imaging:</strong><br>
+                    • Careful with flips (anatomy might be asymmetric)<br>
+                    • Small rotations only (±10°)<br>
+                    • Elastic deformations<br>
+                    • Contrast enhancement<br>
+                    • NO color jitter (colors might be diagnostic)<br><br>
+                    
+                    <strong>4. For Face Recognition:</strong><br>
+                    • Horizontal flip only<br>
+                    • Small rotations (±5°)<br>
+                    • Random crop (face-centered)<br>
+                    • Lighting variations<br>
+                    • NO vertical flip (faces don't appear upside down)<br>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <div class="warning-title">⚠️ Common Mistakes to Avoid</div>
+                <div class="warning-text">
+                    ❌ <strong>Over-augmentation:</strong> Bahut zyada augmentation se images unrecognizable ban jati hain<br>
+                    ❌ <strong>Label-breaking augmentations:</strong> Text/digits ko vertical flip mat karo<br>
+                    ❌ <strong>Inappropriate for task:</strong> Medical imaging mein random erasing risky hai<br>
+                    ❌ <strong>Stretching images:</strong> Always maintain aspect ratio ya crop karo<br>
+                    ❌ <strong>Fixed seed:</strong> Augmentation random hona chahiye, fixed nahi<br>
+                    ❌ <strong>Test-time augmentation confusion:</strong> Training aur testing strategy different honi chahiye<br>
+                    ❌ <strong>Forgetting normalization:</strong> Augmentation ke baad normalize karna zaroori hai<br>
+                    ❌ <strong>Wrong interpolation:</strong> Upsampling ke liye bicubic/lanczos use karo<br>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <div class="tip-title">💡 Pro Tips</div>
+                <div class="highlight-text">
+                    ✅ <strong>Start simple:</strong> Pehle basic augmentations try karo, phir advanced<br>
+                    ✅ <strong>Monitor validation:</strong> Augmentation se validation accuracy improve honi chahiye<br>
+                    ✅ <strong>Domain-specific:</strong> Apne domain ke hisaab se augmentations choose karo<br>
+                    ✅ <strong>Probability matters:</strong> Har augmentation ko 0.5 probability se apply karo<br>
+                    ✅ <strong>Test both:</strong> Crop aur padding dono methods try karo<br>
+                    ✅ <strong>Data analysis:</strong> Apne dataset ko visualize karo augmentation ke baad<br>
+                    ✅ <strong>GPU acceleration:</strong> NVIDIA DALI ya Albumentations library use karo for speed<br>
+                    ✅ <strong>Offline vs Online:</strong> Large datasets ke liye offline augmentation better<br>
+                </div>
+            </div>
+            
+            <div class="code-box">
+                <div class="code-title">🐍 Complete Augmentation Pipeline Example:</div>
+                <div class="code-line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</div>
+                <div class="code-line"></div>
+                <div class="code-line"><span class="comment"># Training transforms</span></div>
+                <div class="code-line">train_transform = transforms.<span class="function">Compose</span>([</div>
+                <div class="code-line">    transforms.<span class="function">Resize</span>((<span class="keyword">256</span>, <span class="keyword">256</span>)),  <span class="comment"># Slightly larger</span></div>
+                <div class="code-line">    transforms.<span class="function">RandomCrop</span>((<span class="keyword">224</span>, <span class="keyword">224</span>)),  <span class="comment"># Crop to target</span></div>
+                <div class="code-line">    transforms.<span class="function">RandomHorizontalFlip</span>(p=<span class="keyword">0.5</span>),</div>
+                <div class="code-line">    transforms.<span class="function">RandomRotation</span>(degrees=<span class="keyword">15</span>),</div>
+                <div class="code-line">    transforms.<span class="function">ColorJitter</span>(</div>
+                <div class="code-line">        brightness=<span class="keyword">0.2</span>,</div>
+                <div class="code-line">        contrast=<span class="keyword">0.2</span>,</div>
+                <div class="code-line">        saturation=<span class="keyword">0.2</span>,</div>
+                <div class="code-line">        hue=<span class="keyword">0.1</span></div>
+                <div class="code-line">    ),</div>
+                <div class="code-line">    transforms.<span class="function">ToTensor</span>(),</div>
+                <div class="code-line">    transforms.<span class="function">Normalize</span>(</div>
+                <div class="code-line">        mean=[<span class="keyword">0.485</span>, <span class="keyword">0.456</span>, <span class="keyword">0.406</span>],</div>
+                <div class="code-line">        std=[<span class="keyword">0.229</span>, <span class="keyword">0.224</span>, <span class="keyword">0.225</span>]</div>
+                <div class="code-line">    )</div>
+                <div class="code-line">])</div>
+                <div class="code-line"></div>
+                <div class="code-line"><span class="comment"># Validation/Test transforms (NO augmentation)</span></div>
+                <div class="code-line">val_transform = transforms.<span class="function">Compose</span>([</div>
+                <div class="code-line">    transforms.<span class="function">Resize</span>((<span class="keyword">256</span>, <span class="keyword">256</span>)),</div>
+                <div class="code-line">    transforms.<span class="function">CenterCrop</span>((<span class="keyword">224</span>, <span class="keyword">224</span>)),</div>
+                <div class="code-line">    transforms.<span class="function">ToTensor</span>(),</div>
+                <div class="code-line">    transforms.<span class="function">Normalize</span>(</div>
+                <div class="code-line">        mean=[<span class="keyword">0.485</span>, <span class="keyword">0.456</span>, <span class="keyword">0.406</span>],</div>
+                <div class="code-line">        std=[<span class="keyword">0.229</span>, <span class="keyword">0.224</span>, <span class="keyword">0.225</span>]</div>
+                <div class="code-line">    )</div>
+                <div class="code-line">])</div>
+            </div>
+        </div>
+        
+        <!-- Summary -->
+        <div class="highlight-box" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border: 4px solid #667eea; margin-top: 30px;">
+            <div class="highlight-title" style="color: #667eea; font-size: 1.8em;">📊 Data Augmentation Summary</div>
+            <div class="highlight-text" style="font-size: 1.1em;">
+                <strong>🎯 Key Takeaways:</strong><br><br>
+                
+                1️⃣ <strong>Data Augmentation Benefits:</strong><br>
+                • Dataset size artificially increase (1000 → 10,000+ images)<br>
+                • Overfitting reduce karta hai<br>
+                • Model ko robust banata hai<br>
+                • Different variations handle karne ki capability<br>
+                • Generalization improve hoti hai<br><br>
+                
+                2️⃣ <strong>Common Techniques:</strong><br>
+                • Rotation, Flipping, Cropping (Geometric)<br>
+                • Brightness, Contrast, Color Jitter (Photometric)<br>
+                • Zoom, Scaling (Scale variations)<br>
+                • Noise, Cutout (Advanced)<br><br>
+                
+                3️⃣ <strong>Resizing Strategies:</strong><br>
+                • <strong>Bicubic/Lanczos:</strong> Best quality for CNNs<br>
+                • <strong>Resize + Crop:</strong> No distortion, information loss possible<br>
+                • <strong>Resize + Padding:</strong> No loss, but wasted receptive field<br>
+                • <strong>Direct stretch:</strong> Fast but distorts image (NOT recommended)<br><br>
+                
+                4️⃣ <strong>Architecture-Specific:</strong><br>
+                • VGG-16: 224×224×3<br>
+                • Inception: 299×299×3 (InceptionV3)<br>
+                • ResNet: 224×224×3<br>
+                • Always check model documentation!<br><br>
+                
+                5️⃣ <strong>Best Practices:</strong><br>
+                • Start with simple augmentations<br>
+                • Domain-specific augmentation select karo<br>
+                • Validation accuracy monitor karo<br>
+                • Test set par augmentation NAHI<br>
+                • Normalize images after augmentation<br>
+                • Maintain aspect ratio or crop intelligently<br><br>
+                
+                <strong>⚡ Remember:</strong> Data augmentation ek powerful technique hai but blindly apply mat karo. 
+                Apne specific task aur dataset ke hisaab se thoughtfully choose karo!
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; color: white;">
+            <h2 style="margin-bottom: 10px;">🎉 Data Augmentation Guide Complete!</h2>
+            <p style="font-size: 1.1em;">Ab aap data augmentation expert ho! 🚀</p>
+            <p style="margin-top: 10px; font-size: 0.95em;">Created with ❤️ for Deep Learning practitioners</p>
+        </div>
+    </div>
+</body>
+</html>

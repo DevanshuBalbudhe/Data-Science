@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Time Series — Complete Beginner Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+  :root {
+    --cream: #fdf8f0;
+    --warm-white: #fffcf7;
+    --ink: #1a1208;
+    --brown: #5c3d1e;
+    --amber: #d4860a;
+    --amber-light: #f5c842;
+    --sage: #4a7c59;
+    --sage-light: #e8f5ec;
+    --rust: #c0442a;
+    --rust-light: #fdf0ed;
+    --sky: #2e6fa3;
+    --sky-light: #e8f2fb;
+    --purple: #6b4fa0;
+    --purple-light: #f0ebfa;
+    --border: #e8dfd0;
+    --shadow: rgba(92,61,30,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 70px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(212,134,10,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 30%, rgba(74,124,89,0.12) 0%, transparent 50%);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--amber);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .hero h1 span { color: var(--amber-light); }
+  .hero p {
+    font-size: 18px;
+    opacity: 0.75;
+    max-width: 560px;
+    margin: 0 auto 32px;
+    position: relative;
+  }
+  .toc-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    position: relative;
+  }
+  .toc-pill {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 13px;
+    padding: 8px 18px;
+    border-radius: 30px;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .toc-pill:hover { background: var(--amber); color: var(--ink); border-color: var(--amber); }
+
+  /* LAYOUT */
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* SECTIONS */
+  .section {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--amber);
+    background: #fff8e6;
+    border: 1.5px solid var(--amber);
+    border-radius: 8px;
+    padding: 6px 12px;
+    white-space: nowrap;
+    margin-top: 6px;
+  }
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .section-subtitle {
+    font-size: 15px;
+    color: #7a6a56;
+    margin-top: 6px;
+  }
+
+  /* TEXT */
+  p { margin-bottom: 16px; font-size: 15.5px; color: #2a1f10; }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--brown); font-weight: 600; }
+  em { font-style: italic; color: var(--rust); }
+
+  /* CALLOUTS */
+  .callout {
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 24px 0;
+    border-left: 4px solid;
+  }
+  .callout-definition { background: var(--sky-light); border-color: var(--sky); }
+  .callout-example { background: var(--sage-light); border-color: var(--sage); }
+  .callout-note { background: #fff8e6; border-color: var(--amber); }
+  .callout-key { background: var(--purple-light); border-color: var(--purple); }
+  .callout-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .callout-definition .callout-title { color: var(--sky); }
+  .callout-example .callout-title { color: var(--sage); }
+  .callout-note .callout-title { color: var(--amber); }
+  .callout-key .callout-title { color: var(--purple); }
+
+  /* CHART */
+  .chart-wrapper {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin: 28px 0;
+    box-shadow: 0 2px 12px var(--shadow);
+  }
+  .chart-title {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .chart-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #9a8a78;
+    margin-bottom: 20px;
+  }
+  .chart-container { position: relative; height: 280px; }
+
+  /* TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .data-table th {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 12px 16px;
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+  .data-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--warm-white);
+  }
+  .data-table tr:nth-child(even) td { background: var(--cream); }
+  .data-table tr:hover td { background: #fff8e6; }
+  .data-table td.mono { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--rust); }
+  .data-table td.calc { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--sky); }
+
+  /* CODE */
+  .code-block {
+    background: #1e1510;
+    color: #f0e6d0;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px 0;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    border: 1px solid #3a2a18;
+  }
+  .code-block .comment { color: #7a6a52; }
+  .code-block .keyword { color: var(--amber-light); }
+  .code-block .string { color: #a8d89a; }
+  .code-block .func { color: #82c4f0; }
+  .code-block .number { color: #f0a870; }
+
+  /* COMPONENT CARD */
+  .component-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .component-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .component-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px var(--shadow); }
+  .component-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .component-name {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .component-desc { font-size: 12.5px; color: #7a6a56; line-height: 1.5; }
+
+  /* FORMULA */
+  .formula-box {
+    background: var(--ink);
+    color: var(--amber-light);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    padding: 18px 24px;
+    border-radius: 10px;
+    margin: 16px 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+
+  /* STEP */
+  .steps { margin: 20px 0; }
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--amber);
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .step-content { flex: 1; padding-top: 4px; }
+  .step-content strong { display: block; margin-bottom: 4px; font-size: 15px; }
+
+  /* PILL TAGS */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .tag-green { background: var(--sage-light); color: var(--sage); }
+  .tag-blue { background: var(--sky-light); color: var(--sky); }
+  .tag-amber { background: #fff8e6; color: #8a5c00; }
+  .tag-red { background: var(--rust-light); color: var(--rust); }
+
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+  @media (max-width: 620px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 32px 0;
+  }
+
+  /* CONCLUSION */
+  .conclusion {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 56px 40px;
+    text-align: center;
+  }
+  .conclusion h2 { font-family: 'Lora', serif; font-size: 28px; margin-bottom: 12px; }
+  .conclusion p { opacity: 0.7; max-width: 500px; margin: 0 auto; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📈 Data Science Series</div>
+  <h1>Understanding <span>Time Series</span></h1>
+  <p>A complete beginner-to-intermediate guide with manual calculations, real examples, and interactive visualizations.</p>
+  <div class="toc-pills">
+    <a href="#s1" class="toc-pill">① What is Time Series?</a>
+    <a href="#s2" class="toc-pill">② Components</a>
+    <a href="#s3" class="toc-pill">③ Python DateTime</a>
+    <a href="#s4" class="toc-pill">④ Visualization</a>
+    <a href="#s5" class="toc-pill">⑤ Stationarity</a>
+  </div>
+</div>
+
+
+<!-- ===================== SECTION 1 ===================== -->
+<div class="container">
+<section class="section" id="s1">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div>
+      <div class="section-title">What is a Time Series?</div>
+      <div class="section-subtitle">Introduction & Real-World Applications</div>
+    </div>
+  </div>
+
+  <div class="callout callout-definition">
+    <div class="callout-title">📖 Definition</div>
+    <p>A <strong>Time Series</strong> is a sequence of data points collected or recorded at successive points in time, usually at uniform intervals. The key idea is that the <em>order of data matters</em> — unlike a normal dataset where rows are independent.</p>
+  </div>
+
+  <p>Think of it this way: If I shuffle the rows of a normal Excel sheet of student marks, the dataset is still valid. But if I shuffle a stock price dataset, it becomes completely meaningless — because <strong>yesterday affects today</strong>.</p>
+
+  <div class="callout callout-example">
+    <div class="callout-title">🧪 Simple Example — Ice Cream Sales</div>
+    <p>Imagine you run an ice cream shop. You record daily sales:</p>
+  </div>
+
+  <table class="data-table">
+    <tr>
+      <th>Date</th><th>Day</th><th>Sales (units)</th><th>Observation</th>
+    </tr>
+    <tr><td>Jan 1</td><td>Mon</td><td class="mono">45</td><td>Normal winter day</td></tr>
+    <tr><td>Jan 2</td><td>Tue</td><td class="mono">42</td><td>Slightly less</td></tr>
+    <tr><td>Jan 3</td><td>Wed</td><td class="mono">48</td><td>Mid-week bump</td></tr>
+    <tr><td>Jun 15</td><td>Sat</td><td class="mono">210</td><td>🌞 Summer weekend spike!</td></tr>
+    <tr><td>Jun 16</td><td>Sun</td><td class="mono">198</td><td>Still high</td></tr>
+    <tr><td>Dec 25</td><td>Mon</td><td class="mono">18</td><td>❄️ Christmas, cold day</td></tr>
+  </table>
+
+  <p>This data tells a story over time. You can see patterns — summer is high, winter is low, weekends beat weekdays. That's the power of time series!</p>
+
+  <div class="chart-wrapper">
+    <div class="chart-title">Ice Cream Shop — Monthly Sales Pattern (Simulated Year)</div>
+    <div class="chart-subtitle">// Notice the seasonal rise in summer months</div>
+    <div class="chart-container"><canvas id="icecreamChart"></canvas></div>
+  </div>
+
+  <h3 style="font-family:'Lora',serif; font-size:20px; margin: 28px 0 12px; color:var(--brown);">Real-World Applications</h3>
+
+  <div class="two-col">
+    <div class="callout callout-note" style="margin:0">
+      <div class="callout-title">📊 Business & Finance</div>
+      <p>Stock prices, sales forecasting, inventory management, revenue prediction, customer churn prediction over time.</p>
+    </div>
+    <div class="callout callout-note" style="margin:0">
+      <div class="callout-title">🌦️ Science & Environment</div>
+      <p>Weather forecasting, earthquake monitoring, CO₂ levels, tide prediction, climate change analysis.</p>
+    </div>
+    <div class="callout callout-note" style="margin:0">
+      <div class="callout-title">🏥 Healthcare</div>
+      <p>Heart rate monitoring (ECG), patient vitals over ICU stay, disease outbreak tracking (COVID case curves).</p>
+    </div>
+    <div class="callout callout-note" style="margin:0">
+      <div class="callout-title">🌐 Tech & Engineering</div>
+      <p>Server CPU usage, website traffic, sensor data from IoT devices, energy/power grid demand forecasting.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-key">
+    <div class="callout-title">🔑 Key Characteristic</div>
+    <p>In time series, <strong>past values influence future values</strong>. Yesterday's temperature affects today's. Last month's sales shape next month's forecast. This temporal dependency is what makes time series analysis unique and powerful.</p>
+  </div>
+
+</section>
+
+
+<!-- ===================== SECTION 2 ===================== -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div>
+      <div class="section-title">Components of Time Series</div>
+      <div class="section-subtitle">Trend · Seasonality · Cyclical · Irregular</div>
+    </div>
+  </div>
+
+  <p>Any time series can be broken down into <strong>4 fundamental components</strong>. Understanding them helps you model, forecast, and explain behavior. Think of it like decomposing a music track into vocals, drums, bass, and effects.</p>
+
+  <div class="component-grid">
+    <div class="component-card">
+      <span class="component-icon">📈</span>
+      <div class="component-name">Trend</div>
+      <div class="component-desc">Long-term increase or decrease in data over a long period</div>
+    </div>
+    <div class="component-card">
+      <span class="component-icon">🔄</span>
+      <div class="component-name">Seasonality</div>
+      <div class="component-desc">Regular, predictable pattern that repeats at fixed intervals</div>
+    </div>
+    <div class="component-card">
+      <span class="component-icon">〰️</span>
+      <div class="component-name">Cyclical</div>
+      <div class="component-desc">Irregular waves driven by economic or business cycles (years-long)</div>
+    </div>
+    <div class="component-card">
+      <span class="component-icon">⚡</span>
+      <div class="component-name">Irregular</div>
+      <div class="component-desc">Random noise — unpredictable shocks and one-off events</div>
+    </div>
+  </div>
+
+  <div class="formula-box">
+    Additive Model:  Y(t) = Trend + Seasonality + Cyclical + Irregular<br>
+    Multiplicative: &nbsp;Y(t) = Trend × Seasonality × Cyclical × Irregular
+  </div>
+
+  <div class="callout callout-note">
+    <div class="callout-title">💡 When to use which?</div>
+    <p>Use <strong>Additive</strong> when seasonal variation is roughly constant (e.g., always ±50 units). Use <strong>Multiplicative</strong> when seasonal variation grows proportionally with the trend (e.g., amplitude increases as data grows — common in sales data).</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- MANUAL EXAMPLE -->
+  <h3 style="font-family:'Lora',serif; font-size:20px; margin-bottom:16px; color:var(--brown);">Manual Decomposition Example — Quarterly Revenue</h3>
+
+  <p>Let's say a company's quarterly revenue (in ₹ Lakhs) over 2 years is:</p>
+
+  <table class="data-table">
+    <tr>
+      <th>Year</th><th>Quarter</th><th>Period (t)</th><th>Revenue (Y)</th><th>What's happening?</th>
+    </tr>
+    <tr><td>2022</td><td>Q1</td><td class="mono">1</td><td class="mono">100</td><td>Base level</td></tr>
+    <tr><td>2022</td><td>Q2</td><td class="mono">2</td><td class="mono">130</td><td>Summer boost</td></tr>
+    <tr><td>2022</td><td>Q3</td><td class="mono">3</td><td class="mono">115</td><td>Post-summer dip</td></tr>
+    <tr><td>2022</td><td>Q4</td><td class="mono">4</td><td class="mono">155</td><td>🎄 Festival season</td></tr>
+    <tr><td>2023</td><td>Q1</td><td class="mono">5</td><td class="mono">120</td><td>Growth over last Q1</td></tr>
+    <tr><td>2023</td><td>Q2</td><td class="mono">6</td><td class="mono">155</td><td>Summer boost (bigger)</td></tr>
+    <tr><td>2023</td><td>Q3</td><td class="mono">7</td><td class="mono">140</td><td>Dip, but higher than 2022 Q3</td></tr>
+    <tr><td>2023</td><td>Q4</td><td class="mono">8</td><td class="mono">180</td><td>Best festival yet!</td></tr>
+  </table>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <strong>Identify the Trend</strong>
+        <p>Look at same-quarter values year over year: Q1 went 100→120 (+20), Q2: 130→155 (+25), Q3: 115→140 (+25), Q4: 155→180 (+25). The business is growing ~20–25 Lakhs per year. <strong>Trend is upward.</strong></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <strong>Identify Seasonality</strong>
+        <p>Within each year, the pattern is: Q1 is lowest, Q2 spikes up, Q3 falls slightly, Q4 is highest. This pattern repeats every 4 quarters — <strong>that's seasonality</strong> (period = 4).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <strong>Calculate Seasonal Indices (Additive)</strong>
+        <p>Average revenue = (100+130+115+155+120+155+140+180)/8 = <strong>136.875</strong><br>
+        Average Q1 = (100+120)/2 = 110 → Seasonal index = 110 − 136.875 = <em>−26.875</em><br>
+        Average Q2 = (130+155)/2 = 142.5 → Index = <em>+5.625</em><br>
+        Average Q3 = (115+140)/2 = 127.5 → Index = <em>−9.375</em><br>
+        Average Q4 = (155+180)/2 = 167.5 → Index = <em>+30.625</em></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <strong>Irregular Component</strong>
+        <p>Whatever's left after removing trend and seasonality is random noise (Irregular). For example, if Q2 2022 was expected to be 128 (trend + seasonality) but actual was 130, the irregular part = +2.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-wrapper">
+    <div class="chart-title">Quarterly Revenue Decomposition</div>
+    <div class="chart-subtitle">// Actual data vs identified trend line</div>
+    <div class="chart-container"><canvas id="decompChart"></canvas></div>
+  </div>
+
+  <div class="chart-wrapper">
+    <div class="chart-title">Four Components Visualized Separately</div>
+    <div class="chart-subtitle">// Trend (growing) · Seasonal (repeating) · Irregular (random noise)</div>
+    <div class="chart-container" style="height:340px"><canvas id="componentsChart"></canvas></div>
+  </div>
+
+</section>
+
+
+<!-- ===================== SECTION 3 ===================== -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div>
+      <div class="section-title">Date/Time Handling in Python</div>
+      <div class="section-subtitle">pandas datetime · resample · rolling</div>
+    </div>
+  </div>
+
+  <p>Python's <strong>pandas</strong> library is the go-to tool for time series. The three most important concepts are: <em>parsing dates</em>, <em>resampling</em> (changing frequency), and <em>rolling windows</em> (moving averages).</p>
+
+  <div class="divider"></div>
+
+  <h3 style="font-family:'Lora',serif; font-size:20px; margin-bottom:14px; color:var(--brown);">1. datetime — Creating & Parsing Dates</h3>
+
+  <div class="code-block">
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="comment"># Creating a date range (daily frequency)</span>
+dates = pd.<span class="func">date_range</span>(start=<span class="string">'2023-01-01'</span>, end=<span class="string">'2023-12-31'</span>, freq=<span class="string">'D'</span>)
+<span class="comment"># freq options: 'D'=daily, 'W'=weekly, 'M'=monthly, 'H'=hourly, 'min'=minutely</span>
+
+<span class="comment"># Creating a time series DataFrame</span>
+sales = pd.Series(
+    data=np.random.<span class="func">randint</span>(<span class="number">50</span>, <span class="number">200</span>, size=<span class="func">len</span>(dates)),
+    index=dates
+)
+
+<span class="comment"># Parsing dates from a CSV (very common real use case)</span>
+df = pd.<span class="func">read_csv</span>(<span class="string">'sales.csv'</span>, parse_dates=[<span class="string">'date'</span>], index_col=<span class="string">'date'</span>)
+
+<span class="comment"># Extracting date parts — super useful for feature engineering</span>
+df[<span class="string">'year'</span>]       = df.index.<span class="func">year</span>
+df[<span class="string">'month'</span>]      = df.index.<span class="func">month</span>
+df[<span class="string">'day_of_week'</span>] = df.index.<span class="func">dayofweek</span>  <span class="comment"># 0=Monday, 6=Sunday</span>
+df[<span class="string">'quarter'</span>]    = df.index.<span class="func">quarter</span>
+
+<span class="comment"># Slicing by date — very intuitive!</span>
+jan_data  = df[<span class="string">'2023-01'</span>]           <span class="comment"># All of January 2023</span>
+q1_data   = df[<span class="string">'2023-01':'2023-03'</span>]  <span class="comment"># Q1 2023</span>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-family:'Lora',serif; font-size:20px; margin-bottom:14px; color:var(--brown);">2. resample() — Changing Time Frequency</h3>
+
+  <div class="callout callout-definition">
+    <div class="callout-title">📖 What is Resampling?</div>
+    <p><strong>Downsampling</strong> = Going from fine-grained to coarse (daily → monthly). <strong>Upsampling</strong> = Going from coarse to fine (monthly → daily, fills with NaN). Think of it like zooming in or out on your data's time axis.</p>
+  </div>
+
+  <div class="code-block">
+<span class="comment"># --- DOWNSAMPLING: Daily → Monthly ---</span>
+
+<span class="comment"># Sum daily sales into monthly totals</span>
+monthly_sum  = daily_df.<span class="func">resample</span>(<span class="string">'M'</span>).<span class="func">sum</span>()
+
+<span class="comment"># Average daily temperature by week</span>
+weekly_avg   = temp_df.<span class="func">resample</span>(<span class="string">'W'</span>).<span class="func">mean</span>()
+
+<span class="comment"># Max stock price per quarter</span>
+quarterly_max = stock_df.<span class="func">resample</span>(<span class="string">'Q'</span>).<span class="func">max</span>()
+
+<span class="comment"># Resample frequencies: 'D'=daily, 'W'=weekly, 'M'=month-end</span>
+<span class="comment">#   'MS'=month-start, 'Q'=quarter-end, 'Y'=year-end, 'H'=hourly</span>
+
+<span class="comment"># --- UPSAMPLING: Monthly → Daily (fill forward) ---</span>
+daily_from_monthly = monthly_df.<span class="func">resample</span>(<span class="string">'D'</span>).<span class="func">ffill</span>()
+<span class="comment"># ffill = forward fill (copy last known value forward)</span>
+<span class="comment"># bfill = backward fill, interpolate() = linear interpolation</span>
+  </div>
+
+  <div class="callout callout-example">
+    <div class="callout-title">🧪 Manual Resample Example</div>
+    <p>Daily sales for Jan Week 1: [Mon:45, Tue:52, Wed:48, Thu:61, Fri:70, Sat:95, Sun:88]</p>
+    <p>Weekly total = 45+52+48+61+70+95+88 = <strong>459 units</strong></p>
+    <p>Weekly mean = 459 ÷ 7 = <strong>65.57 units/day average</strong></p>
+    <p>This is exactly what <code>resample('W').sum()</code> and <code>.mean()</code> would give you!</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-family:'Lora',serif; font-size:20px; margin-bottom:14px; color:var(--brown);">3. rolling() — Moving Windows</h3>
+
+  <div class="callout callout-definition">
+    <div class="callout-title">📖 What is a Rolling Window?</div>
+    <p>A <strong>rolling (moving) window</strong> computes a statistic over a sliding fixed-size window. It "rolls" through the data. The most common use is <em>Moving Average</em> — smoothing out noise to reveal the underlying trend.</p>
+  </div>
+
+  <p>Let's compute a <strong>3-day moving average</strong> manually for this data:</p>
+
+  <table class="data-table">
+    <tr>
+      <th>Day</th><th>Sales (Y)</th><th>3-Day MA Calculation</th><th>MA Value</th>
+    </tr>
+    <tr><td>Day 1</td><td class="mono">40</td><td>Not enough data</td><td class="calc">NaN</td></tr>
+    <tr><td>Day 2</td><td class="mono">55</td><td>Not enough data</td><td class="calc">NaN</td></tr>
+    <tr><td>Day 3</td><td class="mono">48</td><td class="calc">(40+55+48)/3</td><td class="calc">47.67</td></tr>
+    <tr><td>Day 4</td><td class="mono">62</td><td class="calc">(55+48+62)/3</td><td class="calc">55.00</td></tr>
+    <tr><td>Day 5</td><td class="mono">70</td><td class="calc">(48+62+70)/3</td><td class="calc">60.00</td></tr>
+    <tr><td>Day 6</td><td class="mono">45</td><td class="calc">(62+70+45)/3</td><td class="calc">59.00</td></tr>
+    <tr><td>Day 7</td><td class="mono">80</td><td class="calc">(70+45+80)/3</td><td class="calc">65.00</td></tr>
+  </table>
+
+  <div class="code-block">
+<span class="comment"># Rolling window in pandas — matches our manual calculation above</span>
+df[<span class="string">'MA_3'</span>] = df[<span class="string">'sales'</span>].<span class="func">rolling</span>(window=<span class="number">3</span>).<span class="func">mean</span>()
+df[<span class="string">'MA_7'</span>] = df[<span class="string">'sales'</span>].<span class="func">rolling</span>(window=<span class="number">7</span>).<span class="func">mean</span>()
+
+<span class="comment"># Other rolling stats</span>
+df[<span class="string">'rolling_std'</span>] = df[<span class="string">'sales'</span>].<span class="func">rolling</span>(<span class="number">7</span>).<span class="func">std</span>()   <span class="comment"># volatility</span>
+df[<span class="string">'rolling_max'</span>] = df[<span class="string">'sales'</span>].<span class="func">rolling</span>(<span class="number">7</span>).<span class="func">max</span>()   <span class="comment"># rolling high</span>
+df[<span class="string">'rolling_min'</span>] = df[<span class="string">'sales'</span>].<span class="func">rolling</span>(<span class="number">7</span>).<span class="func">min</span>()   <span class="comment"># rolling low</span>
+
+<span class="comment"># Expanding window — grows from beginning to current row</span>
+df[<span class="string">'cum_mean'</span>] = df[<span class="string">'sales'</span>].<span class="func">expanding</span>().<span class="func">mean</span>()   <span class="comment"># running average</span>
+  </div>
+
+  <div class="chart-wrapper">
+    <div class="chart-title">Rolling Moving Averages — Smoothing Noisy Data</div>
+    <div class="chart-subtitle">// Raw data (noisy) vs 3-day MA vs 7-day MA — larger window = smoother</div>
+    <div class="chart-container"><canvas id="rollingChart"></canvas></div>
+  </div>
+
+  <div class="callout callout-key">
+    <div class="callout-title">🔑 Why Use Moving Average?</div>
+    <p>Raw data is messy. A 3-day sale of [40, 80, 40] might just be a random weekend spike. The moving average of <strong>53.3</strong> better represents the true underlying level. Larger windows = smoother = more trend-like. Smaller windows = noisier = more responsive to recent changes.</p>
+  </div>
+
+</section>
+
+
+<!-- ===================== SECTION 4 ===================== -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div>
+      <div class="section-title">Time Series Visualization</div>
+      <div class="section-subtitle">Line plots · Seasonal plots · Lag plots · Autocorrelation</div>
+    </div>
+  </div>
+
+  <p>Visualization is your <em>first and most important step</em> in any time series analysis. Before building models, you must plot the data to understand its behavior, spot patterns, and identify anomalies.</p>
+
+  <div class="code-block">
+<span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="comment"># 1. Basic Line Plot — the starting point</span>
+plt.<span class="func">figure</span>(figsize=(<span class="number">12</span>, <span class="number">5</span>))
+plt.<span class="func">plot</span>(df.index, df[<span class="string">'sales'</span>], color=<span class="string">'steelblue'</span>, linewidth=<span class="number">1.5</span>)
+plt.<span class="func">title</span>(<span class="string">'Daily Sales Over Time'</span>)
+plt.<span class="func">xlabel</span>(<span class="string">'Date'</span>)
+plt.<span class="func">ylabel</span>(<span class="string">'Units Sold'</span>)
+plt.<span class="func">grid</span>(alpha=<span class="number">0.3</span>)
+plt.<span class="func">show</span>()
+
+<span class="comment"># 2. Seasonal Subseries Plot — compare same months across years</span>
+fig, axes = plt.<span class="func">subplots</span>(<span class="number">1</span>, <span class="number">12</span>, figsize=(<span class="number">20</span>, <span class="number">4</span>), sharey=<span class="keyword">True</span>)
+<span class="keyword">for</span> i, month <span class="keyword">in</span> <span class="func">enumerate</span>(<span class="func">range</span>(<span class="number">1</span>, <span class="number">13</span>)):
+    month_data = df[df.index.month == month][<span class="string">'sales'</span>]
+    axes[i].<span class="func">plot</span>(month_data.values, marker=<span class="string">'o'</span>)
+    axes[i].<span class="func">set_title</span>(month_names[i], fontsize=<span class="number">8</span>)
+    axes[i].<span class="func">axhline</span>(month_data.<span class="func">mean</span>(), color=<span class="string">'red'</span>, linestyle=<span class="string">'--'</span>)
+
+<span class="comment"># 3. Box Plot by Month — great for spotting seasonality</span>
+df[<span class="string">'month'</span>] = df.index.month
+df.<span class="func">boxplot</span>(column=<span class="string">'sales'</span>, by=<span class="string">'month'</span>)
+
+<span class="comment"># 4. Lag Plot — check autocorrelation visually</span>
+pd.plotting.<span class="func">lag_plot</span>(df[<span class="string">'sales'</span>], lag=<span class="number">1</span>)
+<span class="comment"># If points form a line → strong autocorrelation (past predicts future)</span>
+<span class="comment"># If scattered → random (no pattern)</span>
+  </div>
+
+  <div class="chart-wrapper">
+    <div class="chart-title">Full Year Sales — Line Plot with 30-Day Moving Average</div>
+    <div class="chart-subtitle">// Raw daily data shows noise; MA reveals the underlying seasonal trend</div>
+    <div class="chart-container" style="height:300px"><canvas id="lineplotChart"></canvas></div>
+  </div>
+
+  <div class="chart-wrapper">
+    <div class="chart-title">Monthly Box Plot — Seasonal Pattern Analysis</div>
+    <div class="chart-subtitle">// Higher medians in summer months confirm seasonality</div>
+    <div class="chart-container" style="height:300px"><canvas id="boxChart"></canvas></div>
+  </div>
+
+  <div class="two-col">
+    <div class="chart-wrapper" style="margin:0">
+      <div class="chart-title">Year-over-Year Comparison</div>
+      <div class="chart-subtitle">// Same pattern, different levels</div>
+      <div class="chart-container" style="height:240px"><canvas id="yoyChart"></canvas></div>
+    </div>
+    <div class="chart-wrapper" style="margin:0">
+      <div class="chart-title">Autocorrelation Concept</div>
+      <div class="chart-subtitle">// Today vs Yesterday sales</div>
+      <div class="chart-container" style="height:240px"><canvas id="lagChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="callout callout-key">
+    <div class="callout-title">🔑 Visualization Checklist</div>
+    <p>Before modeling, always check: <strong>(1)</strong> Line plot — spot overall trend. <strong>(2)</strong> Seasonal plot — confirm repeating patterns. <strong>(3)</strong> Box plot by month/quarter — compare distributions. <strong>(4)</strong> Lag plot — visualize autocorrelation. <strong>(5)</strong> Rolling statistics — identify changing variance (heteroskedasticity).</p>
+  </div>
+
+</section>
+
+
+<!-- ===================== SECTION 5 ===================== -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div>
+      <div class="section-title">Stationarity</div>
+      <div class="section-subtitle">Concept · Why it matters · How to test · How to fix</div>
+    </div>
+  </div>
+
+  <div class="callout callout-definition">
+    <div class="callout-title">📖 Definition — Stationarity</div>
+    <p>A time series is <strong>stationary</strong> if its statistical properties — <em>mean</em>, <em>variance</em>, and <em>autocorrelation structure</em> — do not change over time. It looks like it fluctuates around a constant level with constant amplitude.</p>
+  </div>
+
+  <p>Most machine learning and statistical models (ARIMA, regression, etc.) <strong>assume stationarity</strong>. If your data is non-stationary (has trends, changing variance), the model will perform poorly. So understanding and achieving stationarity is <em>the foundation of time series modeling</em>.</p>
+
+  <div class="two-col">
+    <div class="callout callout-example" style="margin:0">
+      <div class="callout-title">✅ Stationary Series</div>
+      <p>Mean = constant (~50) always</p>
+      <p>Variance = constant throughout</p>
+      <p>No trend, no seasonality</p>
+      <p>Example: Daily stock returns (not price!)</p>
+    </div>
+    <div class="callout" style="background:var(--rust-light); border-color:var(--rust); margin:0">
+      <div class="callout-title" style="color:var(--rust)">❌ Non-Stationary Series</div>
+      <p>Mean changes over time (upward trend)</p>
+      <p>Variance may grow or shrink</p>
+      <p>Has trend and/or seasonality</p>
+      <p>Example: Company revenue, stock prices</p>
+    </div>
+  </div>
+
+  <div class="chart-wrapper">
+    <div class="chart-title">Stationary vs Non-Stationary — Visual Comparison</div>
+    <div class="chart-subtitle">// Left: fluctuates around constant mean | Right: has upward trend (non-stationary)</div>
+    <div class="chart-container" style="height:300px"><canvas id="stationaryChart"></canvas></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-family:'Lora',serif; font-size:20px; margin-bottom:14px; color:var(--brown);">Three Properties of Stationarity</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <strong>Constant Mean</strong>
+        <p>The average value of the series does not increase or decrease over time. If you split the series into halves, both halves should have roughly the same mean. <br><em>Non-stationary:</em> Revenue growing from ₹100L to ₹500L → mean is rising.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <strong>Constant Variance (Homoskedasticity)</strong>
+        <p>The spread of data around the mean stays the same. <em>Non-stationary example:</em> Stock prices that fluctuate by ±5 in 2015 but ±50 in 2023 — variance is increasing. This is called <em>heteroskedasticity</em>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <strong>Constant Autocorrelation Structure</strong>
+        <p>The correlation between Y(t) and Y(t-1) is the same regardless of when in the series you are. The "memory" of the series doesn't change over time.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-family:'Lora',serif; font-size:20px; margin-bottom:14px; color:var(--brown);">Testing for Stationarity — ADF Test (Manual Intuition)</h3>
+
+  <div class="callout callout-note">
+    <div class="callout-title">📊 Augmented Dickey-Fuller (ADF) Test</div>
+    <p>The ADF test checks the <strong>"unit root"</strong> hypothesis. A unit root means the series has a trend/random walk (non-stationary). The null hypothesis H₀ = "series has a unit root = non-stationary". We want to <em>reject</em> H₀.</p>
+  </div>
+
+  <div class="formula-box">
+    H₀: Series is Non-Stationary (has unit root)<br>
+    H₁: Series is Stationary<br><br>
+    If p-value &lt; 0.05 → Reject H₀ → Series IS Stationary ✅<br>
+    If p-value &gt; 0.05 → Fail to Reject H₀ → Series is NOT Stationary ❌
+  </div>
+
+  <div class="code-block">
+<span class="keyword">from</span> statsmodels.tsa.stattools <span class="keyword">import</span> adfuller
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="keyword">def</span> <span class="func">adf_test</span>(series, name=<span class="string">''</span>):
+    result = <span class="func">adfuller</span>(series, autolag=<span class="string">'AIC'</span>)
+    <span class="func">print</span>(<span class="string">f'ADF Test: {name}'</span>)
+    <span class="func">print</span>(<span class="string">f'  ADF Statistic : {result[0]:.4f}'</span>)
+    <span class="func">print</span>(<span class="string">f'  p-value       : {result[1]:.4f}'</span>)
+    <span class="func">print</span>(<span class="string">f'  Critical (5%) : {result[4]["5%"]:.4f}'</span>)
+
+    <span class="keyword">if</span> result[<span class="number">1</span>] &lt; <span class="number">0.05</span>:
+        <span class="func">print</span>(<span class="string">'  ✅ STATIONARY (Reject H0)'</span>)
+    <span class="keyword">else</span>:
+        <span class="func">print</span>(<span class="string">'  ❌ NON-STATIONARY (Fail to Reject H0)'</span>)
+
+<span class="comment"># Test original series</span>
+<span class="func">adf_test</span>(df[<span class="string">'sales'</span>], <span class="string">'Original Sales'</span>)
+
+<span class="comment"># Output might be:</span>
+<span class="comment"># ADF Statistic : -1.23  (not negative enough)</span>
+<span class="comment"># p-value       : 0.662  (> 0.05 → non-stationary)</span>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-family:'Lora',serif; font-size:20px; margin-bottom:14px; color:var(--brown);">How to Make a Series Stationary — Differencing</h3>
+
+  <p><strong>Differencing</strong> is the most common technique. Instead of using the original values, you compute the <em>change</em> between consecutive values. This removes the trend.</p>
+
+  <div class="callout callout-example">
+    <div class="callout-title">🧪 Manual Differencing Example</div>
+    <p>Original monthly revenue (₹ Lakhs): 100, 115, 128, 140, 158, 172</p>
+    <p>1st Difference (Δ = Y(t) − Y(t−1)):</p>
+    <p>→ 115−100=<strong>15</strong>, 128−115=<strong>13</strong>, 140−128=<strong>12</strong>, 158−140=<strong>18</strong>, 172−158=<strong>14</strong></p>
+    <p>Differenced values: [15, 13, 12, 18, 14] — these fluctuate around ~14 with no trend! ✅</p>
+  </div>
+
+  <table class="data-table">
+    <tr>
+      <th>Month</th><th>Revenue (Y)</th><th>1st Difference (Y - Y_prev)</th><th>Stationary?</th>
+    </tr>
+    <tr><td>Jan</td><td class="mono">100</td><td class="calc">NaN</td><td>—</td></tr>
+    <tr><td>Feb</td><td class="mono">115</td><td class="calc">115 - 100 = 15</td><td>✅ Closer to constant</td></tr>
+    <tr><td>Mar</td><td class="mono">128</td><td class="calc">128 - 115 = 13</td><td>✅</td></tr>
+    <tr><td>Apr</td><td class="mono">140</td><td class="calc">140 - 128 = 12</td><td>✅</td></tr>
+    <tr><td>May</td><td class="mono">158</td><td class="calc">158 - 140 = 18</td><td>✅</td></tr>
+    <tr><td>Jun</td><td class="mono">172</td><td class="calc">172 - 158 = 14</td><td>✅</td></tr>
+  </table>
+
+  <div class="code-block">
+<span class="comment"># Differencing in pandas — matches manual calculation above</span>
+df[<span class="string">'diff_1'</span>] = df[<span class="string">'sales'</span>].<span class="func">diff</span>(<span class="number">1</span>)   <span class="comment"># 1st order differencing</span>
+df[<span class="string">'diff_2'</span>] = df[<span class="string">'sales'</span>].<span class="func">diff</span>(<span class="number">2</span>)   <span class="comment"># 2nd order (if 1st not enough)</span>
+
+<span class="comment"># Seasonal differencing (remove seasonal pattern)</span>
+<span class="comment"># For monthly data with period=12: subtract value from same month last year</span>
+df[<span class="string">'seasonal_diff'</span>] = df[<span class="string">'sales'</span>].<span class="func">diff</span>(<span class="number">12</span>)
+
+<span class="comment"># Log transformation (if variance is growing with level)</span>
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+df[<span class="string">'log_sales'</span>] = np.<span class="func">log</span>(df[<span class="string">'sales'</span>])
+
+<span class="comment"># After transformation, re-test with ADF</span>
+<span class="func">adf_test</span>(df[<span class="string">'diff_1'</span>].dropna(), <span class="string">'After 1st Differencing'</span>)
+<span class="comment"># p-value: 0.001 → ✅ Now stationary!</span>
+  </div>
+
+  <div class="chart-wrapper">
+    <div class="chart-title">Before & After Differencing</div>
+    <div class="chart-subtitle">// Original series (non-stationary, trending) vs 1st difference (stationary)</div>
+    <div class="chart-container" style="height:300px"><canvas id="diffChart"></canvas></div>
+  </div>
+
+  <div class="callout callout-key">
+    <div class="callout-title">🔑 Summary — Making Data Stationary</div>
+    <p>Three main approaches: <strong>(1) Differencing</strong> — removes trend (most common). <strong>(2) Log Transform</strong> — stabilizes growing variance. <strong>(3) Seasonal Differencing</strong> — removes seasonal patterns. In practice, ARIMA models do this automatically — the "I" (Integrated) in ARIMA stands for the order of differencing needed!</p>
+  </div>
+
+</section>
+</div>
+
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <h2>What's Next? 🚀</h2>
+  <p style="margin-bottom:20px; font-size:16px;">You've mastered the 5 foundational concepts. The journey continues with statistical testing, forecasting models, and deep learning approaches.</p>
+  <div class="toc-pills" style="justify-content:center">
+    <span class="toc-pill" style="cursor:default">📐 ACF & PACF Plots</span>
+    <span class="toc-pill" style="cursor:default">📊 ARIMA Models</span>
+    <span class="toc-pill" style="cursor:default">🌀 SARIMA</span>
+    <span class="toc-pill" style="cursor:default">🤖 LSTM Networks</span>
+  </div>
+</div>
+
+
+<script>
+// ========== CHART DEFAULTS ==========
+Chart.defaults.font.family = "'DM Sans', sans-serif";
+Chart.defaults.color = '#5c3d1e';
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+
+const AMBER = '#d4860a';
+const SAGE = '#4a7c59';
+const SKY = '#2e6fa3';
+const RUST = '#c0442a';
+const PURPLE = '#6b4fa0';
+const GRID_COLOR = 'rgba(92,61,30,0.08)';
+
+function gridOpts() {
+  return { color: GRID_COLOR, drawBorder: false };
+}
+
+// ========== 1. ICE CREAM CHART ==========
+const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const iceCreamSales = [65, 70, 90, 120, 160, 210, 245, 235, 185, 130, 85, 70];
+
+new Chart(document.getElementById('icecreamChart'), {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: [{
+      label: 'Monthly Sales (units)',
+      data: iceCreamSales,
+      borderColor: AMBER,
+      backgroundColor: 'rgba(212,134,10,0.1)',
+      borderWidth: 2.5,
+      pointBackgroundColor: AMBER,
+      pointRadius: 5,
+      tension: 0.4,
+      fill: true
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' } },
+    scales: {
+      x: { grid: gridOpts() },
+      y: { grid: gridOpts(), beginAtZero: true, title: { display: true, text: 'Units Sold' } }
+    }
+  }
+});
+
+// ========== 2. DECOMP CHART ==========
+const quarters = ['Q1\'22','Q2\'22','Q3\'22','Q4\'22','Q1\'23','Q2\'23','Q3\'23','Q4\'23'];
+const actual = [100, 130, 115, 155, 120, 155, 140, 180];
+// Linear trend
+const trend = [108, 116, 124, 132, 140, 148, 156, 164];
+
+new Chart(document.getElementById('decompChart'), {
+  type: 'line',
+  data: {
+    labels: quarters,
+    datasets: [
+      { label: 'Actual Revenue (₹L)', data: actual, borderColor: SKY, backgroundColor: 'rgba(46,111,163,0.1)', borderWidth: 2.5, pointRadius: 5, tension: 0.3, fill: true },
+      { label: 'Trend Line', data: trend, borderColor: RUST, borderWidth: 2, borderDash: [6,4], pointRadius: 0, tension: 0 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' } },
+    scales: {
+      x: { grid: gridOpts() },
+      y: { grid: gridOpts(), title: { display: true, text: '₹ Lakhs' } }
+    }
+  }
+});
+
+// ========== 3. COMPONENTS CHART ==========
+const trendData = [108, 116, 124, 132, 140, 148, 156, 164];
+const seasonalData = [-26.9, 5.6, -9.4, 30.6, -26.9, 5.6, -9.4, 30.6];
+const residualData = [18.9, 8.4, 0.4, -7.6, 6.9, 1.4, -6.6, -14.6];
+
+new Chart(document.getElementById('componentsChart'), {
+  type: 'bar',
+  data: {
+    labels: quarters,
+    datasets: [
+      { label: 'Trend', data: trendData, backgroundColor: 'rgba(212,134,10,0.8)', borderRadius: 4 },
+      { label: 'Seasonal', data: seasonalData, backgroundColor: 'rgba(74,124,89,0.8)', borderRadius: 4 },
+      { label: 'Irregular', data: residualData, backgroundColor: 'rgba(192,68,42,0.8)', borderRadius: 4 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' } },
+    scales: {
+      x: { grid: gridOpts() },
+      y: { grid: gridOpts(), title: { display: true, text: '₹ Lakhs' } }
+    }
+  }
+});
+
+// ========== 4. ROLLING CHART ==========
+const days = Array.from({length: 20}, (_, i) => `Day ${i+1}`);
+const rawData = [40, 55, 48, 62, 70, 45, 80, 58, 72, 65, 90, 55, 68, 78, 52, 85, 60, 73, 88, 64];
+
+function movingAvg(arr, w) {
+  return arr.map((_, i) => {
+    if (i < w-1) return null;
+    return arr.slice(i-w+1, i+1).reduce((s,v) => s+v, 0) / w;
+  });
+}
+const ma3 = movingAvg(rawData, 3);
+const ma7 = movingAvg(rawData, 7);
+
+new Chart(document.getElementById('rollingChart'), {
+  type: 'line',
+  data: {
+    labels: days,
+    datasets: [
+      { label: 'Raw Sales', data: rawData, borderColor: 'rgba(46,111,163,0.4)', backgroundColor: 'transparent', borderWidth: 1.5, pointRadius: 3 },
+      { label: '3-Day MA', data: ma3, borderColor: AMBER, backgroundColor: 'transparent', borderWidth: 2.5, pointRadius: 0, tension: 0.3 },
+      { label: '7-Day MA', data: ma7, borderColor: RUST, backgroundColor: 'transparent', borderWidth: 2.5, pointRadius: 0, tension: 0.3, borderDash: [4,3] }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' } },
+    scales: {
+      x: { grid: gridOpts() },
+      y: { grid: gridOpts(), title: { display: true, text: 'Units Sold' } }
+    }
+  }
+});
+
+// ========== 5. LINE PLOT CHART ==========
+const fullYear = Array.from({length: 52}, (_, i) => `W${i+1}`);
+function genSeasonalData() {
+  return fullYear.map((_, i) => {
+    const trend = 80 + i * 1.2;
+    const season = 40 * Math.sin((i - 13) * 2 * Math.PI / 52);
+    const noise = (Math.random() - 0.5) * 30;
+    return Math.max(20, trend + season + noise);
+  });
+}
+const yearlyRaw = genSeasonalData();
+const ma30 = movingAvg(yearlyRaw, 7);
+
+new Chart(document.getElementById('lineplotChart'), {
+  type: 'line',
+  data: {
+    labels: fullYear,
+    datasets: [
+      { label: 'Daily Sales', data: yearlyRaw, borderColor: 'rgba(46,111,163,0.35)', backgroundColor: 'transparent', borderWidth: 1, pointRadius: 0 },
+      { label: '7-Week MA', data: ma30, borderColor: AMBER, backgroundColor: 'rgba(212,134,10,0.1)', borderWidth: 2.5, pointRadius: 0, tension: 0.4, fill: true }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' } },
+    scales: {
+      x: { grid: gridOpts(), ticks: { maxTicksLimit: 12 } },
+      y: { grid: gridOpts(), title: { display: true, text: 'Units' } }
+    }
+  }
+});
+
+// ========== 6. BOX CHART (using bar + error bars approximation) ==========
+const monthlyMeans = [75, 80, 95, 115, 148, 178, 195, 188, 158, 120, 88, 72];
+const monthlyStd  = [10, 12, 14, 16, 18, 20, 22, 20, 18, 15, 12, 10];
+
+new Chart(document.getElementById('boxChart'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [{
+      label: 'Avg Monthly Sales',
+      data: monthlyMeans,
+      backgroundColor: monthlyMeans.map((v, i) => {
+        if (i >= 5 && i <= 7) return 'rgba(212,134,10,0.85)'; // summer
+        if (i >= 11 || i <= 1) return 'rgba(46,111,163,0.7)'; // winter
+        return 'rgba(74,124,89,0.75)';
+      }),
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: gridOpts() },
+      y: { grid: gridOpts(), title: { display: true, text: 'Units Sold' } }
+    }
+  }
+});
+
+// ========== 7. YOY CHART ==========
+const yoy2022 = [65, 72, 85, 110, 145, 172, 200, 195, 162, 125, 88, 70];
+const yoy2023 = [80, 88, 102, 130, 168, 198, 228, 220, 185, 148, 105, 84];
+
+new Chart(document.getElementById('yoyChart'), {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: [
+      { label: '2022', data: yoy2022, borderColor: 'rgba(107,79,160,0.7)', borderWidth: 2, pointRadius: 3, tension: 0.4 },
+      { label: '2023', data: yoy2023, borderColor: AMBER, borderWidth: 2, pointRadius: 3, tension: 0.4 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' } },
+    scales: {
+      x: { grid: gridOpts() },
+      y: { grid: gridOpts() }
+    }
+  }
+});
+
+// ========== 8. LAG CHART (scatter) ==========
+const lagRaw = [45, 52, 48, 62, 70, 65, 80, 75, 72, 68, 88, 85, 90, 82, 78];
+const lagX = lagRaw.slice(0, -1);
+const lagY = lagRaw.slice(1);
+const lagPoints = lagX.map((v, i) => ({ x: v, y: lagY[i] }));
+
+new Chart(document.getElementById('lagChart'), {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: 'Y(t) vs Y(t-1)',
+      data: lagPoints,
+      backgroundColor: 'rgba(46,111,163,0.7)',
+      pointRadius: 5
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' } },
+    scales: {
+      x: { grid: gridOpts(), title: { display: true, text: 'Y(t-1) — Yesterday' } },
+      y: { grid: gridOpts(), title: { display: true, text: 'Y(t) — Today' } }
+    }
+  }
+});
+
+// ========== 9. STATIONARY CHART ==========
+const statLabels = Array.from({length: 50}, (_, i) => i+1);
+const stationary = statLabels.map(() => 50 + (Math.random()-0.5)*20);
+const nonStationary = statLabels.map((_, i) => 50 + i*2 + (Math.random()-0.5)*20);
+
+new Chart(document.getElementById('stationaryChart'), {
+  type: 'line',
+  data: {
+    labels: statLabels,
+    datasets: [
+      { label: '✅ Stationary', data: stationary, borderColor: SAGE, backgroundColor: 'rgba(74,124,89,0.1)', borderWidth: 2, pointRadius: 0, tension: 0.3, fill: true },
+      { label: '❌ Non-Stationary (has trend)', data: nonStationary, borderColor: RUST, backgroundColor: 'rgba(192,68,42,0.08)', borderWidth: 2, pointRadius: 0, tension: 0.3, fill: true }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' } },
+    scales: {
+      x: { grid: gridOpts(), title: { display: true, text: 'Time' } },
+      y: { grid: gridOpts() }
+    }
+  }
+});
+
+// ========== 10. DIFFERENCING CHART ==========
+const origRevenue = [100, 115, 128, 140, 158, 172, 188, 200, 215, 230];
+const diffRevenue = [null, 15, 13, 12, 18, 14, 16, 12, 15, 15];
+const diffLabels = origRevenue.map((_, i) => `Month ${i+1}`);
+
+new Chart(document.getElementById('diffChart'), {
+  type: 'line',
+  data: {
+    labels: diffLabels,
+    datasets: [
+      { label: 'Original (Non-Stationary)', data: origRevenue, borderColor: RUST, backgroundColor: 'rgba(192,68,42,0.1)', borderWidth: 2.5, pointRadius: 4, tension: 0.3, fill: true, yAxisID: 'y' },
+      { label: '1st Difference (Stationary)', data: diffRevenue, borderColor: SAGE, backgroundColor: 'rgba(74,124,89,0.15)', borderWidth: 2.5, pointRadius: 4, tension: 0.1, fill: true, yAxisID: 'y2' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' } },
+    scales: {
+      y: { grid: gridOpts(), type: 'linear', position: 'left', title: { display: true, text: 'Revenue (₹L)' } },
+      y2: { grid: { display: false }, type: 'linear', position: 'right', title: { display: true, text: 'Change (₹L)' } },
+      x: { grid: gridOpts() }
+    }
+  }
+});
+</script>
+</body>
+</html>

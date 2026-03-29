@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeNet-5 Architecture - Complete Visualization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+        
+        .title-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+        
+        .main-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            opacity: 0.95;
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 36px;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        h2 {
+            color: #764ba2;
+            font-size: 28px;
+            margin: 30px 0 15px 0;
+        }
+        
+        h3 {
+            color: #5a4d8a;
+            font-size: 22px;
+            margin: 25px 0 12px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .architecture-flow {
+            background: linear-gradient(to right, #f6f9fc, #e9f2ff);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .layer-box {
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+        
+        .layer-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .layer-content {
+            padding: 15px;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .spec-item {
+            background: #f0f4ff;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .spec-label {
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .spec-value {
+            color: #333;
+            font-size: 18px;
+        }
+        
+        .calculation-box {
+            background: #fff9e6;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .calc-title {
+            font-weight: bold;
+            color: #f57c00;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .calc-steps {
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            line-height: 1.8;
+        }
+        
+        .formula {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 6px;
+            border: 2px solid #2196f3;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            background: white;
+        }
+        
+        tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover td {
+            background-color: #f0f4ff;
+        }
+        
+        .total-row {
+            background: linear-gradient(to right, #e3f2fd, #f0f4ff) !important;
+            font-weight: bold;
+            border-top: 3px solid #667eea !important;
+        }
+        
+        .visual-flow {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border: 3px dashed #667eea;
+            overflow-x: auto;
+        }
+        
+        .flow-diagram {
+            font-family: 'Courier New', monospace;
+            white-space: pre;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .arrow {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(to right, #d4edda, #c3e6cb);
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        
+        .info-box {
+            background: linear-gradient(to right, #cce5ff, #b3d9ff);
+            border-left: 5px solid #0066cc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        
+        .warning-box {
+            background: linear-gradient(to right, #fff3cd, #ffe8a1);
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        
+        ul {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .dimension-flow {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 2;
+            border: 2px solid #dee2e6;
+        }
+        
+        .layer-visual {
+            text-align: center;
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(to bottom, #f6f9fc, #ffffff);
+            border-radius: 10px;
+        }
+        
+        .layer-diagram {
+            font-family: monospace;
+            font-size: 16px;
+            line-height: 1.8;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: inline-block;
+            text-align: left;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 5px;
+        }
+        
+        .badge-input { background: #e3f2fd; color: #1976d2; }
+        .badge-conv { background: #f3e5f5; color: #7b1fa2; }
+        .badge-pool { background: #e8f5e9; color: #388e3c; }
+        .badge-fc { background: #fff3e0; color: #f57c00; }
+        .badge-output { background: #ffebee; color: #c62828; }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Title Section -->
+        <div class="title-section">
+            <div class="main-title">LeNet-5 Architecture</div>
+            <div class="subtitle">Complete Visualization with Calculations</div>
+        </div>
+
+        <!-- Introduction -->
+        <h1>🎯 What is LeNet-5?</h1>
+        
+        <p><strong>LeNet-5</strong> is one of the earliest and most influential Convolutional Neural Networks, developed by <strong>Yann LeCun</strong> and his colleagues in <strong>1998</strong>. It was designed for handwritten digit recognition and laid the foundation for modern deep learning architectures.</p>
+        
+        <div class="highlight-box">
+            <h3>🏆 Historical Significance</h3>
+            <ul>
+                <li><strong>First Practical CNN:</strong> Successfully applied to real-world problems (reading bank checks)</li>
+                <li><strong>Proved Deep Learning Works:</strong> Demonstrated that neural networks could learn hierarchical features</li>
+                <li><strong>Foundation for Modern CNNs:</strong> Introduced concepts still used today (conv layers, pooling, activation)</li>
+                <li><strong>Commercial Success:</strong> Used by banks in the 1990s for automatic check reading</li>
+                <li><strong>MNIST Benchmark:</strong> Achieved ~99% accuracy on handwritten digit recognition</li>
+            </ul>
+        </div>
+
+        <!-- Architecture Overview -->
+        <h1>🏗️ Architecture Overview</h1>
+        
+        <div class="architecture-flow">
+            <h2 style="text-align: center; color: #667eea; margin-bottom: 25px;">LeNet-5 Layer Sequence</h2>
+            <div style="font-size: 24px; text-align: center; font-weight: bold; color: #333;">
+                <span class="badge badge-input">INPUT</span>
+                <span class="arrow">→</span>
+                <span class="badge badge-conv">C1</span>
+                <span class="arrow">→</span>
+                <span class="badge badge-pool">S2</span>
+                <span class="arrow">→</span>
+                <span class="badge badge-conv">C3</span>
+                <span class="arrow">→</span>
+                <span class="badge badge-pool">S4</span>
+                <span class="arrow">→</span>
+                <span class="badge badge-conv">C5</span>
+                <span class="arrow">→</span>
+                <span class="badge badge-fc">F6</span>
+                <span class="arrow">→</span>
+                <span class="badge badge-output">OUTPUT</span>
+            </div>
+            <div style="text-align: center; margin-top: 20px; color: #666;">
+                <strong>Legend:</strong> C = Convolutional | S = Subsampling (Pooling) | F = Fully Connected
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>📊 Quick Stats</h3>
+            <ul>
+                <li><strong>Total Layers:</strong> 7 (3 Convolutional, 2 Pooling, 2 Fully Connected)</li>
+                <li><strong>Total Parameters:</strong> ~61,706</li>
+                <li><strong>Input Size:</strong> 32×32 grayscale images</li>
+                <li><strong>Output:</strong> 10 classes (digits 0-9)</li>
+                <li><strong>Model Size:</strong> ~240 KB (extremely lightweight!)</li>
+            </ul>
+        </div>
+
+        <!-- Complete Visual Flow -->
+        <h1>📐 Complete Dimensional Flow</h1>
+        
+        <div class="visual-flow">
+            <div class="flow-diagram">
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                        LeNet-5 Architecture Flow                                │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+INPUT LAYER
+┌──────────┐
+│  32×32×1 │  ← Grayscale image of handwritten digit
+└──────────┘
+     ↓
+     ↓ [Convolution: 6 filters, 5×5, stride=1, padding=0]
+     ↓
+┌──────────┐
+│ 28×28×6  │  ← C1: 6 feature maps detecting edges, textures
+└──────────┘
+     ↓
+     ↓ [Average Pooling: 2×2, stride=2]
+     ↓
+┌──────────┐
+│ 14×14×6  │  ← S2: Reduced spatial dimensions
+└──────────┘
+     ↓
+     ↓ [Convolution: 16 filters, 5×5, stride=1, padding=0]
+     ↓
+┌──────────┐
+│ 10×10×16 │  ← C3: 16 feature maps detecting shapes, patterns
+└──────────┘
+     ↓
+     ↓ [Average Pooling: 2×2, stride=2]
+     ↓
+┌──────────┐
+│  5×5×16  │  ← S4: Further dimension reduction
+└──────────┘
+     ↓
+     ↓ [Convolution: 120 filters, 5×5, stride=1, padding=0]
+     ↓
+┌──────────┐
+│ 1×1×120  │  ← C5: 120 high-level features (acts like FC layer)
+└──────────┘
+     ↓
+     ↓ [Flatten: Convert to 1D vector]
+     ↓
+┌──────────┐
+│   120    │  ← Flattened feature vector
+└──────────┘
+     ↓
+     ↓ [Fully Connected: 84 neurons]
+     ↓
+┌──────────┐
+│    84    │  ← F6: Abstract feature representation
+└──────────┘
+     ↓
+     ↓ [Fully Connected: 10 neurons + Softmax]
+     ↓
+┌──────────┐
+│    10    │  ← OUTPUT: Probabilities for digits 0-9
+└──────────┘
+
+            </div>
+        </div>
+
+        <!-- Layer by Layer Details -->
+        <h1>🔍 Layer-by-Layer Detailed Analysis</h1>
+
+        <!-- Input Layer -->
+        <div class="layer-box">
+            <div class="layer-header">
+                📥 INPUT LAYER - Starting Point
+            </div>
+            <div class="layer-content">
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Input Shape:</span>
+                        <span class="spec-value">32 × 32 × 1</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Image Type:</span>
+                        <span class="spec-value">Grayscale</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Total Pixels:</span>
+                        <span class="spec-value">1,024</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Parameters:</span>
+                        <span class="spec-value">0</span>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <strong>📝 Description:</strong>
+                    <p>The input is a 32×32 pixel grayscale image of a handwritten digit (0-9). Each pixel has a value between 0 (black) and 255 (white). The image is centered and normalized for better training.</p>
+                    
+                    <strong>Why 32×32?</strong>
+                    <ul>
+                        <li>Original MNIST images are 28×28, but padded to 32×32</li>
+                        <li>Padding allows feature detectors to capture edge information better</li>
+                        <li>Makes dimensional calculations cleaner through the network</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- C1 Layer -->
+        <div class="layer-box">
+            <div class="layer-header">
+                🔷 C1 - First Convolutional Layer
+            </div>
+            <div class="layer-content">
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Input:</span>
+                        <span class="spec-value">32 × 32 × 1</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Filter Size:</span>
+                        <span class="spec-value">5 × 5</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Number of Filters:</span>
+                        <span class="spec-value">6</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Stride:</span>
+                        <span class="spec-value">1</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Padding:</span>
+                        <span class="spec-value">0 (Valid)</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Output:</span>
+                        <span class="spec-value">28 × 28 × 6</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Parameters:</span>
+                        <span class="spec-value">156</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Activation:</span>
+                        <span class="spec-value">tanh (or ReLU)</span>
+                    </div>
+                </div>
+                
+                <div class="calculation-box">
+                    <div class="calc-title">📐 Output Size Calculation:</div>
+                    <div class="formula">
+                        Output = (Input - Filter + 2×Padding) / Stride + 1
+                    </div>
+                    <div class="calc-steps">Output Width/Height = (32 - 5 + 2×0) / 1 + 1
+                  = (32 - 5 + 0) / 1 + 1
+                  = 27 / 1 + 1
+                  = 28
+
+Output Shape = 28 × 28 × 6 (6 feature maps)</div>
+                </div>
+                
+                <div class="calculation-box">
+                    <div class="calc-title">🔢 Parameters Calculation:</div>
+                    <div class="calc-steps">Each filter:
+- Filter size: 5×5×1 = 25 weights
+- Bias: 1
+- Total per filter: 26 parameters
+
+All 6 filters:
+- Total parameters: 6 × 26 = 156 parameters</div>
+                </div>
+                
+                <div class="info-box">
+                    <strong>🎯 What C1 Learns:</strong>
+                    <ul>
+                        <li><strong>Low-level features:</strong> Edges, lines, corners</li>
+                        <li><strong>Simple patterns:</strong> Horizontal edges, vertical edges, diagonal lines</li>
+                        <li><strong>Basic textures:</strong> Rough areas, smooth areas</li>
+                        <li><strong>6 different detectors:</strong> Each filter specializes in detecting one type of pattern</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- S2 Layer -->
+        <div class="layer-box">
+            <div class="layer-header">
+                🟢 S2 - First Subsampling (Pooling) Layer
+            </div>
+            <div class="layer-content">
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Input:</span>
+                        <span class="spec-value">28 × 28 × 6</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Pool Size:</span>
+                        <span class="spec-value">2 × 2</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Stride:</span>
+                        <span class="spec-value">2</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Pool Type:</span>
+                        <span class="spec-value">Average Pooling</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Output:</span>
+                        <span class="spec-value">14 × 14 × 6</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Parameters:</span>
+                        <span class="spec-value">0 (modern) / 12 (original)</span>
+                    </div>
+                </div>
+                
+                <div class="calculation-box">
+                    <div class="calc-title">📐 Output Size Calculation:</div>
+                    <div class="formula">
+                        Output = (Input - Pool_Size) / Stride + 1
+                    </div>
+                    <div class="calc-steps">Output Width/Height = (28 - 2) / 2 + 1
+                  = 26 / 2 + 1
+                  = 13 + 1
+                  = 14
+
+Output Shape = 14 × 14 × 6
+
+Size Reduction: 28×28 → 14×14 (75% reduction in pixels!)</div>
+                </div>
+                
+                <div class="info-box">
+                    <strong>🎯 Purpose of S2:</strong>
+                    <ul>
+                        <li><strong>Dimensionality Reduction:</strong> Reduces spatial dimensions by 50%</li>
+                        <li><strong>Computational Efficiency:</strong> Fewer parameters in next layers</li>
+                        <li><strong>Translation Invariance:</strong> Makes network robust to small shifts</li>
+                        <li><strong>Feature Aggregation:</strong> Combines local features into more robust representations</li>
+                    </ul>
+                    
+                    <strong>⚠️ Note:</strong> Original LeNet-5 used trainable average pooling with 12 parameters (2 per feature map). Modern implementations use simple average or max pooling with 0 parameters.
+                </div>
+            </div>
+        </div>
+
+        <!-- C3 Layer -->
+        <div class="layer-box">
+            <div class="layer-header">
+                🔷 C3 - Second Convolutional Layer
+            </div>
+            <div class="layer-content">
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Input:</span>
+                        <span class="spec-value">14 × 14 × 6</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Filter Size:</span>
+                        <span class="spec-value">5 × 5</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Number of Filters:</span>
+                        <span class="spec-value">16</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Stride:</span>
+                        <span class="spec-value">1</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Padding:</span>
+                        <span class="spec-value">0 (Valid)</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Output:</span>
+                        <span class="spec-value">10 × 10 × 16</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Parameters:</span>
+                        <span class="spec-value">2,416</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Activation:</span>
+                        <span class="spec-value">tanh (or ReLU)</span>
+                    </div>
+                </div>
+                
+                <div class="calculation-box">
+                    <div class="calc-title">📐 Output Size Calculation:</div>
+                    <div class="calc-steps">Output Width/Height = (14 - 5 + 2×0) / 1 + 1
+                  = (14 - 5) / 1 + 1
+                  = 9 / 1 + 1
+                  = 10
+
+Output Shape = 10 × 10 × 16 (16 feature maps)</div>
+                </div>
+                
+                <div class="calculation-box">
+                    <div class="calc-title">🔢 Parameters Calculation:</div>
+                    <div class="calc-steps">Each filter connects to all 6 input feature maps:
+- Filter size: 5×5×6 = 150 weights
+- Bias: 1
+- Total per filter: 151 parameters
+
+All 16 filters:
+- Total parameters: 16 × 151 = 2,416 parameters</div>
+                </div>
+                
+                <div class="info-box">
+                    <strong>🎯 What C3 Learns:</strong>
+                    <ul>
+                        <li><strong>Mid-level features:</strong> Combinations of edges into shapes</li>
+                        <li><strong>Complex patterns:</strong> Corners, circles, curves, simple geometric shapes</li>
+                        <li><strong>Texture combinations:</strong> More complex textures from basic patterns</li>
+                        <li><strong>Feature combinations:</strong> Each of 16 filters combines information from all 6 previous feature maps</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- S4 Layer -->
+        <div class="layer-box">
+            <div class="layer-header">
+                🟢 S4 - Second Subsampling (Pooling) Layer
+            </div>
+            <div class="layer-content">
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Input:</span>
+                        <span class="spec-value">10 × 10 × 16</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Pool Size:</span>
+                        <span class="spec-value">2 × 2</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Stride:</span>
+                        <span class="spec-value">2</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Pool Type:</span>
+                        <span class="spec-value">Average Pooling</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Output:</span>
+                        <span class="spec-value">5 × 5 × 16</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Parameters:</span>
+                        <span class="spec-value">0 (modern) / 32 (original)</span>
+                    </div>
+                </div>
+                
+                <div class="calculation-box">
+                    <div class="calc-title">📐 Output Size Calculation:</div>
+                    <div class="calc-steps">Output Width/Height = (10 - 2) / 2 + 1
+                  = 8 / 2 + 1
+                  = 4 + 1
+                  = 5
+
+Output Shape = 5 × 5 × 16
+
+Size Reduction: 10×10 → 5×5 (75% reduction in pixels!)</div>
+                </div>
+                
+                <div class="info-box">
+                    <strong>🎯 Purpose of S4:</strong>
+                    <ul>
+                        <li><strong>Further Downsampling:</strong> Prepares for fully connected layers</li>
+                        <li><strong>Increased Receptive Field:</strong> Each neuron in next layer sees larger portion of original image</li>
+                        <li><strong>Robustness:</strong> More invariant to position and small distortions</li>
+                        <li><strong>Computational Efficiency:</strong> Only 400 spatial locations per channel (5×5) instead of 10,000 (10×10)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- C5 Layer -->
+        <div class="layer-box">
+            <div class="layer-header">
+                🔷 C5 - Third Convolutional Layer (FC-like)
+            </div>
+            <div class="layer-content">
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Input:</span>
+                        <span class="spec-value">5 × 5 × 16</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Filter Size:</span>
+                        <span class="spec-value">5 × 5</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Number of Filters:</span>
+                        <span class="spec-value">120</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Stride:</span>
+                        <span class="spec-value">1</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Padding:</span>
+                        <span class="spec-value">0 (Valid)</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Output:</span>
+                        <span class="spec-value">1 × 1 × 120</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Parameters:</span>
+                        <span class="spec-value">48,120</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Activation:</span>
+                        <span class="spec-value">tanh (or ReLU)</span>
+                    </div>
+                </div>
+                
+                <div class="calculation-box">
+                    <div class="calc-title">📐 Output Size Calculation:</div>
+                    <div class="calc-steps">Output Width/Height = (5 - 5 + 2×0) / 1 + 1
+                  = (5 - 5) / 1 + 1
+                  = 0 / 1 + 1
+                  = 1
+
+Output Shape = 1 × 1 × 120 (120 feature maps)</div>
+                </div>
+                
+                <div class="calculation-box">
+                    <div class="calc-title">🔢 Parameters Calculation:</div>
+                    <div class="calc-steps">Each filter connects to all 16 input feature maps:
+- Filter size: 5×5×16 = 400 weights
+- Bias: 1
+- Total per filter: 401 parameters
+
+All 120 filters:
+- Total parameters: 120 × 401 = 48,120 parameters
+
+⚠️ This is the largest parameter layer in LeNet-5!</div>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>⭐ Special Note about C5:</strong>
+                    <p>Since the filter size (5×5) equals the input size (5×5), the output is 1×1. This makes C5 <strong>functionally equivalent to a fully connected layer</strong> with 120 neurons!</p>
+                    
+                    <p><strong>Why call it "Convolutional"?</strong></p>
+                    <ul>
+                        <li>Technically it's still a convolution operation</li>
+                        <li>If input size were different, it would produce spatial output</li>
+                        <li>Maintains consistency in architectural design</li>
+                    </ul>
+                    
+                    <p><strong>Connection:</strong> Each of 120 neurons is connected to all 400 values (5×5×16) from the previous layer.</p>
+                </div>
+                
+                <div class="info-box">
+                    <strong>🎯 What C5 Learns:</strong>
+                    <ul>
+                        <li><strong>High-level features:</strong> Complex combinations representing digit-specific patterns</li>
+                        <li><strong>Global representations:</strong> Each neuron sees the entire previous feature space</li>
+                        <li><strong>Abstract features:</strong> Not visually interpretable, but encode semantic information</li>
+                        <li><strong>Digit-specific patterns:</strong> Features that help distinguish between different digits</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- F6 Layer -->
+        <div class="layer-box">
+            <div class="layer-header">
+                🟠 F6 - Fully Connected Layer
+            </div>
+            <div class="layer-content">
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Input:</span>
+                        <span class="spec-value">120 neurons</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Output:</span>
+                        <span class="spec-value">84 neurons</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Parameters:</span>
+                        <span class="spec-value">10,164</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Activation:</span>
+                        <span class="spec-value">tanh (or ReLU)</span>
+                    </div>
+                </div>
+                
+                <div class="calculation-box">
+                    <div class="calc-title">🔢 Parameters Calculation:</div>
+                    <div class="calc-steps">Fully Connected Layer:
+- Input neurons: 120
+- Output neurons: 84
+- Weights: 120 × 84 = 10,080
+- Biases: 84
+- Total parameters: 10,080 + 84 = 10,164 parameters</div>
+                </div>
+                
+                <div class="info-box">
+                    <strong>🎯 Purpose of F6:</strong>
+                    <ul>
+                        <li><strong>Feature Reduction:</strong> Compresses 120 features into 84 more compact features</li>
+                        <li><strong>Abstract Representation:</strong> Further abstracts features for final classification</li>
+                        <li><strong>Non-linear Transformation:</strong> Applies activation function to introduce more complexity</li>
+                        <li><strong>Pre-classification Layer:</strong> Prepares features for final output layer</li>
+                    </ul>
+                    
+                    <strong>Why 84 neurons?</strong>
+                    <p>In the original paper, 84 was chosen to match a 7×12 bitmap representation of ASCII characters. This allowed the network to learn a distributed encoding of characters.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Output Layer -->
+        <div class="layer-box">
+            <div class="layer-header">
+                🔴 OUTPUT LAYER - Final Classification
+            </div>
+            <div class="layer-content">
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Input:</span>
+                        <span class="spec-value">84 neurons</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Output:</span>
+                        <span class="spec-value">10 neurons</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Classes:</span>
+                        <span class="spec-value">Digits 0-9</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Parameters:</span>
+                        <span class="spec-value">850</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Activation:</span>
+                        <span class="spec-value">Softmax</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Loss Function:</span>
+                        <span class="spec-value">Cross-Entropy</span>
+                    </div>
+                </div>
+                
+                <div class="calculation-box">
+                    <div class="calc-title">🔢 Parameters Calculation:</div>
+                    <div class="calc-steps">Output Layer:
+- Input neurons: 84
+- Output neurons: 10 (one per digit class)
+- Weights: 84 × 10 = 840
+- Biases: 10
+- Total parameters: 840 + 10 = 850 parameters</div>
+                </div>
+                
+                <div class="calculation-box">
+                    <div class="calc-title">📊 Output Interpretation:</div>
+                    <div class="calc-steps">Softmax output example:
+
+[0.01, 0.02, 0.05, 0.75, 0.03, 0.08, 0.02, 0.01, 0.02, 0.01]
+  ↓     ↓     ↓     ↓     ↓     ↓     ↓     ↓     ↓     ↓
+  0     1     2     3     4     5     6     7     8     9
+
+Prediction: Digit 3 (highest probability = 0.75 or 75%)
+
+All probabilities sum to 1.0 (100%)</div>
+                </div>
+                
+                <div class="info-box">
+                    <strong>🎯 How Output Layer Works:</strong>
+                    <ul>
+                        <li><strong>10 Output Neurons:</strong> One for each digit (0-9)</li>
+                        <li><strong>Softmax Activation:</strong> Converts raw scores to probabilities (0 to 1)</li>
+                        <li><strong>Probability Distribution:</strong> All outputs sum to 1.0</li>
+                        <li><strong>Predicted Class:</strong> Digit with highest probability</li>
+                        <li><strong>Confidence:</strong> How sure the network is (higher probability = more confident)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Complete Summary Table -->
+        <h1>📊 Complete Architecture Summary Table</h1>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Layer</th>
+                    <th>Type</th>
+                    <th>Input Shape</th>
+                    <th>Filter/Pool</th>
+                    <th>Filters/Neurons</th>
+                    <th>Stride</th>
+                    <th>Padding</th>
+                    <th>Output Shape</th>
+                    <th>Parameters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>INPUT</strong></td>
+                    <td>Image</td>
+                    <td>32×32×1</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>32×32×1</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><strong>C1</strong></td>
+                    <td>Convolution</td>
+                    <td>32×32×1</td>
+                    <td>5×5</td>
+                    <td>6</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>28×28×6</td>
+                    <td>156</td>
+                </tr>
+                <tr>
+                    <td><strong>S2</strong></td>
+                    <td>Avg Pool</td>
+                    <td>28×28×6</td>
+                    <td>2×2</td>
+                    <td>-</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>14×14×6</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><strong>C3</strong></td>
+                    <td>Convolution</td>
+                    <td>14×14×6</td>
+                    <td>5×5</td>
+                    <td>16</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>10×10×16</td>
+                    <td>2,416</td>
+                </tr>
+                <tr>
+                    <td><strong>S4</strong></td>
+                    <td>Avg Pool</td>
+                    <td>10×10×16</td>
+                    <td>2×2</td>
+                    <td>-</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>5×5×16</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><strong>C5</strong></td>
+                    <td>Convolution</td>
+                    <td>5×5×16</td>
+                    <td>5×5</td>
+                    <td>120</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1×1×120</td>
+                    <td>48,120</td>
+                </tr>
+                <tr>
+                    <td><strong>F6</strong></td>
+                    <td>Fully Connected</td>
+                    <td>120</td>
+                    <td>-</td>
+                    <td>84</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>84</td>
+                    <td>10,164</td>
+                </tr>
+                <tr>
+                    <td><strong>OUTPUT</strong></td>
+                    <td>Fully Connected</td>
+                    <td>84</td>
+                    <td>-</td>
+                    <td>10</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>10</td>
+                    <td>850</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="8" style="text-align: right;"><strong>TOTAL PARAMETERS:</strong></td>
+                    <td><strong>61,706</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Dimensional Flow Summary -->
+        <h1>🔄 Dimensional Transformation Summary</h1>
+        
+        <div class="dimension-flow">
+<strong>Spatial Dimensions (Height × Width):</strong>
+32 → 28 → 14 → 10 → 5 → 1 → (flatten) → 120 → 84 → 10
+
+<strong>Depth (Channels/Feature Maps):</strong>
+1 → 6 → 6 → 16 → 16 → 120 → 120 → 84 → 10
+
+<strong>Complete Shape Evolution:</strong>
+32×32×1   →  28×28×6   →  14×14×6   →  10×10×16  →  5×5×16    →
+1×1×120   →  120       →  84        →  10
+
+<strong>Key Patterns:</strong>
+✓ Spatial size DECREASES progressively
+✓ Feature depth INCREASES (more feature maps)
+✓ Convolutional layers: Detect patterns
+✓ Pooling layers: Reduce dimensions
+✓ Fully connected layers: Final classification
+        </div>
+
+        <!-- Parameter Distribution -->
+        <h1>📈 Parameter Distribution Analysis</h1>
+        
+        <div class="highlight-box">
+            <h3>Where are the parameters?</h3>
+            <table style="margin-top: 15px;">
+                <tr>
+                    <th>Layer</th>
+                    <th>Parameters</th>
+                    <th>Percentage</th>
+                    <th>Visual</th>
+                </tr>
+                <tr>
+                    <td>C1</td>
+                    <td>156</td>
+                    <td>0.25%</td>
+                    <td style="background: linear-gradient(to right, #667eea 0.25%, white 0.25%);">▓</td>
+                </tr>
+                <tr>
+                    <td>S2</td>
+                    <td>0</td>
+                    <td>0%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>C3</td>
+                    <td>2,416</td>
+                    <td>3.92%</td>
+                    <td style="background: linear-gradient(to right, #667eea 3.92%, white 3.92%);">▓▓▓</td>
+                </tr>
+                <tr>
+                    <td>S4</td>
+                    <td>0</td>
+                    <td>0%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>C5</td>
+                    <td>48,120</td>
+                    <td>78.00%</td>
+                    <td style="background: linear-gradient(to right, #667eea 78%, white 78%);">▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓</td>
+                </tr>
+                <tr>
+                    <td>F6</td>
+                    <td>10,164</td>
+                    <td>16.47%</td>
+                    <td style="background: linear-gradient(to right, #667eea 16.47%, white 16.47%);">▓▓▓▓</td>
+                </tr>
+                <tr>
+                    <td>OUTPUT</td>
+                    <td>850</td>
+                    <td>1.38%</td>
+                    <td style="background: linear-gradient(to right, #667eea 1.38%, white 1.38%);">▓</td>
+                </tr>
+            </table>
+            
+            <p style="margin-top: 20px;"><strong>Key Insight:</strong> C5 layer contains <span style="color: #667eea; font-weight: bold;">78% of all parameters</span>! This is because it connects 400 inputs (5×5×16) to 120 outputs.</p>
+        </div>
+
+        <!-- Training Example -->
+        <h1>🎓 Complete Training Example</h1>
+        
+        <div class="layer-box">
+            <div class="layer-header">
+                Example: Recognizing Handwritten Digit "3"
+            </div>
+            <div class="layer-content">
+                <div class="calculation-box">
+                    <div class="calc-title">🔄 Forward Pass (Prediction)</div>
+                    <div class="calc-steps">INPUT: 32×32 image of digit "3"
+  ↓
+C1: Applies 6 filters (5×5) → Extracts edges, curves
+    Output: 28×28×6 feature maps
+    Features detected: vertical edge, horizontal edge, curve, etc.
+  ↓
+S2: Average pooling (2×2) → Reduces size
+    Output: 14×14×6
+  ↓
+C3: Applies 16 filters (5×5) → Combines edges into shapes
+    Output: 10×10×16 feature maps
+    Features: top curve of "3", bottom curve, middle junction
+  ↓
+S4: Average pooling (2×2) → Further reduction
+    Output: 5×5×16
+  ↓
+C5: Applies 120 filters (5×5) → High-level features
+    Output: 1×1×120 = 120 features
+    Abstract representation of "3" shape
+  ↓
+F6: Fully connected (84 neurons)
+    Output: 84 compressed features
+  ↓
+OUTPUT: Fully connected + Softmax (10 neurons)
+    Raw scores: [2.1, 1.3, 0.8, 8.5, 1.2, 2.3, 0.5, 1.1, 0.9, 1.4]
+    After Softmax:
+    [0.01, 0.02, 0.05, 0.75, 0.03, 0.08, 0.02, 0.01, 0.02, 0.01]
+     0     1     2     3     4     5     6     7     8     9
+    
+    <strong>PREDICTION: Digit 3 (75% confidence)</strong></div>
+                </div>
+                
+                <div class="calculation-box">
+                    <div class="calc-title">⬅️ Backward Pass (Learning)</div>
+                    <div class="calc-steps">True Label: Digit 3
+Predicted: [0.01, 0.02, 0.05, 0.75, 0.03, 0.08, 0.02, 0.01, 0.02, 0.01]
+Target:    [0,    0,    0,    1,    0,    0,    0,    0,    0,    0]
+
+Loss Calculation (Cross-Entropy):
+Loss = -log(0.75) = 0.288
+
+Error = Predicted - Target
+      = [0.01, 0.02, 0.05, -0.25, 0.03, 0.08, 0.02, 0.01, 0.02, 0.01]
+
+Backpropagation:
+1. Error propagates back through OUTPUT layer
+2. Gradients computed for F6 layer
+3. Gradients flow through C5, S4, C3, S2, C1
+4. All weights updated to minimize loss
+
+Weight Update (for each layer):
+weight_new = weight_old - learning_rate × gradient
+
+After many iterations:
+- C1 filters learn better edge detectors
+- C3 filters learn better shape combinations
+- C5 learns better digit representations
+- Network becomes more accurate!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance & Comparison -->
+        <h1>🏆 Performance & Comparison</h1>
+        
+        <div class="specs-grid">
+            <div class="spec-item">
+                <span class="spec-label">MNIST Accuracy:</span>
+                <span class="spec-value">~98-99%</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Training Time:</span>
+                <span class="spec-value">Minutes (modern GPU)</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Model Size:</span>
+                <span class="spec-value">~240 KB</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Inference Speed:</span>
+                <span class="spec-value">< 1ms per image</span>
+            </div>
+        </div>
+        
+        <h2>Comparison with Modern Architectures</h2>
+        
+        <table>
+            <tr>
+                <th>Architecture</th>
+                <th>Year</th>
+                <th>Parameters</th>
+                <th>Layers</th>
+                <th>Top-1 Accuracy (ImageNet)</th>
+            </tr>
+            <tr>
+                <td><strong>LeNet-5</strong></td>
+                <td>1998</td>
+                <td>~60K</td>
+                <td>7</td>
+                <td>N/A (MNIST only)</td>
+            </tr>
+            <tr>
+                <td>AlexNet</td>
+                <td>2012</td>
+                <td>~60M</td>
+                <td>8</td>
+                <td>57.1%</td>
+            </tr>
+            <tr>
+                <td>VGG-16</td>
+                <td>2014</td>
+                <td>~138M</td>
+                <td>16</td>
+                <td>71.3%</td>
+            </tr>
+            <tr>
+                <td>ResNet-50</td>
+                <td>2015</td>
+                <td>~25M</td>
+                <td>50</td>
+                <td>76.0%</td>
+            </tr>
+            <tr>
+                <td>EfficientNet-B7</td>
+                <td>2019</td>
+                <td>~66M</td>
+                <td>813</td>
+                <td>84.4%</td>
+            </tr>
+        </table>
+
+        <!-- Key Insights -->
+        <h1>💡 Key Insights & Lessons</h1>
+        
+        <div class="highlight-box">
+            <h3>🎯 Why LeNet-5 is Important</h3>
+            <ol>
+                <li><strong>Proof of Concept:</strong> First practical demonstration that CNNs work for real problems</li>
+                <li><strong>Architectural Blueprint:</strong> Introduced the Conv → Pool → Conv → Pool → FC pattern still used today</li>
+                <li><strong>Automatic Feature Learning:</strong> Showed that hand-crafted features aren't necessary</li>
+                <li><strong>End-to-End Learning:</strong> Entire network trained together via backpropagation</li>
+                <li><strong>Commercial Success:</strong> Actually deployed in real banking systems</li>
+            </ol>
+        </div>
+        
+        <div class="info-box">
+            <h3>📚 Design Principles from LeNet-5</h3>
+            <ul>
+                <li><strong>Hierarchical Feature Learning:</strong> Simple → Complex features</li>
+                <li><strong>Local Receptive Fields:</strong> Small filters look at local patterns</li>
+                <li><strong>Weight Sharing:</strong> Same filter across entire image</li>
+                <li><strong>Spatial Subsampling:</strong> Pooling for dimensionality reduction</li>
+                <li><strong>Non-linear Activations:</strong> tanh/ReLU for learning complex functions</li>
+            </ul>
+        </div>
+        
+        <div class="warning-box">
+            <h3>🔄 Modern Modifications</h3>
+            <p>When implementing LeNet-5 today, consider these improvements:</p>
+            <ul>
+                <li><strong>ReLU instead of tanh:</strong> Faster training, avoids vanishing gradients</li>
+                <li><strong>Max pooling instead of average:</strong> Better feature preservation</li>
+                <li><strong>Batch Normalization:</strong> After each conv layer for stable training</li>
+                <li><strong>Dropout:</strong> After fully connected layers (typically 0.5 dropout rate)</li>
+                <li><strong>Adam Optimizer:</strong> Instead of vanilla SGD for faster convergence</li>
+                <li><strong>Data Augmentation:</strong> Random rotations, shifts, scaling</li>
+                <li><strong>Learning Rate Scheduling:</strong> Reduce LR when validation loss plateaus</li>
+            </ul>
+        </div>
+
+        <!-- Conclusion -->
+        <h1>🎓 Conclusion</h1>
+        
+        <p>LeNet-5 is a <strong>historic architecture</strong> that proved deep learning could work in practice. Despite its small size (~60K parameters), it demonstrated all the key principles that make modern CNNs successful:</p>
+        
+        <div class="highlight-box">
+            <h3>✅ What You've Learned</h3>
+            <ul>
+                <li>Complete layer-by-layer breakdown of LeNet-5</li>
+                <li>How to calculate output dimensions for each layer</li>
+                <li>Parameter counting for convolutional and fully connected layers</li>
+                <li>The flow of information from input to output</li>
+                <li>How features evolve from simple (edges) to complex (digits)</li>
+                <li>The role of each component (conv, pool, activation, FC)</li>
+            </ul>
+        </div>
+        
+        <p style="text-align: center; margin-top: 60px; font-size: 28px; font-weight: bold; color: #667eea;">
+            LeNet-5: Where Deep Learning Began! 🚀
+        </p>
+        
+        <p style="text-align: center; font-size: 18px; color: #666; margin-top: 20px;">
+            From 60,000 parameters in 1998 to billions today - the journey continues!
+        </p>
+    </div>
+</body>
+</html>

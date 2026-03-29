@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlexNet Architecture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide {
+            display: none;
+            padding: 40px;
+            height: 100vh;
+            overflow-y: auto;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            color: #FFD700;
+            border-bottom: 3px solid #FFD700;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.6em;
+            margin: 20px 0 15px 0;
+            color: #87ceeb;
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #e0e0e0;
+        }
+
+        .content {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .architecture-diagram {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .layer {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            border-left: 4px solid #FFD700;
+        }
+
+        .layer-info {
+            flex: 1;
+        }
+
+        .layer-title {
+            font-weight: bold;
+            color: #FFD700;
+            font-size: 1.2em;
+        }
+
+        .layer-details {
+            color: #e0e0e0;
+            margin-top: 5px;
+            font-size: 0.95em;
+        }
+
+        .calculation {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 12px 0;
+            border-left: 4px solid #87ceeb;
+        }
+
+        .formula {
+            font-family: 'Courier New', monospace;
+            background: rgba(255,255,255,0.1);
+            padding: 8px;
+            border-radius: 5px;
+            margin: 8px 0;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .pros, .cons {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .pros {
+            border-left: 5px solid #4caf50;
+        }
+
+        .cons {
+            border-left: 5px solid #f44336;
+        }
+
+        .pros h3 {
+            color: #4caf50;
+        }
+
+        .cons h3 {
+            color: #f44336;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin: 6px 0;
+            line-height: 1.4;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .timeline {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        .year {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #FFD700;
+            margin-right: 20px;
+        }
+
+        .parameters-summary {
+            background: linear-gradient(45deg, rgba(255,215,0,0.2), rgba(135,206,235,0.2));
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .parameter-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .parameter-table th,
+        .parameter-table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .parameter-table th {
+            background: rgba(255,215,0,0.3);
+            font-weight: bold;
+        }
+
+        .total-params {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #FFD700;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .innovation-box {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #FF6B6B;
+        }
+
+        .innovation-title {
+            font-weight: bold;
+            color: #FF6B6B;
+            margin-bottom: 8px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">12</span>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>AlexNet</h1>
+            <p class="subtitle">Revolutionary Deep Convolutional Neural Network</p>
+            <div class="content" style="text-align: center; margin-top: 50px;">
+                <div class="timeline">
+                    <div class="year">2012</div>
+                    <div>
+                        <h3>ImageNet Large Scale Visual Recognition Challenge Winner</h3>
+                        <p>Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton</p>
+                    </div>
+                </div>
+                <p style="font-size: 1.3em; margin-top: 40px; color: #e0e0e0;">
+                    The breakthrough that sparked the Deep Learning Revolution
+                </p>
+                <div style="margin-top: 30px; font-size: 1.1em;">
+                    <p><strong>62.3 Million Parameters</strong> • <strong>8 Layers</strong> • <strong>1000 Classes</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Historical Context -->
+        <div class="slide">
+            <h2>Historical Context & Revolution</h2>
+            <div class="content">
+                <div class="timeline">
+                    <div class="year">2012</div>
+                    <div>
+                        <h3>The ImageNet Breakthrough</h3>
+                        <p>AlexNet achieved 15.3% top-5 error rate, dramatically outperforming traditional methods</p>
+                    </div>
+                </div>
+                
+                <h3>The Deep Learning Revolution:</h3>
+                <ul>
+                    <li><strong>Performance Gap:</strong> Reduced error rate from 26.2% to 15.3% on ImageNet</li>
+                    <li><strong>GPU Computing:</strong> First CNN to leverage parallel GPU processing effectively</li>
+                    <li><strong>Scale Achievement:</strong> Successfully trained on 1.2 million high-resolution images</li>
+                    <li><strong>Industry Impact:</strong> Launched the modern AI and computer vision era</li>
+                </ul>
+
+                <h3>Key Breakthrough Innovations:</h3>
+                <div class="innovation-box">
+                    <div class="innovation-title">ReLU Activation Function</div>
+                    <p>Replaced traditional sigmoid/tanh, enabling faster training and deeper networks</p>
+                </div>
+                <div class="innovation-box">
+                    <div class="innovation-title">Dropout Regularization</div>
+                    <p>Prevented overfitting in large networks, allowing better generalization</p>
+                </div>
+                <div class="innovation-box">
+                    <div class="innovation-title">Data Augmentation</div>
+                    <p>Generated additional training data through transformations and crops</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Architecture Overview -->
+        <div class="slide">
+            <h2>AlexNet Architecture Overview</h2>
+            <div class="architecture-diagram">
+                <svg width="100%" height="350" viewBox="0 0 1400 350" style="margin: 10px 0;">
+                    <!-- Input Image -->
+                    <g>
+                        <rect x="20" y="120" width="70" height="70" fill="#4CAF50" stroke="#2E7D32" stroke-width="2" rx="5"/>
+                        <text x="55" y="150" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Input</text>
+                        <text x="55" y="165" text-anchor="middle" fill="white" font-size="9">227×227×3</text>
+                        <text x="55" y="210" text-anchor="middle" fill="white" font-size="9">RGB Image</text>
+                    </g>
+
+                    <!-- Arrow 1 -->
+                    <path d="M 100 155 L 120 155" stroke="#FFD700" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+                    <!-- Conv1 -->
+                    <g>
+                        <rect x="130" y="100" width="60" height="60" fill="#2196F3" stroke="#1976D2" stroke-width="2" rx="5"/>
+                        <text x="160" y="125" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Conv1</text>
+                        <text x="160" y="140" text-anchor="middle" fill="white" font-size="8">96@11×11</text>
+                        <text x="160" y="180" text-anchor="middle" fill="white" font-size="8">55×55×96</text>
+                        <text x="160" y="195" text-anchor="middle" fill="white" font-size="7">34,944 params</text>
+                    </g>
+
+                    <!-- Arrow & Pool1 -->
+                    <path d="M 200 130 L 220 130" stroke="#FFD700" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    <g>
+                        <rect x="230" y="115" width="50" height="50" fill="#FF9800" stroke="#F57C00" stroke-width="2" rx="5"/>
+                        <text x="255" y="135" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Pool1</text>
+                        <text x="255" y="150" text-anchor="middle" fill="white" font-size="8">3×3/2</text>
+                        <text x="255" y="180" text-anchor="middle" fill="white" font-size="8">27×27×96</text>
+                    </g>
+
+                    <!-- Arrow & Conv2 -->
+                    <path d="M 290 140 L 310 140" stroke="#FFD700" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    <g>
+                        <rect x="320" y="100" width="60" height="60" fill="#2196F3" stroke="#1976D2" stroke-width="2" rx="5"/>
+                        <text x="350" y="125" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Conv2</text>
+                        <text x="350" y="140" text-anchor="middle" fill="white" font-size="8">256@5×5</text>
+                        <text x="350" y="180" text-anchor="middle" fill="white" font-size="8">27×27×256</text>
+                        <text x="350" y="195" text-anchor="middle" fill="white" font-size="7">614,656 params</text>
+                    </g>
+
+                    <!-- Arrow & Pool2 -->
+                    <path d="M 390 130 L 410 130" stroke="#FFD700" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    <g>
+                        <rect x="420" y="115" width="50" height="50" fill="#FF9800" stroke="#F57C00" stroke-width="2" rx="5"/>
+                        <text x="445" y="135" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Pool2</text>
+                        <text x="445" y="150" text-anchor="middle" fill="white" font-size="8">3×3/2</text>
+                        <text x="445" y="180" text-anchor="middle" fill="white" font-size="8">13×13×256</text>
+                    </g>
+
+                    <!-- Conv3 -->
+                    <path d="M 480 140 L 500 140" stroke="#FFD700" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    <g>
+                        <rect x="510" y="100" width="60" height="60" fill="#2196F3" stroke="#1976D2" stroke-width="2" rx="5"/>
+                        <text x="540" y="125" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Conv3</text>
+                        <text x="540" y="140" text-anchor="middle" fill="white" font-size="8">384@3×3</text>
+                        <text x="540" y="180" text-anchor="middle" fill="white" font-size="8">13×13×384</text>
+                        <text x="540" y="195" text-anchor="middle" fill="white" font-size="7">885,120 params</text>
+                    </g>
+
+                    <!-- Conv4 -->
+                    <path d="M 580 130 L 600 130" stroke="#FFD700" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    <g>
+                        <rect x="610" y="100" width="60" height="60" fill="#2196F3" stroke="#1976D2" stroke-width="2" rx="5"/>
+                        <text x="640" y="125" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Conv4</text>
+                        <text x="640" y="140" text-anchor="middle" fill="white" font-size="8">384@3×3</text>
+                        <text x="640" y="180" text-anchor="middle" fill="white" font-size="8">13×13×384</text>
+                        <text x="640" y="195" text-anchor="middle" fill="white" font-size="7">1.3M params</text>
+                    </g>
+
+                    <!-- Conv5 -->
+                    <path d="M 680 130 L 700 130" stroke="#FFD700" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    <g>
+                        <rect x="710" y="100" width="60" height="60" fill="#2196F3" stroke="#1976D2" stroke-width="2" rx="5"/>
+                        <text x="740" y="125" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Conv5</text>
+                        <text x="740" y="140" text-anchor="middle" fill="white" font-size="8">256@3×3</text>
+                        <text x="740" y="180" text-anchor="middle" fill="white" font-size="8">13×13×256</text>
+                        <text x="740" y="195" text-anchor="middle" fill="white" font-size="7">885,000 params</text>
+                    </g>
+
+                    <!-- Pool3 -->
+                    <path d="M 780 130 L 800 130" stroke="#FFD700" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    <g>
+                        <rect x="810" y="115" width="50" height="50" fill="#FF9800" stroke="#F57C00" stroke-width="2" rx="5"/>
+                        <text x="835" y="135" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Pool3</text>
+                        <text x="835" y="150" text-anchor="middle" fill="white" font-size="8">3×3/2</text>
+                        <text x="835" y="180" text-anchor="middle" fill="white" font-size="8">6×6×256</text>
+                    </g>
+
+                    <!-- FC1 -->
+                    <path d="M 870 140 L 890 140" stroke="#FFD700" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    <g>
+                        <rect x="900" y="115" width="60" height="50" fill="#9C27B0" stroke="#7B1FA2" stroke-width="2" rx="5"/>
+                        <text x="930" y="138" text-anchor="middle" fill="white" font-size="10" font-weight="bold">FC1</text>
+                        <text x="930" y="152" text-anchor="middle" fill="white" font-size="8">4096</text>
+                        <text x="930" y="180" text-anchor="middle" fill="white" font-size="7">37.8M params</text>
+                    </g>
+
+                    <!-- FC2 -->
+                    <path d="M 970 140 L 990 140" stroke="#FFD700" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    <g>
+                        <rect x="1000" y="115" width="60" height="50" fill="#9C27B0" stroke="#7B1FA2" stroke-width="2" rx="5"/>
+                        <text x="1030" y="138" text-anchor="middle" fill="white" font-size="10" font-weight="bold">FC2</text>
+                        <text x="1030" y="152" text-anchor="middle" fill="white" font-size="8">4096</text>
+                        <text x="1030" y="180" text-anchor="middle" fill="white" font-size="7">16.8M params</text>
+                    </g>
+
+                    <!-- Output -->
+                    <path d="M 1070 140 L 1090 140" stroke="#FFD700" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    <g>
+                        <rect x="1100" y="120" width="60" height="40" fill="#E91E63" stroke="#C2185B" stroke-width="2" rx="5"/>
+                        <text x="1130" y="138" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Output</text>
+                        <text x="1130" y="152" text-anchor="middle" fill="white" font-size="8">1000</text>
+                        <text x="1130" y="180" text-anchor="middle" fill="white" font-size="7">4.1M params</text>
+                    </g>
+
+                    <!-- Layer type labels -->
+                    <text x="160" y="80" text-anchor="middle" fill="#FFD700" font-size="12" font-weight="bold">CONV</text>
+                    <text x="255" y="80" text-anchor="middle" fill="#FFD700" font-size="12" font-weight="bold">POOL</text>
+                    <text x="350" y="80" text-anchor="middle" fill="#FFD700" font-size="12" font-weight="bold">CONV</text>
+                    <text x="445" y="80" text-anchor="middle" fill="#FFD700" font-size="12" font-weight="bold">POOL</text>
+                    <text x="540" y="80" text-anchor="middle" fill="#FFD700" font-size="12" font-weight="bold">CONV</text>
+                    <text x="640" y="80" text-anchor="middle" fill="#FFD700" font-size="12" font-weight="bold">CONV</text>
+                    <text x="740" y="80" text-anchor="middle" fill="#FFD700" font-size="12" font-weight="bold">CONV</text>
+                    <text x="835" y="80" text-anchor="middle" fill="#FFD700" font-size="12" font-weight="bold">POOL</text>
+                    <text x="930" y="80" text-anchor="middle" fill="#FFD700" font-size="12" font-weight="bold">FC</text>
+                    <text x="1030" y="80" text-anchor="middle" fill="#FFD700" font-size="12" font-weight="bold">FC</text>
+                    <text x="1130" y="80" text-anchor="middle" fill="#FFD700" font-size="12" font-weight="bold">SOFTMAX</text>
+
+                    <!-- Arrow marker -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+                         refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#FFD700"/>
+                        </marker>
+                    </defs>
+                </svg>
+
+                <div style="text-align: center; margin-top: 15px;">
+                    <h3 style="color: #FFD700;">Total Parameters: 62,378,344</h3>
+                    <p style="font-size: 1.1em; color: #e0e0e0;">8 Layers: 5 Convolutional + 3 Fully Connected</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Mathematical Formulas -->
+        <div class="slide">
+            <h2>Key Mathematical Formulas</h2>
+            <div class="content">
+                <h3>Convolution Output Size Formula:</h3>
+                <div class="formula">
+                    Output = (Input - Filter + 2×Padding) / Stride + 1
+                </div>
+
+                <h3>Max Pooling Output Size Formula:</h3>
+                <div class="formula">
+                    Output = (Input - Pool_size) / Stride + 1
+                </div>
+
+                <h3>Parameter Count Formulas:</h3>
+                <div class="calculation">
+                    <h4>Convolutional Layers:</h4>
+                    <div class="formula">
+                        Parameters = (Filter_W × Filter_H × Input_Channels + 1) × Num_Filters
+                    </div>
+                </div>
+
+                <div class="calculation">
+                    <h4>Fully Connected Layers:</h4>
+                    <div class="formula">
+                        Parameters = (Input_Size × Output_Size) + Output_Size
+                    </div>
+                </div>
+
+                <h3>Max Pooling Operation:</h3>
+                <div class="calculation">
+                    <p>For a 3×3 pooling window:</p>
+                    <div class="formula">
+                        Output = max(a, b, c, d, e, f, g, h, i)
+                    </div>
+                    <p style="margin-top: 8px;">Where a through i are the nine values in the pooling window</p>
+                </div>
+
+                <h3>ReLU Activation Function:</h3>
+                <div class="formula">
+                    f(x) = max(0, x)
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Conv Layer Calculations 1 -->
+        <div class="slide">
+            <h2>Convolutional Layers Calculations (Part 1)</h2>
+            <div class="content">
+                <div class="calculation">
+                    <h3>Conv-1: First Convolutional Layer</h3>
+                    <p><strong>Input:</strong> 227×227×3, <strong>Filters:</strong> 96, <strong>Size:</strong> 11×11, <strong>Stride:</strong> 4, <strong>Padding:</strong> 0</p>
+                    <div class="formula">
+                        Output = (227 - 11 + 0) / 4 + 1 = 216/4 + 1 = 54 + 1 = 55
+                    </div>
+                    <p><strong>Result:</strong> 55×55×96</p>
+                    <div class="formula">
+                        Parameters = (11×11×3 + 1) × 96 = (363 + 1) × 96 = 34,944
+                    </div>
+                </div>
+
+                <div class="calculation">
+                    <h3>Conv-2: Second Convolutional Layer</h3>
+                    <p><strong>Input:</strong> 27×27×96, <strong>Filters:</strong> 256, <strong>Size:</strong> 5×5, <strong>Stride:</strong> 1, <strong>Padding:</strong> 2</p>
+                    <div class="formula">
+                        Output = (27 - 5 + 4) / 1 + 1 = 26/1 + 1 = 27
+                    </div>
+                    <p><strong>Result:</strong> 27×27×256</p>
+                    <div class="formula">
+                        Parameters = (5×5×96 + 1) × 256 = (2400 + 1) × 256 = 614,656
+                    </div>
+                </div>
+
+                <div class="calculation">
+                    <h3>Conv-3: Third Convolutional Layer</h3>
+                    <p><strong>Input:</strong> 13×13×256, <strong>Filters:</strong> 384, <strong>Size:</strong> 3×3, <strong>Stride:</strong> 1, <strong>Padding:</strong> 1</p>
+                    <div class="formula">
+                        Output = (13 - 3 + 2) / 1 + 1 = 12/1 + 1 = 13
+                    </div>
+                    <p><strong>Result:</strong> 13×13×384</p>
+                    <div class="formula">
+                        Parameters = (3×3×256 + 1) × 384 = (2304 + 1) × 384 = 885,120
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Conv Layer Calculations 2 -->
+        <div class="slide">
+            <h2>Convolutional Layers Calculations (Part 2)</h2>
+            <div class="content">
+                <div class="calculation">
+                    <h3>Conv-4: Fourth Convolutional Layer</h3>
+                    <p><strong>Input:</strong> 13×13×384, <strong>Filters:</strong> 384, <strong>Size:</strong> 3×3, <strong>Stride:</strong> 1, <strong>Padding:</strong> 1</p>
+                    <div class="formula">
+                        Output = (13 - 3 + 2) / 1 + 1 = 13
+                    </div>
+                    <p><strong>Result:</strong> 13×13×384</p>
+                    <div class="formula">
+                        Parameters = (3×3×384 + 1) × 384 = (3456 + 1) × 384 = 1,327,488
+                    </div>
+                </div>
+
+                <div class="calculation">
+                    <h3>Conv-5: Fifth Convolutional Layer</h3>
+                    <p><strong>Input:</strong> 13×13×384, <strong>Filters:</strong> 256, <strong>Size:</strong> 3×3, <strong>Stride:</strong> 1, <strong>Padding:</strong> 1</p>
+                    <div class="formula">
+                        Output = (13 - 3 + 2) / 1 + 1 = 13
+                    </div>
+                    <p><strong>Result:</strong> 13×13×256</p>
+                    <div class="formula">
+                        Parameters = (3×3×384 + 1) × 256 = (3456 + 1) × 256 = 884,992
+                    </div>
+                </div>
+
+                <h3>Key Observations:</h3>
+                <ul>
+                    <li><strong>First layer:</strong> Large 11×11 filters with stride 4 for aggressive downsampling</li>
+                    <li><strong>Later layers:</strong> Smaller 3×3 filters maintain spatial resolution</li>
+                    <li><strong>Channel growth:</strong> 3 → 96 → 256 → 384 → 384 → 256</li>
+                    <li><strong>Parameter distribution:</strong> Later conv layers have more parameters due to higher channel counts</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 7: Pooling Layer Calculations -->
+        <div class="slide">
+            <h2>Pooling Layer Calculations</h2>
+            <div class="content">
+                <div class="calculation">
+                    <h3>MaxPool-1: First Max Pooling Layer</h3>
+                    <p><strong>Input:</strong> 55×55×96, <strong>Pool Size:</strong> 3×3, <strong>Stride:</strong> 2, <strong>Padding:</strong> 0</p>
+                    <div class="formula">
+                        Output = (55 - 3) / 2 + 1 = 52/2 + 1 = 26 + 1 = 27
+                    </div>
+                    <p><strong>Result:</strong> 27×27×96</p>
+                    <p><strong>Parameters:</strong> 0 (pooling layers have no trainable parameters)</p>
+                </div>
+
+                <div class="calculation">
+                    <h3>MaxPool-2: Second Max Pooling Layer</h3>
+                    <p><strong>Input:</strong> 27×27×256, <strong>Pool Size:</strong> 3×3, <strong>Stride:</strong> 2, <strong>Padding:</strong> 0</p>
+                    <div class="formula">
+                        Output = (27 - 3) / 2 + 1 = 24/2 + 1 = 12 + 1 = 13
+                    </div>
+                    <p><strong>Result:</strong> 13×13×256</p>
+                    <p><strong>Parameters:</strong> 0</p>
+                </div>
+
+                <div class="calculation">
+                    <h3>MaxPool-3: Third Max Pooling Layer</h3>
+                    <p><strong>Input:</strong> 13×13×256, <strong>Pool Size:</strong> 3×3, <strong>Stride:</strong> 2, <strong>Padding:</strong> 0</p>
+                    <div class="formula">
+                        Output = (13 - 3) / 2 + 1 = 10/2 + 1 = 5 + 1 = 6
+                    </div>
+                    <p><strong>Result:</strong> 6×6×256</p>
+                    <p><strong>Parameters:</strong> 0</p>
+                </div>
+
+                <h3>Max Pooling Benefits:</h3>
+                <ul>
+                    <li><strong>Translation Invariance:</strong> Small shifts in input don't affect output</li>
+                    <li><strong>Dimensionality Reduction:</strong> Reduces computational load for subsequent layers</li>
+                    <li><strong>Feature Selection:</strong> Retains strongest activations in each region</li>
+                    <li><strong>Overfitting Prevention:</strong> Acts as regularization by reducing parameters</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 8: Fully Connected Layer Calculations -->
+        <div class="slide">
+            <h2>Fully Connected Layer Calculations</h2>
+            <div class="content">
+                <div class="calculation">
+                    <h3>FC-1: First Fully Connected Layer</h3>
+                    <p><strong>Input:</strong> 6×6×256 = 9,216 units (flattened), <strong>Output:</strong> 4,096 neurons</p>
+                    <p><strong>Activation:</strong> ReLU with Dropout (0.5)</p>
+                    <div class="formula">
+                        Parameters = (9,216 × 4,096) + 4,096 = 37,748,736 + 4,096 = 37,752,832
+                    </div>
+                    <p><strong>Note:</strong> This layer contains 60.5% of all network parameters!</p>
+                </div>
+
+                <div class="calculation">
+                    <h3>FC-2: Second Fully Connected Layer</h3>
+                    <p><strong>Input:</strong> 4,096 neurons, <strong>Output:</strong> 4,096 neurons</p>
+                    <p><strong>Activation:</strong> ReLU with Dropout (0.5)</p>
+                    <div class="formula">
+                        Parameters = (4,096 × 4,096) + 4,096 = 16,777,216 + 4,096 = 16,781,312
+                    </div>
+                    <p><strong>Note:</strong> This layer contains 26.9% of all network parameters</p>
+                </div>
+
+                <div class="calculation">
+                    <h3>FC-3: Output Layer (Classification)</h3>
+                    <p><strong>Input:</strong> 4,096 neurons, <strong>Output:</strong> 1,000 neurons (ImageNet classes)</p>
+                    <p><strong>Activation:</strong> Softmax for probability distribution</p>
+                    <div class="formula">
+                        Parameters = (4,096 × 1,000) + 1,000 = 4,096,000 + 1,000 = 4,097,000
+                    </div>
+                    <p><strong>Note:</strong> Final classification layer with 6.6% of total parameters</p>
+                </div>
+
+                <h3>Dropout Mechanism:</h3>
+                <p>During training, randomly sets 50% of neurons to zero to prevent overfitting and improve generalization.</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Complete Parameter Summary -->
+        <div class="slide">
+            <h2>Complete Parameter Summary</h2>
+            <div class="parameters-summary">
+                <h3 style="text-align: center; margin-bottom: 15px;">AlexNet Parameter Breakdown</h3>
+                
+                <table class="parameter-table">
+                    <thead>
+                        <tr>
+                            <th>Layer</th>
+                            <th>Input Size</th>
+                            <th>Output Size</th>
+                            <th>Parameters</th>
+                            <th>% of Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Input</td>
+                            <td>227×227×3</td>
+                            <td>227×227×3</td>
+                            <td>0</td>
+                            <td>0%</td>
+                        </tr>
+                        <tr>
+                            <td>Conv-1</td>
+                            <td>227×227×3</td>
+                            <td>55×55×96</td>
+                            <td>34,944</td>
+                            <td>0.06%</td>
+                        </tr>
+                        <tr>
+                            <td>MaxPool-1</td>
+                            <td>55×55×96</td>
+                            <td>27×27×96</td>
+                            <td>0</td>
+                            <td>0%</td>
+                        </tr>
+                        <tr>
+                            <td>Conv-2</td>
+                            <td>27×27×96</td>
+                            <td>27×27×256</td>
+                            <td>614,656</td>
+                            <td>0.99%</td>
+                        </tr>
+                        <tr>
+                            <td>MaxPool-2</td>
+                            <td>27×27×256</td>
+                            <td>13×13×256</td>
+                            <td>0</td>
+                            <td>0%</td>
+                        </tr>
+                        <tr>
+                            <td>Conv-3</td>
+                            <td>13×13×256</td>
+                            <td>13×13×384</td>
+                            <td>885,120</td>
+                            <td>1.42%</td>
+                        </tr>
+                        <tr>
+                            <td>Conv-4</td>
+                            <td>13×13×384</td>
+                            <td>13×13×384</td>
+                            <td>1,327,488</td>
+                            <td>2.13%</td>
+                        </tr>
+                        <tr>
+                            <td>Conv-5</td>
+                            <td>13×13×384</td>
+                            <td>13×13×256</td>
+                            <td>884,992</td>
+                            <td>1.42%</td>
+                        </tr>
+                        <tr>
+                            <td>MaxPool-3</td>
+                            <td>13×13×256</td>
+                            <td>6×6×256</td>
+                            <td>0</td>
+                            <td>0%</td>
+                        </tr>
+                        <tr style="background: rgba(255,215,0,0.2);">
+                            <td><strong>FC-1</strong></td>
+                            <td><strong>9,216</strong></td>
+                            <td><strong>4,096</strong></td>
+                            <td><strong>37,752,832</strong></td>
+                            <td><strong>60.5%</strong></td>
+                        </tr>
+                        <tr style="background: rgba(255,215,0,0.1);">
+                            <td><strong>FC-2</strong></td>
+                            <td><strong>4,096</strong></td>
+                            <td><strong>4,096</strong></td>
+                            <td><strong>16,781,312</strong></td>
+                            <td><strong>26.9%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>FC-3 (Output)</td>
+                            <td>4,096</td>
+                            <td>1,000</td>
+                            <td>4,097,000</td>
+                            <td>6.6%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="total-params">
+                    Total Parameters: 62,378,344
+                </div>
+
+                <p style="text-align: center; margin-top: 15px; color: #e0e0e0;">
+                    <strong>Key Insight:</strong> 87.4% of parameters are in fully connected layers!
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Key Innovations -->
+        <div class="slide">
+            <h2>AlexNet's Revolutionary Innovations</h2>
+            <div class="content">
+                <div class="two-column">
+                    <div>
+                        <div class="innovation-box">
+                            <div class="innovation-title">🔥 ReLU Activation Function</div>
+                            <p><strong>f(x) = max(0, x)</strong></p>
+                            <p>• Faster training than sigmoid/tanh<br>• Solves vanishing gradient problem<br>• Enables deeper networks<br>• Sparse activation patterns</p>
+                        </div>
+
+                        <div class="innovation-box">
+                            <div class="innovation-title">🎯 Dropout Regularization</div>
+                            <p><strong>Randomly zero out 50% neurons</strong></p>
+                            <p>• Prevents overfitting<br>• Forces network robustness<br>• Improves generalization<br>• Acts as ensemble method</p>
+                        </div>
+
+                        <div class="innovation-box">
+                            <div class="innovation-title">📈 Data Augmentation</div>
+                            <p><strong>Artificial data expansion</strong></p>
+                            <p>• Random crops and flips<br>• Color channel alterations<br>• Increased dataset size<br>• Better generalization</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="innovation-box">
+                            <div class="innovation-title">⚡ GPU Acceleration</div>
+                            <p><strong>Parallel processing power</strong></p>
+                            <p>• NVIDIA GTX 580 (2 GPUs)<br>• Massive speed improvements<br>• Enabled larger networks<br>• Revolutionized deep learning</p>
+                        </div>
+
+                        <div class="innovation-box">
+                            <div class="innovation-title">🏊‍♂️ Max Pooling</div>
+                            <p><strong>Better than average pooling</strong></p>
+                            <p>• Preserves important features<br>• Translation invariance<br>• Reduces overfitting<br>• Computational efficiency</p>
+                        </div>
+
+                        <div class="innovation-box">
+                            <div class="innovation-title">🎨 Local Response Normalization</div>
+                            <p><strong>Lateral inhibition mechanism</strong></p>
+                            <p>• Normalizes neuron responses<br>• Enhances generalization<br>• Mimics biological neurons<br>• Improves accuracy</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px; padding: 15px; background: rgba(255,215,0,0.2); border-radius: 10px;">
+                    <h3 style="color: #FFD700;">🏆 ImageNet 2012 Results</h3>
+                    <p style="font-size: 1.2em;"><strong>Top-5 Error Rate: 15.3%</strong> (vs 26.2% previous best)</p>
+                    <p>A revolutionary 42% improvement that changed AI forever!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Pros and Cons -->
+        <div class="slide">
+            <h2>Advantages & Disadvantages</h2>
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>Advantages</h3>
+                    <ul>
+                        <li><strong>Breakthrough Performance:</strong> Dramatically improved ImageNet accuracy</li>
+                        <li><strong>ReLU Innovation:</strong> Faster training and deeper networks</li>
+                        <li><strong>Dropout Regularization:</strong> Effective overfitting prevention</li>
+                        <li><strong>GPU Acceleration:</strong> Pioneered parallel deep learning</li>
+                        <li><strong>Data Augmentation:</strong> Increased effective dataset size</li>
+                        <li><strong>Scalable Architecture:</strong> Demonstrated deep networks work</li>
+                        <li><strong>Feature Learning:</strong> Automatic hierarchical feature extraction</li>
+                        <li><strong>Transfer Learning:</strong> Pre-trained features work on other tasks</li>
+                        <li><strong>Industry Impact:</strong> Sparked the modern AI revolution</li>
+                    </ul>
+                </div>
+                
+                <div class="cons">
+                    <h3>Disadvantages</h3>
+                    <ul>
+                        <li><strong>High Parameter Count:</strong> 62M parameters, prone to overfitting</li>
+                        <li><strong>FC Layer Dominance:</strong> 87% parameters in FC layers</li>
+                        <li><strong>Large Memory Requirements:</strong> Heavy computational resources</li>
+                        <li><strong>Fixed Input Size:</strong> Requires 227×227 input images</li>
+                        <li><strong>No Batch Normalization:</strong> Training instability issues</li>
+                        <li><strong>Limited Depth:</strong> Only 8 layers vs modern standards</li>
+                        <li><strong>Manual Feature Engineering:</strong> Some preprocessing still required</li>
+                        <li><strong>Vanishing Gradients:</strong> Still challenging for very deep networks</li>
+                        <li><strong>Outdated by Modern Standards:</strong> Superseded by ResNet, EfficientNet, etc.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Conclusion & Legacy -->
+        <div class="slide">
+            <h2>AlexNet's Legacy & Impact</h2>
+            <div class="content">
+                <h3>🏆 Historic Achievement:</h3>
+                <ul>
+                    <li><strong>ImageNet Revolution:</strong> 42% improvement in accuracy overnight</li>
+                    <li><strong>Deep Learning Renaissance:</strong> Proved that deeper networks work better</li>
+                    <li><strong>Industry Transformation:</strong> Launched the modern AI boom</li>
+                    <li><strong>Academic Impact:</strong> Most influential paper in computer vision</li>
+                </ul>
+
+                <h3>🚀 Technological Breakthroughs:</h3>
+                <div class="two-column">
+                    <div>
+                        <ul>
+                            <li><strong>ReLU Activation:</strong> Now standard in deep networks</li>
+                            <li><strong>Dropout:</strong> Fundamental regularization technique</li>
+                            <li><strong>GPU Computing:</strong> Enabled large-scale deep learning</li>
+                            <li><strong>Data Augmentation:</strong> Essential for computer vision</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><strong>Max Pooling:</strong> Better than average pooling</li>
+                            <li><strong>Transfer Learning:</strong> Pre-trained features revolution</li>
+                            <li><strong>End-to-End Learning:</strong> No manual feature engineering</li>
+                            <li><strong>Scale Matters:</strong> Bigger networks perform better</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>🔮 Modern Relevance:</h3>
+                <p>While AlexNet may seem outdated today, its core principles remain fundamental:</p>
+                <ul>
+                    <li><strong>Architecture Pattern:</strong> Conv → Pool → Conv → Pool → FC sequence</li>
+                    <li><strong>Training Techniques:</strong> Dropout, data augmentation still essential</li>
+                    <li><strong>Scaling Laws:</strong> More data + bigger models = better performance</li>
+                    <li><strong>GPU Acceleration:</strong> Parallel computing is now standard</li>
+                </ul>
+
+                <h3>🏗️ Evolution Path:</h3>
+                <p style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
+                    <strong>AlexNet (2012)</strong> → VGG (2014) → ResNet (2015) → DenseNet (2017) → EfficientNet (2019) → Vision Transformers (2020)
+                </p>
+
+                <div style="text-align: center; margin-top: 30px; font-size: 1.3em; color: #FFD700; background: rgba(255,215,0,0.2); padding: 20px; border-radius: 15px;">
+                    <strong>🎯 AlexNet: The Network That Started It All</strong>
+                    <p style="font-size: 1em; margin-top: 10px; color: #e0e0e0;">
+                        "Sometimes the most revolutionary ideas come from simply scaling up what works."
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-btn" id="prev-btn" onclick="prevSlide()">Previous</button>
+            <button class="nav-btn" id="next-btn" onclick="nextSlide()">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            
+            document.getElementById('current-slide').textContent = n + 1;
+            document.getElementById('prev-btn').disabled = n === 0;
+            document.getElementById('next-btn').disabled = n === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
+                
