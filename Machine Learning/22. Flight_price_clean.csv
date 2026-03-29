@@ -1,0 +1,2001 @@
+flight_id,departure_city,destination_city,airline,departure_hour,distance_km,booking_days,is_weekend,flight_duration_hours,demand_level,price_usd
+1,Los Angeles,Denver,United,19,4509,30,0,5.1,High,311.29
+2,New York,Miami,United,8,1285,3,0,2.0,Low,214.26
+3,Miami,Houston,Southwest,19,4664,35,0,5.5,Low,203.16
+4,Houston,Denver,Southwest,18,4444,71,0,4.7,High,297.55
+5,Houston,Boston,United,19,4286,76,1,5.1,Medium,253.25
+6,Chicago,Denver,Southwest,7,2948,87,0,3.0,High,217.74
+7,Los Angeles,New York,United,19,4846,13,1,5.6,Low,496.55
+8,Atlanta,San Francisco,American,7,3781,32,0,4.4,Medium,200.31
+9,Los Angeles,Atlanta,Southwest,7,2505,72,0,2.8,Low,150.0
+10,Denver,Miami,United,21,1734,84,1,2.2,Medium,162.91
+11,Boston,Miami,JetBlue,0,1052,17,0,2.0,Medium,150.0
+12,New York,San Francisco,JetBlue,11,3761,39,0,4.1,Medium,190.81
+13,New York,Houston,Southwest,2,3013,73,0,3.3,Low,156.54
+14,Los Angeles,Boston,JetBlue,22,3752,53,0,4.5,High,251.88
+15,Houston,Miami,Delta,15,1430,58,1,2.0,High,177.89
+16,Houston,San Francisco,Delta,4,2623,11,1,3.4,Low,334.09
+17,Atlanta,Los Angeles,JetBlue,16,2794,82,1,3.7,Low,150.0
+18,Denver,New York,United,19,3140,65,0,3.9,Low,162.0
+19,New York,Chicago,JetBlue,15,3697,27,0,4.7,Low,225.85
+20,Atlanta,San Francisco,JetBlue,22,3771,19,1,4.1,High,446.02
+21,Houston,Boston,JetBlue,20,1348,48,1,2.0,Low,150.0
+22,Atlanta,San Francisco,United,11,1488,70,1,2.1,High,208.79
+23,Boston,San Francisco,United,5,1587,22,0,2.5,Medium,191.45
+24,Houston,Miami,Delta,12,2617,32,1,3.3,Medium,184.86
+25,San Francisco,Seattle,Southwest,15,2640,69,0,3.2,Low,150.0
+26,Denver,Seattle,Delta,15,3846,55,1,4.6,Low,198.29
+27,Miami,Chicago,United,4,3418,72,0,4.0,Medium,186.3
+28,New York,Seattle,United,5,1416,58,1,2.0,Medium,150.0
+29,Chicago,Seattle,United,6,4036,6,1,4.7,Low,452.7
+30,Boston,Seattle,United,7,4789,1,1,5.0,Low,500.59
+31,Seattle,Boston,United,1,4655,60,1,4.7,High,368.96
+32,Miami,Chicago,United,13,1691,80,1,2.3,High,193.78
+33,Chicago,Seattle,American,0,1265,38,0,2.1,Low,150.0
+34,Houston,Atlanta,American,8,2489,84,1,2.9,Low,150.0
+35,Seattle,Atlanta,JetBlue,13,4994,22,0,5.3,Medium,369.25
+36,Los Angeles,San Francisco,American,7,1815,1,0,2.5,High,360.5
+37,Los Angeles,Seattle,Delta,23,2387,8,0,2.9,Low,269.67
+38,Boston,Houston,JetBlue,21,1820,62,0,2.2,Medium,150.0
+39,Los Angeles,San Francisco,Southwest,6,3436,35,0,4.4,High,231.97
+40,Seattle,Los Angeles,United,6,4457,77,1,4.6,Medium,260.59
+41,Seattle,Miami,American,2,2655,33,0,3.6,Low,150.0
+42,Denver,San Francisco,Delta,5,1502,88,1,2.3,High,193.64
+43,Miami,Houston,Southwest,14,1953,49,1,2.8,Medium,159.17
+44,New York,Chicago,United,19,4432,45,1,4.7,Low,217.92
+45,San Francisco,Los Angeles,United,15,2739,81,0,3.3,Low,150.0
+46,Atlanta,New York,Southwest,22,3970,28,1,4.1,Low,293.96
+47,Los Angeles,Miami,Southwest,10,3044,75,0,4.0,High,212.69
+48,Boston,Atlanta,Southwest,14,2140,66,1,2.6,High,231.92
+49,Los Angeles,Denver,Delta,7,4132,37,1,4.2,High,352.67
+50,Atlanta,Boston,JetBlue,13,3922,6,1,4.5,High,600.0
+51,Miami,Houston,JetBlue,12,4137,21,1,4.8,Medium,353.42
+52,Denver,Chicago,American,1,3383,69,1,3.7,Low,190.85
+53,Seattle,San Francisco,United,19,3431,73,0,3.9,Low,150.0
+54,Denver,Los Angeles,American,23,2118,9,0,3.0,High,407.8
+55,Houston,Seattle,JetBlue,12,4097,39,0,5.1,High,284.29
+56,Los Angeles,Houston,Southwest,23,4233,12,0,4.5,High,600.0
+57,New York,Chicago,United,10,4280,51,1,4.5,Low,227.25
+58,Houston,San Francisco,JetBlue,12,3637,90,1,4.3,Low,177.57
+59,Miami,Atlanta,United,19,4863,16,1,5.1,High,521.87
+60,Los Angeles,San Francisco,American,23,2639,18,1,2.7,High,345.75
+61,Houston,San Francisco,JetBlue,18,2458,72,0,2.7,Medium,173.3
+62,Los Angeles,Miami,American,19,2948,36,1,3.0,Low,158.63
+63,Boston,San Francisco,United,17,3730,56,0,4.3,High,262.41
+64,Miami,New York,Delta,16,3470,27,1,4.3,Medium,330.15
+65,San Francisco,Los Angeles,Southwest,20,4891,79,0,5.3,Medium,223.93
+66,Seattle,Boston,American,22,2656,65,0,3.2,Medium,182.27
+67,Chicago,Atlanta,United,1,2984,41,0,3.6,High,241.7
+68,Seattle,San Francisco,JetBlue,16,3094,88,0,3.5,High,245.9
+69,Seattle,Houston,American,3,2142,44,0,3.0,Low,150.0
+70,Houston,Seattle,United,14,1603,82,0,2.2,Medium,150.0
+71,Miami,Denver,Delta,14,4145,34,0,4.8,Medium,226.22
+72,Los Angeles,Seattle,American,1,2862,58,1,3.8,Medium,215.98
+73,Denver,New York,United,7,1442,35,0,2.4,Low,150.0
+74,Chicago,New York,American,16,1500,32,0,2.2,Low,150.0
+75,Atlanta,Miami,United,17,2026,85,1,2.7,Medium,153.63
+76,Houston,San Francisco,Southwest,12,3004,42,1,4.0,High,271.27
+77,Chicago,Denver,United,23,3036,44,1,3.8,High,259.82
+78,San Francisco,Atlanta,United,1,1945,27,0,2.2,Medium,207.89
+79,Boston,Miami,United,17,3573,59,0,3.9,Medium,206.24
+80,Miami,Atlanta,JetBlue,12,4860,77,0,5.8,Medium,238.71
+81,Atlanta,New York,United,16,1551,43,0,2.5,Medium,150.0
+82,Houston,Los Angeles,Southwest,20,1121,3,0,2.0,Low,193.98
+83,Seattle,Boston,Delta,1,1407,89,1,2.0,Low,150.0
+84,New York,Chicago,Southwest,6,4022,18,1,5.0,Medium,344.65
+85,Houston,Miami,Delta,9,1216,83,1,2.0,High,187.15
+86,New York,Seattle,JetBlue,14,4400,1,1,5.3,Medium,570.13
+87,Seattle,Boston,JetBlue,12,1279,78,1,2.3,Medium,150.0
+88,Boston,Seattle,JetBlue,9,3040,61,0,3.3,Medium,163.97
+89,Miami,New York,Delta,9,3777,1,1,4.3,High,600.0
+90,Los Angeles,Boston,Southwest,14,1109,2,0,2.0,High,312.14
+91,Houston,New York,American,5,4981,87,1,6.0,High,397.6
+92,Denver,Miami,JetBlue,13,1733,23,1,2.5,Low,184.0
+93,Seattle,Atlanta,Delta,9,2567,53,0,3.1,Medium,178.62
+94,Houston,Los Angeles,Southwest,19,3476,72,0,4.0,Low,163.99
+95,San Francisco,Seattle,JetBlue,1,3782,90,1,4.1,Medium,262.53
+96,Boston,Atlanta,United,22,2339,63,0,3.1,High,183.92
+97,San Francisco,Miami,Southwest,16,1625,51,1,2.2,Medium,150.0
+98,Chicago,Los Angeles,Delta,4,2240,69,0,3.0,Medium,150.0
+99,Miami,Boston,American,14,3547,11,0,4.3,High,548.41
+100,Chicago,Atlanta,American,20,3552,84,0,4.2,High,240.38
+101,Houston,San Francisco,American,14,1394,84,1,2.0,Low,150.0
+102,Atlanta,Seattle,United,2,4113,10,1,5.1,Medium,560.46
+103,Atlanta,Miami,Southwest,23,1313,69,0,2.0,Low,150.0
+104,Miami,Denver,JetBlue,16,3707,4,0,4.3,High,550.04
+105,Denver,Boston,Southwest,3,4078,86,1,4.1,Low,199.79
+106,Boston,Los Angeles,American,5,3129,57,1,3.7,Medium,225.69
+107,Denver,Chicago,United,18,4143,87,1,4.6,Low,190.55
+108,Boston,Los Angeles,American,22,3016,16,1,3.5,Medium,301.46
+109,Seattle,Boston,Delta,17,4247,46,1,5.2,Medium,274.85
+110,Houston,Seattle,Southwest,4,2908,49,0,3.1,Medium,160.27
+111,Chicago,Seattle,United,12,1827,77,0,2.4,High,161.73
+112,Atlanta,New York,American,13,2202,46,0,2.8,Low,150.0
+113,San Francisco,Seattle,United,10,3711,50,0,3.8,High,270.79
+114,Los Angeles,Chicago,Delta,14,3039,23,0,3.4,Medium,261.86
+115,New York,Houston,Delta,0,3008,90,0,3.9,Medium,157.96
+116,Los Angeles,Denver,Southwest,5,3067,2,1,3.2,Low,384.54
+117,Chicago,Atlanta,United,14,2071,16,1,2.8,High,306.61
+118,Chicago,Boston,American,18,3221,60,1,3.3,Low,181.71
+119,Boston,Atlanta,American,22,2407,48,0,3.1,Low,150.0
+120,Denver,New York,JetBlue,6,4315,25,1,4.9,High,492.35
+121,Los Angeles,New York,American,14,4521,57,1,5.5,Low,229.94
+122,Boston,New York,Southwest,2,3214,2,0,3.9,Low,308.33
+123,Boston,Chicago,Delta,8,3238,29,0,4.0,Medium,267.6
+124,Denver,Seattle,American,10,1072,3,0,2.0,High,287.48
+125,San Francisco,Atlanta,JetBlue,22,4901,36,0,5.6,Low,174.91
+126,Atlanta,Chicago,Southwest,20,4129,88,0,5.1,Low,169.73
+127,Miami,San Francisco,Southwest,22,1129,46,1,2.1,Low,150.0
+128,Atlanta,Chicago,Southwest,5,2762,25,0,3.0,Medium,232.32
+129,New York,Denver,Southwest,22,4604,12,0,5.1,High,600.0
+130,Los Angeles,Atlanta,Southwest,23,4747,79,1,5.3,Medium,300.73
+131,Atlanta,Chicago,Southwest,3,1487,81,0,2.2,High,164.61
+132,Miami,Seattle,Delta,2,2571,39,1,2.9,High,246.2
+133,Seattle,Denver,Delta,3,2843,29,0,3.4,High,328.3
+134,Los Angeles,Seattle,JetBlue,22,2288,30,0,3.2,Low,150.0
+135,Miami,Chicago,American,14,4493,64,0,5.4,Low,196.28
+136,Boston,Los Angeles,United,20,2541,47,0,2.7,Medium,150.0
+137,Chicago,Denver,Delta,11,2812,5,0,3.4,Medium,374.62
+138,San Francisco,Miami,United,2,2882,36,1,3.6,Medium,208.83
+139,New York,Denver,JetBlue,16,1147,64,1,2.0,Medium,150.0
+140,Miami,Seattle,American,22,1134,78,1,2.0,High,155.78
+141,Atlanta,Houston,Delta,12,1724,27,0,2.3,Medium,171.63
+142,Chicago,Atlanta,Delta,23,3280,1,1,4.0,Low,379.93
+143,Atlanta,San Francisco,American,16,3700,26,0,4.1,Low,247.85
+144,Los Angeles,San Francisco,American,19,4524,82,1,4.6,Medium,283.04
+145,Miami,Denver,United,5,4192,51,1,5.2,High,331.71
+146,Atlanta,Miami,United,12,2241,15,1,2.9,High,335.8
+147,Denver,San Francisco,American,17,4623,36,0,5.2,High,282.65
+148,Houston,New York,Delta,12,3892,73,0,4.6,Medium,219.63
+149,Chicago,Seattle,Southwest,1,1672,65,1,2.4,Low,150.0
+150,Seattle,Los Angeles,JetBlue,5,3013,64,0,3.3,Medium,167.94
+151,Chicago,Los Angeles,JetBlue,10,2764,22,1,3.4,High,384.48
+152,Atlanta,Boston,United,18,1550,71,0,2.3,Low,150.0
+153,Atlanta,Denver,American,21,2279,25,1,2.5,High,348.11
+154,New York,Miami,Delta,4,3931,85,0,4.1,Medium,189.78
+155,Denver,New York,Delta,5,2593,73,0,3.2,High,200.99
+156,Seattle,Denver,United,4,2996,87,1,3.5,Medium,228.4
+157,San Francisco,Los Angeles,United,5,4129,88,1,4.2,Medium,242.89
+158,New York,Miami,Southwest,22,1448,78,0,2.0,High,150.0
+159,Los Angeles,Denver,JetBlue,1,3330,73,1,4.3,Low,174.27
+160,Seattle,Denver,JetBlue,13,3764,23,0,4.3,Medium,274.32
+161,Miami,Houston,JetBlue,9,3009,9,1,4.0,Medium,444.41
+162,Houston,New York,United,9,3703,76,1,4.1,High,307.86
+163,New York,Denver,Southwest,23,3268,17,0,3.7,Medium,246.38
+164,Houston,San Francisco,American,14,3807,9,1,4.5,High,600.0
+165,Denver,Chicago,United,9,3209,17,0,3.3,High,321.59
+166,Los Angeles,Atlanta,Southwest,20,3343,34,1,3.7,High,284.06
+167,Los Angeles,Denver,United,5,2924,73,0,3.0,High,216.03
+168,San Francisco,Boston,American,3,2949,30,1,3.3,Low,150.0
+169,Los Angeles,Chicago,American,4,3302,67,1,4.0,Low,197.4
+170,Atlanta,Houston,Southwest,6,4499,36,0,5.4,Medium,220.58
+171,Chicago,New York,Delta,0,1640,25,1,2.1,High,292.39
+172,Chicago,Denver,American,19,3075,87,0,3.3,Low,156.88
+173,San Francisco,Los Angeles,American,8,1228,3,1,2.0,Medium,307.78
+174,Atlanta,Houston,American,0,2603,89,0,2.8,Low,150.0
+175,Chicago,New York,American,14,2078,87,1,3.1,Low,151.08
+176,Miami,San Francisco,Delta,15,3026,69,0,3.7,Low,150.0
+177,Atlanta,Seattle,JetBlue,15,3420,79,0,3.8,High,230.42
+178,Denver,Boston,JetBlue,17,4976,33,0,5.7,High,307.98
+179,Boston,Chicago,American,0,2547,88,1,3.1,Low,150.0
+180,Houston,Boston,Delta,19,3526,72,0,3.5,Low,170.26
+181,Atlanta,Houston,United,15,3770,59,1,4.4,Low,181.18
+182,Houston,Boston,Delta,7,2444,1,0,3.4,Medium,321.79
+183,Miami,Atlanta,Southwest,6,4139,55,1,4.2,Low,218.29
+184,Boston,Denver,United,18,2165,83,0,2.5,Low,150.0
+185,Seattle,San Francisco,JetBlue,21,2312,87,0,2.5,Medium,150.0
+186,San Francisco,New York,JetBlue,15,1251,84,1,2.2,Medium,150.2
+187,Atlanta,Chicago,Delta,14,1115,7,0,2.0,Low,188.91
+188,San Francisco,Atlanta,JetBlue,13,3418,42,0,3.4,High,248.17
+189,Los Angeles,Houston,Delta,14,1184,56,0,2.0,High,159.24
+190,Houston,Atlanta,Delta,2,1525,53,0,2.0,Medium,150.0
+191,Houston,Seattle,Delta,19,4428,36,1,5.3,Low,217.94
+192,Los Angeles,San Francisco,Delta,19,2500,16,0,3.1,High,295.59
+193,Seattle,Atlanta,Delta,0,2428,88,1,3.3,High,249.39
+194,New York,Boston,Southwest,7,4315,67,1,5.3,Medium,257.12
+195,Denver,Seattle,Southwest,17,4039,60,0,4.2,Medium,213.46
+196,Atlanta,Chicago,Southwest,8,3391,64,0,4.0,Low,150.0
+197,Houston,San Francisco,Delta,19,1110,47,0,2.0,Medium,150.0
+198,Denver,Atlanta,JetBlue,20,4134,67,0,4.4,Low,181.84
+199,Houston,Seattle,United,17,4650,6,1,5.0,Medium,580.13
+200,New York,Atlanta,Southwest,6,3560,29,1,4.4,Medium,350.35
+201,Los Angeles,Seattle,American,1,2397,7,0,3.3,High,425.51
+202,New York,Miami,American,5,2558,36,0,3.2,High,213.7
+203,Houston,Denver,Delta,4,1398,54,0,2.0,Medium,150.0
+204,Los Angeles,San Francisco,United,1,2753,69,0,3.6,High,198.34
+205,New York,Houston,Southwest,20,2413,58,0,3.1,Medium,150.0
+206,Seattle,Houston,Delta,11,2463,41,0,3.3,High,221.03
+207,Los Angeles,Miami,JetBlue,1,2687,1,0,2.9,Medium,355.06
+208,Atlanta,Miami,United,4,2438,51,1,2.6,High,226.59
+209,Houston,Miami,JetBlue,1,1231,25,0,2.0,High,209.09
+210,Miami,Houston,JetBlue,21,3708,43,0,3.7,Low,158.59
+211,San Francisco,Miami,American,18,2000,11,0,2.0,Low,234.45
+212,Houston,Miami,Southwest,19,2014,74,0,2.6,Medium,150.0
+213,Atlanta,Houston,Delta,9,1961,4,1,2.9,High,454.01
+214,Chicago,San Francisco,JetBlue,10,3654,29,0,4.6,High,371.14
+215,Denver,Seattle,JetBlue,2,2278,89,0,3.1,Low,150.0
+216,Denver,San Francisco,Delta,1,3427,55,0,3.7,High,258.69
+217,San Francisco,Seattle,United,3,1347,10,1,2.0,High,374.88
+218,Houston,Atlanta,Delta,13,4728,32,1,5.1,Medium,269.31
+219,San Francisco,Miami,Delta,5,3818,26,0,4.0,High,384.11
+220,Boston,Miami,Southwest,5,1268,22,1,2.0,High,257.66
+221,Houston,Los Angeles,American,21,4559,43,1,5.5,Medium,290.15
+222,Los Angeles,Denver,JetBlue,9,2248,40,1,2.7,Medium,183.65
+223,Los Angeles,Atlanta,American,19,1468,9,0,2.1,Medium,240.77
+224,Boston,Chicago,United,21,2382,81,0,3.4,Low,150.0
+225,Seattle,Boston,JetBlue,22,1695,81,0,2.6,Medium,150.0
+226,Boston,Seattle,American,22,1080,13,1,2.0,High,347.13
+227,Boston,Chicago,United,19,3205,4,0,4.1,High,525.78
+228,San Francisco,Miami,Southwest,18,2335,62,0,2.9,Low,150.0
+229,New York,Seattle,United,17,1153,56,0,2.0,Low,150.0
+230,Los Angeles,Miami,American,5,2887,4,0,3.3,High,496.07
+231,New York,Los Angeles,Delta,14,3694,76,1,3.8,High,291.1
+232,Boston,Seattle,JetBlue,23,4536,81,0,5.1,Medium,229.68
+233,Seattle,San Francisco,Southwest,18,2730,43,1,3.1,Low,150.0
+234,Los Angeles,Miami,American,11,3326,33,0,3.7,Medium,198.2
+235,Houston,San Francisco,Southwest,1,3108,32,0,3.3,Medium,189.83
+236,Houston,Miami,United,2,4692,14,0,5.5,Low,255.18
+237,Houston,San Francisco,American,9,2725,61,0,2.9,Low,150.0
+238,Atlanta,Boston,Delta,10,2092,31,0,2.5,Medium,150.0
+239,San Francisco,Miami,Delta,11,1083,44,1,2.0,Low,150.0
+240,Chicago,Atlanta,Delta,12,3850,7,1,4.8,Low,427.88
+241,Boston,Miami,Delta,2,2923,43,0,3.8,Medium,160.0
+242,Chicago,Atlanta,JetBlue,13,3408,67,1,4.2,High,296.39
+243,Miami,Los Angeles,Southwest,17,1091,31,1,2.0,Low,150.0
+244,San Francisco,Denver,American,2,2296,10,0,3.0,Low,253.94
+245,Houston,Denver,Delta,9,2547,77,1,3.4,High,251.9
+246,Los Angeles,Houston,JetBlue,15,3336,80,0,3.4,Low,165.84
+247,San Francisco,Houston,Delta,4,2598,57,1,3.1,High,242.56
+248,Atlanta,New York,Delta,3,2320,13,0,3.0,Medium,313.96
+249,Los Angeles,Atlanta,United,22,3345,81,0,3.7,Medium,201.32
+250,New York,Houston,American,8,1400,58,0,2.0,Low,150.0
+251,Atlanta,Houston,Southwest,10,4310,75,0,4.9,Low,173.49
+252,New York,Los Angeles,United,16,3000,16,1,3.5,High,395.93
+253,Los Angeles,Atlanta,United,13,1409,11,1,2.0,Medium,306.72
+254,Houston,Boston,Southwest,16,3829,8,0,4.4,High,587.44
+255,Chicago,Seattle,Delta,6,3765,5,1,4.0,Low,411.3
+256,Boston,San Francisco,Delta,22,1843,49,0,2.2,Low,150.0
+257,San Francisco,Los Angeles,American,6,2376,41,1,2.8,Medium,173.91
+258,San Francisco,Chicago,Delta,19,3034,89,0,3.2,High,214.17
+259,Houston,New York,United,1,3059,9,0,4.0,High,480.63
+260,Boston,Atlanta,United,3,4323,17,0,4.7,Low,258.55
+261,New York,Chicago,United,18,4133,8,0,4.6,Medium,444.77
+262,Chicago,Boston,Southwest,23,3733,57,1,3.8,High,319.86
+263,Boston,San Francisco,Delta,20,2390,8,1,2.4,Low,301.38
+264,New York,San Francisco,Delta,16,1682,39,0,2.0,Low,150.0
+265,Boston,Houston,Delta,2,3518,79,1,4.1,Medium,251.68
+266,Miami,Chicago,Delta,15,2226,81,0,2.8,Medium,157.71
+267,San Francisco,Seattle,American,23,2488,56,1,2.8,Medium,197.75
+268,Miami,Boston,American,22,4970,9,1,6.0,High,600.0
+269,Boston,New York,United,19,2785,14,1,3.6,High,358.55
+270,Atlanta,Los Angeles,United,22,1826,87,0,2.6,Medium,150.0
+271,San Francisco,Denver,Southwest,9,3035,8,1,3.7,Medium,471.53
+272,Chicago,Houston,JetBlue,13,3602,72,1,4.1,High,308.85
+273,Houston,Atlanta,United,19,4470,7,1,4.5,Medium,588.37
+274,Miami,New York,Delta,10,4989,38,1,5.9,Medium,302.23
+275,Houston,Chicago,United,8,4224,49,0,4.5,High,296.39
+276,New York,Boston,United,16,1308,52,0,2.0,High,150.0
+277,Denver,Chicago,American,18,4442,13,0,5.3,High,600.0
+278,Atlanta,New York,Delta,19,4482,80,0,5.0,High,283.18
+279,New York,Boston,Southwest,11,3194,53,1,3.8,Low,160.29
+280,Seattle,San Francisco,Southwest,4,1876,30,0,2.6,Low,150.0
+281,New York,Chicago,Southwest,19,2177,77,1,2.7,High,239.49
+282,New York,Miami,United,18,2086,85,1,2.1,Low,152.04
+283,Denver,New York,Southwest,15,1194,80,1,2.0,Low,150.0
+284,San Francisco,New York,Southwest,16,2217,2,0,2.4,High,407.6
+285,Atlanta,Miami,Southwest,23,3349,59,0,4.3,Low,156.15
+286,Atlanta,Denver,American,20,2646,50,1,2.7,Medium,202.34
+287,Chicago,Denver,Delta,15,4295,60,1,5.1,Low,209.25
+288,New York,Los Angeles,American,15,1925,55,0,2.8,Medium,150.0
+289,Atlanta,Seattle,Delta,5,3558,80,0,4.3,High,258.29
+290,Los Angeles,Miami,American,19,4042,80,1,4.6,Low,191.28
+291,Chicago,San Francisco,Delta,7,4923,13,0,5.1,Low,409.51
+292,Los Angeles,Atlanta,Southwest,22,1376,44,0,2.0,High,168.41
+293,Denver,Atlanta,JetBlue,9,3939,84,1,4.6,High,338.59
+294,Los Angeles,San Francisco,Southwest,6,4457,87,1,5.4,High,359.04
+295,Houston,Chicago,JetBlue,0,3368,4,1,3.5,Medium,482.72
+296,Boston,Atlanta,Southwest,3,1388,59,1,2.3,Medium,160.26
+297,Los Angeles,San Francisco,American,0,3424,67,1,4.3,High,293.65
+298,Denver,Miami,JetBlue,14,2379,43,1,3.1,High,229.18
+299,Houston,Atlanta,Southwest,20,2119,76,1,2.2,High,222.23
+300,Denver,Los Angeles,United,3,1275,25,1,2.0,Medium,182.84
+301,Denver,Seattle,JetBlue,23,3320,14,0,3.5,High,357.06
+302,New York,Chicago,Delta,6,4281,14,0,4.9,High,421.61
+303,Denver,San Francisco,American,19,3175,2,1,3.2,High,600.0
+304,Los Angeles,Miami,Southwest,13,2946,77,1,3.9,Medium,208.7
+305,Boston,Chicago,Southwest,13,2749,9,1,3.0,Low,330.08
+306,Denver,New York,Delta,1,1859,76,1,2.5,Low,150.0
+307,Denver,Seattle,Southwest,10,2422,25,0,3.3,Low,168.37
+308,Atlanta,Miami,Southwest,11,4258,74,1,4.3,Low,201.61
+309,Seattle,Denver,Delta,17,1314,17,0,2.0,Low,150.0
+310,Miami,Houston,Delta,20,3668,82,1,4.5,Low,201.21
+311,Houston,Chicago,United,6,4374,66,0,5.2,High,288.95
+312,Seattle,Denver,United,0,2236,33,0,3.2,Low,150.0
+313,Houston,Boston,Delta,20,3067,46,0,4.1,Low,150.0
+314,Miami,Boston,JetBlue,6,4293,54,1,5.1,Low,209.62
+315,Boston,Atlanta,JetBlue,22,2228,62,0,2.6,Medium,150.0
+316,Chicago,Seattle,JetBlue,9,2773,80,0,3.6,Low,150.0
+317,Miami,Los Angeles,American,8,3717,57,0,3.8,Medium,188.13
+318,San Francisco,Boston,United,2,3211,24,1,3.4,Low,264.68
+319,Seattle,Los Angeles,JetBlue,9,2283,32,1,2.5,Low,157.49
+320,Los Angeles,Chicago,JetBlue,9,1819,18,0,2.5,Low,171.3
+321,New York,Chicago,JetBlue,16,2697,6,0,3.6,High,448.74
+322,San Francisco,Houston,Delta,17,2647,8,0,3.1,Medium,347.74
+323,Denver,Seattle,Southwest,10,2029,17,1,2.6,Medium,239.27
+324,Denver,Houston,American,0,3559,40,1,4.4,High,288.86
+325,Los Angeles,New York,Southwest,3,3110,75,0,3.7,Medium,190.09
+326,Los Angeles,Miami,United,21,2856,56,1,3.1,Medium,209.76
+327,Atlanta,Boston,Southwest,10,3750,66,1,4.6,Medium,236.88
+328,Houston,Chicago,American,10,4127,84,0,4.9,High,298.24
+329,Atlanta,San Francisco,JetBlue,12,3242,46,1,3.5,Low,178.2
+330,Miami,Houston,JetBlue,23,1739,40,0,2.4,Low,150.0
+331,Chicago,Seattle,Delta,18,4608,75,0,5.0,High,286.45
+332,Seattle,Miami,Delta,19,1076,70,0,2.0,Medium,150.0
+333,Los Angeles,Denver,American,0,3571,19,0,3.8,Medium,273.38
+334,Houston,Denver,JetBlue,5,3880,19,0,4.8,Medium,284.19
+335,Seattle,New York,Southwest,6,3114,61,0,3.9,High,216.64
+336,Miami,New York,Southwest,10,4533,40,0,5.0,Medium,243.14
+337,Chicago,Seattle,American,10,1764,78,1,2.4,Medium,158.75
+338,San Francisco,Houston,Delta,21,3362,44,0,4.0,Medium,180.08
+339,Atlanta,New York,Southwest,15,3044,38,1,3.4,High,271.55
+340,Miami,Los Angeles,United,15,1872,48,1,2.6,Medium,150.0
+341,Denver,San Francisco,American,1,3706,2,0,4.2,High,574.62
+342,Atlanta,Miami,United,20,4940,67,0,5.6,Low,178.6
+343,New York,Chicago,United,4,4374,76,0,4.6,High,305.97
+344,Atlanta,Boston,Delta,15,4040,85,1,4.7,Low,193.03
+345,Miami,Atlanta,JetBlue,4,4842,87,0,5.0,Low,181.35
+346,Los Angeles,Miami,American,20,2914,19,0,3.8,High,337.72
+347,Chicago,Los Angeles,JetBlue,14,2097,8,0,2.6,Medium,324.53
+348,Miami,Houston,Southwest,17,4838,31,1,5.0,High,387.59
+349,Los Angeles,Seattle,Southwest,10,3612,65,0,3.9,Low,160.11
+350,Los Angeles,Denver,American,14,3182,72,0,4.1,Medium,198.35
+351,Atlanta,Houston,Delta,13,4313,7,0,4.6,High,600.0
+352,Chicago,Houston,Southwest,23,3516,55,0,4.2,Medium,198.16
+353,Miami,Chicago,Southwest,1,4492,45,0,5.4,Medium,246.32
+354,Miami,San Francisco,JetBlue,16,4150,26,1,4.5,High,459.83
+355,Denver,Chicago,Southwest,9,4714,26,0,5.3,Medium,354.04
+356,Houston,San Francisco,Delta,18,2776,82,0,3.1,High,210.4
+357,Seattle,Denver,Southwest,23,4828,26,1,5.4,Low,335.33
+358,Houston,Seattle,Southwest,21,3318,9,0,3.4,High,520.66
+359,Miami,Boston,United,10,3976,44,1,4.1,Medium,253.71
+360,Atlanta,Seattle,Delta,17,3567,25,1,4.4,High,414.28
+361,San Francisco,Atlanta,Southwest,17,1245,86,1,2.1,Medium,150.0
+362,Miami,Atlanta,Delta,0,3139,61,1,4.1,Low,157.01
+363,New York,Houston,Delta,6,1821,89,1,2.4,Low,150.0
+364,Los Angeles,Houston,Southwest,18,2492,89,0,3.0,Medium,167.79
+365,Boston,Denver,Southwest,21,2894,60,1,3.0,Medium,195.59
+366,Miami,Los Angeles,Delta,10,1605,77,0,2.6,High,176.21
+367,New York,Atlanta,JetBlue,11,1984,89,0,2.5,Medium,150.0
+368,New York,San Francisco,JetBlue,2,1616,43,0,2.0,High,169.68
+369,Seattle,Atlanta,Delta,4,4057,75,0,4.3,Medium,218.79
+370,Chicago,Seattle,Delta,8,3807,73,0,4.6,Low,181.02
+371,Miami,Los Angeles,JetBlue,0,4135,43,0,4.3,High,281.75
+372,Chicago,Denver,JetBlue,10,2229,79,0,3.0,High,186.7
+373,San Francisco,Los Angeles,United,12,4457,39,1,5.3,Low,212.15
+374,Atlanta,New York,JetBlue,20,2783,54,1,3.0,Medium,205.87
+375,Boston,Atlanta,JetBlue,17,2680,43,1,3.3,Medium,212.17
+376,Atlanta,Denver,American,5,2305,21,1,2.7,Low,199.63
+377,New York,Houston,Southwest,18,4523,14,1,4.7,High,523.11
+378,Los Angeles,Denver,United,19,4400,59,0,5.0,Low,173.48
+379,Los Angeles,Atlanta,United,12,4732,6,1,4.8,Low,495.06
+380,Chicago,Denver,Delta,5,1263,64,0,2.2,Medium,150.0
+381,Atlanta,Chicago,American,19,3596,29,1,4.4,Medium,335.49
+382,New York,Seattle,Southwest,3,1833,1,0,2.0,High,370.95
+383,Seattle,Atlanta,United,9,4465,82,1,4.7,Low,219.72
+384,Denver,San Francisco,JetBlue,22,2689,29,0,3.0,Low,195.15
+385,Atlanta,Los Angeles,JetBlue,10,2093,89,0,2.7,High,170.36
+386,Chicago,Houston,JetBlue,22,4373,30,1,5.3,Medium,283.5
+387,Boston,Denver,Southwest,1,2175,60,0,2.5,Medium,150.0
+388,Chicago,San Francisco,United,8,3646,80,0,4.6,Low,172.75
+389,New York,Los Angeles,Southwest,13,1657,28,1,2.6,Medium,207.62
+390,Miami,Atlanta,Delta,2,2050,31,0,2.4,Medium,150.0
+391,Seattle,San Francisco,Delta,15,3813,62,0,4.0,High,284.33
+392,New York,Atlanta,American,7,3462,43,1,4.1,Low,166.43
+393,Seattle,San Francisco,Delta,11,1967,49,1,2.4,High,223.84
+394,Houston,Chicago,United,14,2662,27,1,2.8,Medium,298.76
+395,Houston,Atlanta,United,9,1976,52,1,2.3,Low,150.0
+396,Los Angeles,Boston,United,6,1465,24,1,2.0,High,255.7
+397,Seattle,San Francisco,JetBlue,16,1614,1,0,2.0,Medium,280.57
+398,Atlanta,Denver,JetBlue,9,1786,47,0,2.0,High,161.0
+399,Boston,New York,United,5,1113,2,1,2.0,Medium,264.04
+400,Denver,Atlanta,Delta,3,2005,10,1,2.4,Medium,350.71
+401,Chicago,San Francisco,Delta,11,4264,46,0,5.1,Low,192.12
+402,Houston,Miami,American,1,4388,4,1,4.5,High,600.0
+403,Chicago,New York,Southwest,6,2271,72,0,2.5,High,213.98
+404,Chicago,Boston,American,2,2901,15,0,3.4,Medium,250.77
+405,Boston,Miami,Southwest,14,2988,19,0,3.5,Medium,264.99
+406,New York,Atlanta,Delta,16,3293,38,1,3.4,High,304.72
+407,Chicago,Houston,United,0,2786,57,1,3.8,Low,150.0
+408,Seattle,Denver,JetBlue,15,2728,25,0,2.8,High,324.26
+409,Boston,Los Angeles,American,16,3649,81,0,4.3,Low,162.64
+410,Houston,New York,American,4,4709,75,1,5.1,High,350.05
+411,Miami,Boston,Delta,6,1151,47,0,2.0,Medium,150.0
+412,Chicago,Seattle,Southwest,10,1827,6,0,2.4,High,377.07
+413,Los Angeles,New York,American,15,1652,4,0,2.0,High,365.93
+414,Boston,Atlanta,Southwest,23,2117,26,0,3.0,Medium,223.38
+415,New York,Atlanta,American,16,1558,26,0,2.0,Medium,167.55
+416,San Francisco,Los Angeles,United,9,1119,37,1,2.0,Low,150.0
+417,Houston,San Francisco,Delta,10,2058,23,0,2.2,Medium,193.98
+418,Houston,New York,Southwest,4,4234,29,0,4.5,High,391.89
+419,San Francisco,Miami,Delta,3,4291,34,0,4.7,High,296.53
+420,Seattle,Boston,JetBlue,16,2137,23,0,2.7,High,278.05
+421,Miami,Chicago,Delta,21,3697,44,1,4.5,Low,208.47
+422,Houston,Chicago,Southwest,4,3255,71,0,4.0,Low,150.0
+423,Houston,Boston,Southwest,6,1720,32,0,2.0,Medium,150.0
+424,New York,Seattle,JetBlue,23,3639,23,1,3.9,Low,282.5
+425,Houston,Boston,JetBlue,1,4491,26,0,5.1,High,437.41
+426,Boston,San Francisco,American,14,1172,3,0,2.0,High,293.27
+427,Seattle,Boston,Southwest,12,4947,23,1,5.0,Low,333.6
+428,Miami,Boston,Delta,22,3959,34,0,4.6,High,260.31
+429,Los Angeles,Seattle,JetBlue,16,2990,13,1,3.9,High,586.86
+430,Miami,Atlanta,Delta,3,4204,3,0,5.1,Low,352.24
+431,Seattle,Chicago,JetBlue,0,1081,87,1,2.0,Low,150.0
+432,Atlanta,Seattle,Southwest,9,1226,18,1,2.0,Low,172.23
+433,Boston,Los Angeles,JetBlue,1,4520,49,1,5.1,Medium,283.97
+434,Atlanta,Chicago,Southwest,21,4672,84,0,5.1,Low,189.07
+435,Seattle,Atlanta,JetBlue,19,1343,15,1,2.1,Low,150.0
+436,New York,Boston,American,2,2285,44,1,3.0,Medium,189.53
+437,Los Angeles,Atlanta,JetBlue,10,3464,27,1,4.1,High,445.42
+438,Miami,Chicago,American,14,2220,40,0,2.6,High,194.88
+439,Chicago,Houston,American,1,4551,59,0,5.5,Low,190.12
+440,Denver,New York,Delta,3,1260,31,1,2.0,Medium,150.0
+441,Miami,New York,Southwest,16,4688,48,1,5.6,Low,237.61
+442,New York,Miami,JetBlue,21,4912,48,0,5.1,High,303.86
+443,Los Angeles,San Francisco,JetBlue,23,2667,85,0,3.2,Medium,150.0
+444,Denver,Atlanta,United,9,4673,22,0,5.0,Low,254.1
+445,Boston,Atlanta,JetBlue,0,2488,68,1,2.6,High,258.14
+446,Seattle,Atlanta,Southwest,18,3751,80,1,4.4,High,301.91
+447,Seattle,Boston,Southwest,9,3692,56,0,3.9,High,250.79
+448,Boston,Houston,JetBlue,20,4627,9,1,5.6,Low,459.6
+449,Denver,Houston,American,6,1369,16,0,2.4,Medium,166.43
+450,Atlanta,San Francisco,United,10,2625,19,0,3.5,High,305.37
+451,Los Angeles,Seattle,Southwest,6,4863,17,1,5.2,Medium,393.04
+452,Boston,Chicago,United,6,4439,25,0,4.5,High,427.56
+453,Denver,Miami,United,9,3966,25,0,4.8,Low,247.6
+454,Houston,Atlanta,Southwest,8,4451,69,0,4.6,High,288.19
+455,Miami,Los Angeles,American,17,1575,49,0,2.0,High,172.93
+456,New York,Chicago,American,10,1966,89,0,2.7,Medium,150.0
+457,Boston,Seattle,Southwest,14,1458,48,0,2.0,High,170.73
+458,New York,Denver,JetBlue,21,3338,41,1,3.6,Low,176.63
+459,Atlanta,New York,JetBlue,3,4008,77,1,4.4,High,335.55
+460,Atlanta,Houston,United,8,3049,55,0,3.9,Medium,190.06
+461,Houston,Chicago,JetBlue,4,4821,82,1,5.2,Medium,272.84
+462,Seattle,Los Angeles,United,5,1494,32,1,2.4,High,185.9
+463,Boston,Los Angeles,JetBlue,8,3137,6,1,3.6,High,587.88
+464,Los Angeles,Denver,American,3,3720,79,1,4.1,Low,173.6
+465,Seattle,New York,American,0,4395,76,0,5.1,Low,166.06
+466,Denver,San Francisco,American,19,3377,25,1,3.8,Low,271.81
+467,Seattle,Denver,JetBlue,17,4889,69,0,5.3,High,310.26
+468,Los Angeles,New York,United,16,4174,38,0,4.5,Low,156.27
+469,Miami,Houston,United,3,4815,20,0,5.1,High,429.28
+470,Atlanta,New York,American,6,3151,42,0,3.5,Medium,163.21
+471,Miami,Boston,American,17,2031,32,1,2.8,Low,150.0
+472,Boston,San Francisco,JetBlue,11,3033,7,0,3.2,Low,299.36
+473,Seattle,Houston,JetBlue,17,4623,81,0,4.8,Medium,239.79
+474,Boston,Atlanta,United,10,1369,36,0,2.0,Low,150.0
+475,Miami,Houston,Delta,8,1975,17,1,2.2,Medium,247.05
+476,Atlanta,New York,United,4,3456,66,0,4.3,High,256.8
+477,Chicago,Los Angeles,JetBlue,22,1500,75,1,2.2,Low,150.0
+478,Houston,Atlanta,Southwest,9,4166,63,0,4.8,High,281.79
+479,Boston,Miami,JetBlue,18,4304,27,1,5.2,High,507.75
+480,Boston,Houston,JetBlue,7,2283,11,1,2.8,Medium,389.14
+481,Chicago,Denver,Southwest,5,2348,61,0,3.1,Low,150.0
+482,Denver,Seattle,JetBlue,2,4409,85,1,4.8,High,353.36
+483,Denver,Chicago,United,9,3393,79,0,4.0,High,238.58
+484,Miami,Denver,Southwest,19,4019,9,0,4.2,Low,359.26
+485,Boston,Seattle,Delta,10,2597,22,1,2.7,Medium,288.97
+486,Atlanta,Houston,JetBlue,17,4300,66,1,4.4,Medium,268.37
+487,New York,Miami,Delta,14,4065,50,1,4.7,High,337.57
+488,Miami,Chicago,Delta,1,4047,83,0,4.3,Medium,200.27
+489,Miami,Atlanta,Southwest,4,1966,66,0,2.8,Low,150.0
+490,Houston,Denver,American,0,4831,48,0,5.6,Medium,225.97
+491,Boston,Houston,Delta,15,2732,64,1,3.4,Medium,212.21
+492,Denver,Miami,Delta,21,1892,67,1,2.0,High,210.31
+493,Denver,Miami,American,1,1590,60,1,2.0,High,188.64
+494,Seattle,New York,United,3,1437,23,1,2.0,Low,169.23
+495,San Francisco,Atlanta,American,12,1717,42,1,2.0,High,220.0
+496,San Francisco,Denver,United,1,1876,48,0,2.3,Medium,150.0
+497,San Francisco,Chicago,United,2,4972,68,0,5.5,Low,208.64
+498,Houston,Boston,American,13,2124,89,1,2.3,Low,150.0
+499,Atlanta,Chicago,Delta,12,2800,62,0,3.2,Low,150.0
+500,San Francisco,Atlanta,United,5,2672,64,1,3.4,Low,167.88
+501,Chicago,New York,American,22,2041,61,1,2.4,High,219.23
+502,Los Angeles,Seattle,JetBlue,19,4534,35,1,5.2,Low,203.18
+503,Miami,Boston,Delta,18,3414,75,1,3.7,Low,185.17
+504,Atlanta,Denver,United,20,1229,52,0,2.0,Medium,150.0
+505,Denver,Seattle,Southwest,22,3008,82,1,3.6,High,258.51
+506,Seattle,Boston,Delta,22,3185,75,1,3.3,High,265.25
+507,Los Angeles,Boston,JetBlue,14,2534,84,1,2.9,Low,161.82
+508,Houston,Chicago,JetBlue,19,3865,5,1,4.6,Low,423.62
+509,Miami,Boston,American,11,4885,27,0,5.1,Low,289.69
+510,Houston,Boston,JetBlue,9,1462,29,1,2.0,Low,168.58
+511,Houston,Chicago,Southwest,10,2296,26,1,2.8,High,330.87
+512,Chicago,Atlanta,American,6,3235,58,1,4.1,Medium,225.86
+513,New York,San Francisco,JetBlue,22,2735,31,0,2.9,Medium,174.22
+514,New York,Houston,United,21,2945,51,0,3.9,Low,151.13
+515,Houston,Miami,Delta,17,3796,28,0,4.1,High,358.85
+516,San Francisco,Miami,Southwest,2,2009,40,0,2.9,Low,150.0
+517,Denver,Chicago,Southwest,14,4945,55,0,5.6,Medium,258.11
+518,Los Angeles,San Francisco,Southwest,18,2137,49,0,2.9,High,200.19
+519,San Francisco,New York,United,4,4602,74,1,5.5,High,350.09
+520,Boston,Atlanta,JetBlue,2,4212,21,1,4.9,Low,280.21
+521,Denver,Boston,Delta,22,4837,48,0,5.6,High,325.42
+522,Houston,Boston,Delta,14,1593,33,1,2.0,High,197.92
+523,Boston,Atlanta,United,3,2486,71,0,2.5,Low,150.0
+524,San Francisco,Atlanta,American,14,2946,11,0,3.8,Medium,372.51
+525,Boston,Chicago,JetBlue,9,3931,18,1,4.0,Low,268.03
+526,Houston,Boston,Southwest,21,2506,11,1,3.4,Medium,406.54
+527,Chicago,Houston,American,20,4364,38,0,4.7,High,273.3
+528,New York,Miami,United,22,2262,57,1,3.2,Medium,169.45
+529,Los Angeles,Houston,JetBlue,14,1086,67,1,2.0,Low,150.0
+530,Boston,Seattle,JetBlue,15,3643,46,1,3.8,Medium,250.13
+531,Houston,Los Angeles,JetBlue,7,4960,30,1,5.2,Low,215.62
+532,Chicago,San Francisco,American,7,4707,75,0,5.5,High,304.79
+533,Atlanta,Seattle,American,4,3481,6,0,3.8,Medium,424.59
+534,San Francisco,Los Angeles,United,19,1142,60,0,2.1,Medium,150.0
+535,New York,Atlanta,Southwest,8,4446,66,0,5.0,Low,192.09
+536,Atlanta,Houston,American,11,4028,80,1,4.9,Low,210.49
+537,Houston,New York,Delta,12,3712,44,1,4.2,Medium,223.48
+538,Los Angeles,Miami,American,5,4272,55,0,5.0,Low,161.53
+539,San Francisco,Boston,American,22,4853,58,1,5.1,Low,227.95
+540,Chicago,Denver,JetBlue,21,1223,60,1,2.0,Medium,150.0
+541,San Francisco,Denver,Delta,10,3829,56,0,4.4,Medium,209.37
+542,Atlanta,New York,Southwest,10,4757,53,1,5.7,High,352.14
+543,Atlanta,Los Angeles,Delta,14,4230,48,1,4.4,Medium,272.07
+544,Denver,Houston,Southwest,15,3750,64,1,4.2,Medium,239.94
+545,Seattle,Denver,United,0,1981,41,0,2.5,Low,150.0
+546,San Francisco,Atlanta,JetBlue,2,2036,35,1,2.7,Medium,189.22
+547,Denver,Houston,United,15,3263,49,0,3.4,Medium,177.71
+548,Atlanta,San Francisco,American,3,2575,4,1,3.1,High,516.6
+549,Boston,Houston,American,11,2266,23,1,2.7,Medium,236.42
+550,Atlanta,Seattle,JetBlue,15,3617,57,0,4.6,Medium,177.69
+551,San Francisco,Miami,United,14,4925,30,0,5.6,High,321.68
+552,Chicago,New York,Delta,5,3869,34,1,4.8,High,301.42
+553,San Francisco,Houston,United,9,2486,83,0,3.5,Medium,169.39
+554,San Francisco,Houston,Southwest,11,4699,10,0,5.4,High,600.0
+555,Miami,Los Angeles,American,19,4326,46,1,4.5,High,338.3
+556,Houston,San Francisco,Delta,18,3806,11,0,4.3,Low,358.66
+557,Miami,Houston,American,4,1499,38,1,2.3,Low,150.0
+558,Atlanta,Denver,United,16,3190,65,0,3.3,High,239.58
+559,San Francisco,Houston,JetBlue,3,4551,66,1,4.9,Medium,258.45
+560,Houston,Boston,Delta,12,1968,70,1,2.3,Low,150.0
+561,Miami,Houston,JetBlue,22,4512,83,1,4.7,High,373.68
+562,San Francisco,Atlanta,United,3,2812,11,0,2.8,High,453.1
+563,Los Angeles,Seattle,Southwest,10,2591,36,0,3.3,Low,150.0
+564,Miami,New York,JetBlue,17,1032,30,0,2.0,High,150.0
+565,Houston,Boston,JetBlue,20,4726,13,0,5.7,Medium,499.31
+566,Miami,San Francisco,United,2,4935,16,1,5.5,Medium,427.6
+567,Seattle,Atlanta,Delta,9,2609,10,1,2.8,High,549.19
+568,Seattle,Boston,United,17,4799,47,1,5.7,High,375.42
+569,Atlanta,Miami,JetBlue,14,4759,5,0,5.7,Medium,515.69
+570,Los Angeles,Miami,American,12,2046,70,0,3.0,Low,150.0
+571,Chicago,Seattle,American,18,2232,26,0,2.8,Medium,204.11
+572,Chicago,Atlanta,JetBlue,13,1369,43,0,2.3,High,160.18
+573,Houston,San Francisco,Delta,7,4835,26,1,5.8,High,544.92
+574,Boston,San Francisco,JetBlue,19,4369,87,1,5.3,High,347.91
+575,Chicago,Los Angeles,American,7,4099,43,0,4.2,High,269.1
+576,Houston,San Francisco,Southwest,17,1964,33,1,2.1,Medium,158.17
+577,Los Angeles,Seattle,JetBlue,5,2218,39,1,2.5,Low,150.0
+578,Boston,Houston,JetBlue,15,1861,88,1,2.3,High,212.64
+579,Boston,Seattle,Southwest,12,4520,36,0,4.7,Low,168.48
+580,Seattle,Miami,Delta,2,4646,25,1,5.6,Medium,405.49
+581,Atlanta,Boston,United,10,1656,78,0,2.4,Low,150.0
+582,San Francisco,New York,American,6,4751,18,0,5.4,Medium,329.04
+583,Boston,Denver,American,22,2797,70,0,3.8,Medium,168.78
+584,New York,Houston,United,18,3586,34,1,3.9,Low,198.41
+585,Houston,Chicago,United,13,2299,2,1,3.0,Low,295.55
+586,Boston,New York,United,13,4602,39,1,5.6,High,373.44
+587,Boston,Miami,United,18,4326,37,0,4.4,High,279.39
+588,Denver,Atlanta,American,10,4140,45,0,4.7,High,284.24
+589,New York,Denver,JetBlue,17,3639,52,1,4.4,Low,171.17
+590,Denver,Boston,JetBlue,22,2664,52,1,2.7,Medium,191.07
+591,Boston,Atlanta,Southwest,7,4233,75,1,5.1,Low,191.04
+592,San Francisco,Miami,JetBlue,5,1138,84,1,2.0,Medium,150.0
+593,New York,Chicago,Delta,21,2122,2,0,2.3,High,382.95
+594,Seattle,Houston,Delta,21,4548,61,1,5.4,Medium,278.98
+595,Miami,Seattle,United,2,1328,84,1,2.0,Medium,150.0
+596,Boston,Houston,Southwest,23,4371,66,1,4.7,High,338.31
+597,Boston,San Francisco,American,22,4192,20,0,4.7,Medium,299.42
+598,Atlanta,Denver,JetBlue,18,4852,51,0,5.8,High,305.58
+599,Atlanta,Houston,JetBlue,15,3013,30,0,3.5,High,221.75
+600,Denver,San Francisco,American,3,2929,30,0,3.8,Low,150.0
+601,Houston,Atlanta,Delta,18,4018,27,1,4.1,Medium,361.72
+602,San Francisco,Seattle,United,19,2691,61,1,2.9,High,257.33
+603,Houston,Miami,Southwest,14,4794,30,0,5.1,Low,186.44
+604,Miami,San Francisco,Delta,10,4445,67,0,4.9,High,295.77
+605,Boston,San Francisco,Southwest,17,2362,76,1,2.8,Medium,172.64
+606,San Francisco,Seattle,United,3,3938,71,0,4.0,Low,152.23
+607,New York,Chicago,JetBlue,14,2730,60,1,3.5,Low,150.0
+608,Boston,Seattle,United,5,4591,60,1,5.4,Medium,265.94
+609,Seattle,Chicago,Delta,9,4762,44,0,5.2,Medium,229.54
+610,Boston,Chicago,JetBlue,12,4359,11,1,4.4,Medium,578.76
+611,Chicago,Atlanta,United,2,1411,41,1,2.0,Medium,150.0
+612,San Francisco,Chicago,JetBlue,19,4376,25,0,4.5,High,427.3
+613,Chicago,Miami,JetBlue,3,1656,55,1,2.6,Low,150.0
+614,Denver,Atlanta,Southwest,21,3860,90,0,4.5,Low,159.09
+615,Atlanta,New York,Southwest,19,2068,54,1,2.8,Medium,152.53
+616,New York,Atlanta,Delta,12,3073,27,0,3.1,Medium,262.22
+617,Boston,New York,United,10,1271,57,0,2.0,Low,150.0
+618,Denver,Los Angeles,American,15,2441,58,0,3.3,Medium,150.0
+619,Denver,New York,United,20,2723,72,0,3.1,High,203.21
+620,New York,Los Angeles,JetBlue,21,3466,4,1,3.5,Low,389.96
+621,Los Angeles,Boston,Delta,1,3986,48,0,4.7,Low,181.85
+622,Boston,Chicago,Delta,2,4331,18,1,5.0,Medium,382.19
+623,Chicago,Houston,American,6,3243,74,0,3.6,High,243.28
+624,San Francisco,Los Angeles,JetBlue,4,4021,17,1,4.8,Medium,372.72
+625,Chicago,Miami,JetBlue,18,2338,40,0,3.2,High,178.06
+626,New York,Atlanta,Delta,20,2856,2,0,3.6,High,478.44
+627,Miami,Houston,Delta,0,3847,64,0,4.3,High,271.49
+628,Boston,Atlanta,American,4,1112,85,1,2.0,Medium,150.0
+629,Seattle,San Francisco,American,21,4121,46,1,5.1,High,351.19
+630,Houston,Seattle,Southwest,4,1213,44,0,2.0,Medium,150.0
+631,San Francisco,New York,Delta,14,3627,29,1,4.2,Medium,320.2
+632,Seattle,Denver,American,17,3627,54,1,4.1,Low,179.78
+633,Seattle,Denver,JetBlue,9,1752,55,0,2.0,Medium,150.0
+634,Boston,San Francisco,Southwest,12,3581,88,1,4.5,High,289.62
+635,Miami,San Francisco,Delta,19,2816,52,1,3.7,Medium,197.94
+636,Boston,New York,American,18,4240,89,1,4.3,High,354.1
+637,Miami,New York,Delta,14,3625,69,1,4.3,Medium,221.22
+638,Los Angeles,Atlanta,Southwest,6,1557,39,1,2.0,Medium,151.63
+639,San Francisco,Atlanta,United,6,1012,42,1,2.0,High,165.63
+640,New York,Boston,Delta,21,2641,76,1,2.8,Medium,175.12
+641,Atlanta,New York,Delta,10,1819,3,1,2.6,Medium,348.73
+642,New York,Miami,Delta,9,3573,73,0,4.4,Low,150.0
+643,Seattle,Atlanta,Delta,18,2251,5,0,2.4,Low,269.34
+644,Houston,Miami,American,21,2285,18,1,2.4,High,321.33
+645,Los Angeles,Atlanta,United,9,3358,20,1,3.7,Low,275.12
+646,New York,Miami,JetBlue,13,1336,43,1,2.0,Medium,150.0
+647,New York,Houston,Delta,22,1453,73,0,2.3,Medium,150.0
+648,Houston,Atlanta,JetBlue,11,1646,81,0,2.4,Medium,150.0
+649,Houston,Boston,American,2,2022,78,1,2.9,High,214.72
+650,New York,Chicago,United,18,3115,78,1,3.1,Medium,225.38
+651,Denver,Los Angeles,Southwest,0,3922,74,1,3.9,High,324.47
+652,Chicago,Los Angeles,Southwest,19,4971,51,1,5.8,Low,216.79
+653,Houston,Atlanta,Southwest,16,4144,49,1,5.0,Low,197.15
+654,Chicago,Denver,Southwest,12,4402,27,0,5.0,High,402.32
+655,San Francisco,Houston,Southwest,4,3659,51,0,3.8,Low,150.0
+656,Los Angeles,Houston,United,9,4125,9,0,4.8,Medium,467.24
+657,Denver,Los Angeles,Delta,1,1532,69,0,2.4,High,165.47
+658,Houston,Atlanta,Southwest,11,4469,50,0,4.9,High,286.15
+659,San Francisco,Miami,Delta,17,3433,25,1,4.3,High,410.61
+660,Miami,Seattle,JetBlue,1,3808,61,0,4.6,Low,165.48
+661,Seattle,Miami,Delta,0,2680,14,1,2.8,High,371.82
+662,Chicago,Boston,JetBlue,22,4246,43,0,4.4,Low,184.11
+663,Denver,Los Angeles,Delta,17,4847,73,1,5.6,Low,226.36
+664,Denver,Seattle,JetBlue,11,2308,58,0,2.5,High,182.36
+665,Los Angeles,Boston,Delta,3,2849,82,1,3.6,Medium,193.37
+666,Chicago,San Francisco,Delta,9,2959,39,1,3.0,Low,163.41
+667,Miami,Denver,United,0,4577,12,0,4.7,Low,403.3
+668,Los Angeles,Houston,JetBlue,7,4011,22,0,5.0,Medium,295.28
+669,Denver,Houston,Delta,13,1546,14,1,2.0,Low,179.22
+670,New York,Miami,United,22,2067,87,1,2.9,Medium,171.95
+671,Miami,Los Angeles,United,18,1710,71,0,2.0,Medium,150.0
+672,Denver,New York,JetBlue,12,3815,23,0,3.9,Medium,283.13
+673,Boston,Los Angeles,Delta,20,3429,5,1,3.5,Low,402.02
+674,Boston,New York,United,10,4386,89,0,4.7,Medium,206.8
+675,Houston,Boston,Southwest,22,2341,78,1,2.9,Low,160.8
+676,Los Angeles,Boston,Southwest,12,4274,63,1,4.8,High,355.44
+677,Denver,Atlanta,Southwest,12,2154,4,1,2.4,Low,290.75
+678,Houston,San Francisco,Delta,12,1813,24,1,2.8,Low,202.31
+679,Los Angeles,New York,Southwest,13,1345,26,0,2.0,Low,150.0
+680,Miami,New York,American,17,2697,9,1,2.9,Medium,416.92
+681,Denver,Chicago,JetBlue,6,2505,50,0,2.8,Medium,167.69
+682,Los Angeles,Boston,American,21,1745,37,1,2.4,Low,150.0
+683,Denver,San Francisco,American,5,2611,27,1,3.5,Low,235.98
+684,New York,Boston,Southwest,15,4589,30,1,4.7,Low,203.08
+685,Seattle,Chicago,JetBlue,4,2545,38,1,2.7,Low,150.0
+686,Atlanta,Denver,United,6,4869,85,1,4.9,Medium,277.66
+687,Boston,Los Angeles,American,17,4418,68,0,4.6,Low,186.73
+688,Seattle,Atlanta,United,12,4622,9,0,4.8,High,600.0
+689,Los Angeles,New York,United,11,3336,59,1,3.5,Low,186.62
+690,Atlanta,Houston,Delta,13,1919,8,0,2.5,Low,226.89
+691,Seattle,Houston,JetBlue,4,1084,48,0,2.1,High,158.69
+692,New York,Denver,JetBlue,9,4883,67,0,5.6,High,329.63
+693,Boston,San Francisco,American,21,1094,2,0,2.0,Medium,212.98
+694,San Francisco,Miami,Delta,4,4781,22,1,4.9,Low,308.87
+695,Los Angeles,New York,Delta,4,3287,42,1,3.5,Medium,217.14
+696,Boston,Los Angeles,Delta,0,3650,53,1,4.0,Low,186.29
+697,Seattle,Miami,JetBlue,2,3506,51,0,4.5,Medium,183.9
+698,San Francisco,Atlanta,JetBlue,20,3566,21,1,3.7,Low,258.79
+699,Chicago,Denver,Southwest,0,1936,15,0,2.6,Medium,199.83
+700,Boston,New York,JetBlue,4,4714,17,1,5.3,High,536.28
+701,Chicago,San Francisco,JetBlue,23,1364,69,0,2.0,High,153.27
+702,Atlanta,Seattle,Delta,15,4990,54,1,5.5,Medium,310.3
+703,Miami,New York,United,21,2894,62,0,3.2,High,233.56
+704,Denver,Houston,American,13,1812,9,1,2.2,Low,283.7
+705,Atlanta,Denver,United,4,2072,50,0,2.9,Medium,150.0
+706,San Francisco,Chicago,American,2,3872,27,1,4.6,High,460.26
+707,San Francisco,Boston,Southwest,4,4489,17,0,5.0,Medium,324.49
+708,Boston,Los Angeles,JetBlue,20,1691,27,1,2.3,Medium,208.6
+709,Denver,Miami,American,13,1203,40,1,2.2,High,194.18
+710,Miami,Chicago,American,14,2642,56,0,2.9,Low,150.0
+711,Seattle,Denver,American,22,3531,86,1,4.3,Low,204.74
+712,Houston,Chicago,American,19,2756,61,0,2.8,Medium,165.09
+713,Los Angeles,Denver,JetBlue,13,3459,21,0,3.5,Low,231.63
+714,Miami,Boston,United,19,2065,78,0,2.4,Medium,150.0
+715,San Francisco,Atlanta,American,5,1611,74,0,2.3,Low,150.0
+716,Houston,Seattle,Delta,14,1364,40,1,2.0,Medium,150.0
+717,San Francisco,Boston,American,16,4924,76,1,5.7,Medium,298.28
+718,Denver,Chicago,JetBlue,13,2507,26,0,2.6,Medium,207.65
+719,Denver,Los Angeles,Delta,17,1696,65,1,2.5,High,215.92
+720,Boston,Atlanta,JetBlue,14,4879,88,0,5.6,High,302.55
+721,Seattle,Houston,Southwest,12,3323,59,0,3.3,Medium,202.96
+722,New York,Boston,JetBlue,11,1480,36,0,2.2,High,150.0
+723,San Francisco,Los Angeles,Delta,7,1057,26,0,2.0,Medium,163.45
+724,Seattle,Boston,United,5,3943,1,1,4.5,High,600.0
+725,Chicago,Houston,Delta,13,3153,19,0,4.1,Low,219.26
+726,San Francisco,Los Angeles,United,19,2782,58,0,3.1,Medium,157.68
+727,Houston,Seattle,Delta,0,4167,9,0,4.8,Medium,455.13
+728,Seattle,Denver,American,18,4768,52,0,5.4,High,316.3
+729,Miami,Denver,JetBlue,15,4802,78,1,4.9,High,367.18
+730,Seattle,Denver,Southwest,23,2858,32,0,3.1,High,209.91
+731,Miami,Boston,United,7,4388,68,0,5.2,Low,164.52
+732,Denver,Seattle,United,22,3759,43,1,4.2,Low,177.59
+733,Miami,New York,American,16,3024,73,1,3.8,High,258.09
+734,Atlanta,Miami,American,8,1485,63,0,2.0,Low,150.0
+735,New York,San Francisco,Delta,13,1919,59,0,2.4,Low,150.0
+736,Atlanta,San Francisco,United,17,3922,60,0,4.7,Medium,216.12
+737,Houston,Chicago,JetBlue,18,1832,74,1,2.1,Medium,172.44
+738,Los Angeles,Seattle,Delta,11,1780,6,0,2.8,Medium,285.28
+739,Houston,Atlanta,American,1,4875,12,0,5.1,High,600.0
+740,Boston,Denver,United,1,4530,37,1,5.1,Low,207.35
+741,San Francisco,Boston,Southwest,18,4331,83,1,4.4,High,349.41
+742,Atlanta,Chicago,Southwest,15,4203,59,0,4.6,High,287.47
+743,Houston,Denver,United,22,2090,45,1,2.6,Medium,159.7
+744,San Francisco,Boston,JetBlue,11,2179,90,0,2.6,Low,150.0
+745,San Francisco,Los Angeles,United,3,4057,39,0,5.0,High,271.79
+746,San Francisco,Denver,JetBlue,18,3024,51,0,3.9,Low,150.0
+747,New York,Miami,American,15,2564,79,0,3.5,Low,150.0
+748,Los Angeles,Houston,JetBlue,22,1533,23,0,2.0,Medium,191.95
+749,Miami,Los Angeles,JetBlue,2,2766,54,1,3.7,Low,174.33
+750,Houston,Los Angeles,United,4,4507,32,0,5.0,Low,191.13
+751,Boston,Miami,United,23,1846,23,0,2.0,Low,172.09
+752,Houston,Chicago,Southwest,23,3457,80,0,4.2,Medium,207.72
+753,Miami,Boston,American,16,1882,56,1,2.3,Medium,167.52
+754,Denver,Chicago,Delta,8,4375,59,1,4.4,Low,214.4
+755,Seattle,Boston,United,14,2159,50,0,2.3,Medium,155.9
+756,San Francisco,Seattle,American,16,3976,85,0,4.3,Medium,202.26
+757,Atlanta,Seattle,American,2,3773,24,0,4.8,High,370.82
+758,Atlanta,Los Angeles,Southwest,16,1775,90,1,2.4,Low,150.0
+759,Seattle,Los Angeles,United,19,2713,73,1,3.1,Medium,197.97
+760,Boston,New York,United,2,1738,13,0,2.0,Low,220.57
+761,Atlanta,Miami,American,7,2673,51,1,3.5,Medium,198.37
+762,Seattle,San Francisco,United,15,4245,90,0,4.9,Medium,233.14
+763,Seattle,Houston,Southwest,20,1597,6,1,2.0,Medium,339.4
+764,San Francisco,Miami,Southwest,23,1117,31,0,2.0,High,150.0
+765,Miami,Los Angeles,Southwest,21,2188,21,1,2.4,Medium,238.67
+766,Miami,Chicago,United,21,4998,36,0,5.1,Low,208.76
+767,Miami,Los Angeles,United,2,2072,81,1,2.5,Medium,190.91
+768,Houston,Chicago,Southwest,21,1964,69,0,2.1,Medium,150.0
+769,Los Angeles,Boston,JetBlue,20,3530,38,0,3.9,Low,150.0
+770,Houston,San Francisco,Delta,17,2847,86,1,2.9,Low,174.0
+771,Seattle,Atlanta,American,18,4716,9,1,5.1,Medium,588.92
+772,Los Angeles,Atlanta,JetBlue,9,2017,90,1,2.3,High,204.44
+773,Atlanta,Houston,Delta,19,2514,28,1,3.5,High,355.98
+774,Chicago,Boston,United,1,3387,64,0,3.9,Low,167.81
+775,Houston,Los Angeles,American,10,3802,53,0,4.0,Medium,192.85
+776,Houston,New York,JetBlue,17,3651,71,1,4.1,Low,184.97
+777,San Francisco,Los Angeles,American,0,2876,16,0,3.6,Medium,242.69
+778,Miami,Seattle,United,15,1351,48,0,2.0,High,160.58
+779,Denver,Atlanta,Delta,14,1042,10,0,2.0,High,287.15
+780,Atlanta,Los Angeles,Delta,16,2920,14,0,3.1,Low,188.15
+781,Denver,Seattle,Delta,15,1545,65,1,2.5,High,212.72
+782,Miami,Denver,JetBlue,18,4569,42,1,4.6,Medium,260.69
+783,Los Angeles,Seattle,Delta,23,2324,53,1,3.3,Low,154.28
+784,Houston,Boston,JetBlue,10,4991,58,0,5.1,Low,192.37
+785,Miami,New York,JetBlue,13,3838,22,0,4.2,Medium,272.02
+786,Houston,Miami,Southwest,11,2628,33,1,3.1,Low,160.34
+787,Seattle,Boston,JetBlue,9,3813,27,0,4.1,High,366.39
+788,Chicago,Boston,American,9,1869,65,0,2.1,High,170.76
+789,Miami,Los Angeles,Delta,5,3921,6,0,4.9,Medium,455.76
+790,New York,Atlanta,JetBlue,1,2570,60,0,3.4,High,193.29
+791,Atlanta,Houston,United,22,3901,4,0,4.3,Medium,424.89
+792,Chicago,Denver,JetBlue,19,2733,10,0,2.7,Low,276.43
+793,Miami,Atlanta,JetBlue,23,4015,82,1,4.3,Medium,235.47
+794,New York,Chicago,Southwest,9,3446,89,0,3.6,High,232.72
+795,New York,Boston,American,23,2049,87,0,2.7,High,185.27
+796,Atlanta,Chicago,United,18,1299,60,0,2.0,Medium,150.0
+797,Miami,Chicago,Southwest,8,1390,49,1,2.0,Medium,150.0
+798,Chicago,Miami,American,1,3281,44,0,3.4,Low,150.0
+799,San Francisco,Miami,JetBlue,20,1240,52,0,2.0,Medium,150.0
+800,Los Angeles,Miami,United,15,1213,25,0,2.0,Medium,156.53
+801,New York,San Francisco,American,18,2363,51,0,3.1,Medium,151.8
+802,Denver,Chicago,Southwest,5,4813,5,1,5.6,High,600.0
+803,Miami,Los Angeles,JetBlue,18,1961,2,1,2.8,High,466.9
+804,San Francisco,Chicago,JetBlue,1,2928,33,1,3.3,Low,175.84
+805,San Francisco,Boston,Delta,21,4720,15,0,5.7,High,433.09
+806,San Francisco,Miami,Southwest,9,2451,18,0,2.5,Medium,209.37
+807,Seattle,Boston,United,23,3483,42,1,3.9,High,308.29
+808,Chicago,Miami,JetBlue,19,4847,86,1,5.3,Medium,305.24
+809,New York,San Francisco,Delta,0,3747,60,1,4.0,Medium,245.64
+810,Miami,Los Angeles,American,9,4961,63,1,5.3,High,380.3
+811,San Francisco,Seattle,JetBlue,15,4286,60,1,4.5,Medium,246.95
+812,Los Angeles,Miami,American,2,3450,9,1,4.3,High,600.0
+813,Los Angeles,Houston,JetBlue,4,3906,11,0,4.2,Medium,436.36
+814,Boston,San Francisco,American,16,4064,71,1,5.0,Low,200.48
+815,San Francisco,Denver,Southwest,2,4317,85,0,5.3,Low,160.56
+816,Los Angeles,Denver,American,8,1186,32,0,2.0,Medium,150.0
+817,Denver,Houston,American,8,1021,57,1,2.0,High,172.76
+818,New York,San Francisco,JetBlue,4,2038,18,1,2.6,Medium,256.57
+819,Chicago,Los Angeles,JetBlue,19,3066,61,0,3.4,High,222.26
+820,Chicago,Los Angeles,American,8,3538,36,1,3.7,Low,186.86
+821,Denver,Miami,Southwest,8,2560,21,0,2.7,Low,178.69
+822,Miami,New York,United,8,2239,22,0,2.6,Low,179.45
+823,Los Angeles,Boston,Delta,0,2616,3,1,3.2,Medium,428.62
+824,Houston,Seattle,American,23,3749,78,1,4.7,High,319.11
+825,Los Angeles,Denver,Southwest,3,2519,13,1,2.7,High,539.84
+826,Atlanta,Boston,American,19,1541,23,1,2.1,Medium,205.96
+827,Boston,Seattle,Delta,5,4965,38,1,5.2,Low,233.72
+828,Denver,San Francisco,United,18,4654,16,1,5.5,High,514.83
+829,Denver,Seattle,United,23,3291,69,0,3.8,High,238.16
+830,Denver,Boston,American,4,1168,51,1,2.0,High,184.6
+831,Houston,Denver,Delta,21,3377,22,1,3.4,Medium,304.47
+832,Atlanta,Chicago,American,14,1734,10,0,2.2,Medium,287.8
+833,Boston,Miami,JetBlue,11,2066,86,1,2.2,Low,150.0
+834,San Francisco,Seattle,United,5,1695,2,1,2.4,Medium,317.7
+835,San Francisco,Denver,Southwest,8,3063,87,0,3.7,Medium,188.42
+836,Miami,Houston,Southwest,22,3018,35,1,3.1,Low,150.0
+837,Denver,San Francisco,Southwest,7,4810,20,0,5.3,Low,254.09
+838,Boston,Seattle,Delta,15,2389,57,0,3.0,Medium,150.0
+839,Miami,Chicago,Delta,5,4595,46,1,5.5,Medium,296.6
+840,Denver,Boston,United,16,2917,23,1,3.9,Medium,295.83
+841,Denver,Seattle,Delta,1,1540,28,1,2.0,Low,158.05
+842,New York,Miami,JetBlue,10,1367,5,1,2.0,High,389.56
+843,Denver,San Francisco,United,2,2299,87,1,3.1,High,250.11
+844,Los Angeles,Denver,United,4,3909,69,0,4.7,Medium,190.35
+845,Houston,Miami,JetBlue,19,3172,28,0,3.4,Medium,273.45
+846,Houston,Seattle,JetBlue,4,2773,57,0,2.9,Medium,150.0
+847,Miami,Boston,JetBlue,15,1580,90,1,2.4,Medium,150.0
+848,Los Angeles,Miami,American,13,2066,7,1,2.1,High,473.95
+849,Chicago,Boston,Southwest,12,1478,82,0,2.0,Medium,150.0
+850,Houston,Seattle,Southwest,7,2283,67,1,2.9,Low,153.72
+851,Chicago,Los Angeles,United,21,1180,83,0,2.0,High,150.0
+852,Atlanta,Denver,JetBlue,14,1523,85,0,2.3,Medium,150.0
+853,Los Angeles,Houston,Delta,23,3044,85,0,3.5,Low,150.0
+854,Chicago,Denver,JetBlue,20,4570,14,1,4.7,Medium,410.1
+855,New York,Atlanta,United,5,4986,50,1,5.3,Medium,287.64
+856,Boston,Chicago,Southwest,6,4419,89,0,4.7,Medium,237.36
+857,San Francisco,Atlanta,American,18,2150,40,1,3.1,Low,150.0
+858,Denver,New York,JetBlue,23,4063,57,0,4.7,Medium,199.54
+859,San Francisco,Chicago,Southwest,11,2476,7,0,3.0,Medium,338.58
+860,Miami,Houston,United,1,4793,77,1,5.6,Medium,284.72
+861,New York,San Francisco,United,20,2761,1,0,3.4,High,478.09
+862,Houston,Miami,Southwest,8,2158,7,1,3.1,Low,296.35
+863,Miami,Los Angeles,Southwest,3,4697,49,0,5.3,High,307.17
+864,Miami,Boston,JetBlue,1,4591,26,1,4.7,Low,332.46
+865,San Francisco,Boston,Delta,5,2078,32,1,2.8,Medium,176.12
+866,Los Angeles,Chicago,JetBlue,14,3510,48,0,4.2,High,270.06
+867,Houston,Miami,American,12,4397,31,0,4.6,Low,192.37
+868,Miami,Houston,Southwest,15,4119,26,1,4.9,High,468.9
+869,Denver,Miami,American,9,4795,12,1,5.1,High,600.0
+870,Houston,Chicago,American,15,2080,3,0,2.9,Medium,290.63
+871,Boston,Los Angeles,Delta,23,3117,54,0,3.5,Low,150.0
+872,Los Angeles,Boston,JetBlue,17,2282,4,0,3.1,Low,259.1
+873,Atlanta,Los Angeles,United,7,2784,2,1,2.8,Low,356.2
+874,Houston,San Francisco,American,12,4656,44,0,4.9,High,322.25
+875,Chicago,Denver,American,21,1675,25,1,2.0,Low,187.61
+876,Miami,San Francisco,American,22,2292,88,1,2.3,Low,150.0
+877,Chicago,Denver,American,12,4018,86,1,4.7,High,318.08
+878,Los Angeles,Boston,United,15,3012,9,1,3.8,Low,375.38
+879,New York,Atlanta,JetBlue,8,4128,29,0,4.2,High,414.83
+880,Chicago,Atlanta,Delta,4,4891,13,0,5.4,Medium,526.29
+881,Miami,Boston,American,16,1619,86,0,2.5,Medium,150.0
+882,Denver,Atlanta,Southwest,13,3276,22,1,3.4,Medium,312.86
+883,Denver,New York,United,0,4494,22,1,5.1,Medium,378.12
+884,Miami,Seattle,Delta,9,4780,6,0,5.3,Medium,514.31
+885,San Francisco,Atlanta,Southwest,14,3692,54,1,4.3,High,315.36
+886,Los Angeles,Denver,Southwest,12,3607,66,1,4.4,High,291.11
+887,San Francisco,Los Angeles,Southwest,21,4269,14,0,4.4,Low,234.86
+888,Miami,Los Angeles,American,10,2802,42,0,3.1,High,213.31
+889,Boston,Houston,JetBlue,16,1217,42,1,2.0,High,183.29
+890,Miami,Seattle,American,21,1773,72,0,2.5,High,152.39
+891,Atlanta,Chicago,Southwest,1,1608,81,1,2.1,Medium,164.43
+892,Atlanta,Denver,Delta,3,1223,25,1,2.0,Low,155.0
+893,San Francisco,New York,American,17,1941,80,0,2.1,Low,150.0
+894,San Francisco,Denver,Delta,20,1750,27,0,2.7,Medium,190.73
+895,Los Angeles,Boston,American,11,1146,70,1,2.0,Medium,150.0
+896,Denver,Seattle,JetBlue,13,2926,51,0,3.8,Low,150.0
+897,New York,Boston,JetBlue,19,2065,55,0,2.6,Low,150.0
+898,Boston,Los Angeles,American,20,1669,16,1,2.0,High,303.58
+899,Seattle,New York,American,8,3891,30,1,4.2,High,330.23
+900,Denver,Los Angeles,JetBlue,10,2913,28,0,3.6,High,317.47
+901,Miami,Denver,Delta,8,2787,14,1,3.3,Low,219.99
+902,New York,Houston,JetBlue,8,1475,46,0,2.1,Medium,150.0
+903,Los Angeles,Atlanta,American,3,4666,42,0,5.3,High,299.42
+904,Houston,Atlanta,Delta,8,4797,23,1,5.2,High,534.08
+905,Denver,Atlanta,American,20,3027,2,0,3.4,Low,304.53
+906,Denver,Chicago,United,18,1167,52,0,2.0,Medium,150.0
+907,New York,Denver,American,12,2808,84,1,2.8,High,259.35
+908,Miami,Houston,JetBlue,14,2460,41,0,2.7,High,207.91
+909,Denver,San Francisco,Southwest,21,3904,2,1,4.5,Medium,543.68
+910,New York,Seattle,JetBlue,23,3297,50,1,3.9,Medium,237.26
+911,Chicago,Boston,JetBlue,7,2987,28,1,3.9,Medium,305.49
+912,San Francisco,Houston,Delta,23,2874,59,1,2.9,Low,176.98
+913,Atlanta,Denver,United,21,3019,29,1,3.7,Low,246.58
+914,San Francisco,Atlanta,Delta,18,1460,9,1,2.0,High,415.2
+915,Miami,Chicago,American,6,4464,85,0,4.5,Medium,236.08
+916,Chicago,Seattle,Southwest,16,3948,36,1,4.0,High,331.8
+917,Denver,New York,JetBlue,10,4550,84,1,4.7,High,368.07
+918,Boston,San Francisco,Southwest,21,1606,80,0,2.1,High,178.24
+919,San Francisco,Los Angeles,Southwest,22,1506,48,1,2.4,Low,150.0
+920,Los Angeles,Miami,American,5,2431,6,1,2.7,Medium,399.68
+921,San Francisco,Boston,American,10,1383,9,1,2.1,Low,229.38
+922,Seattle,Los Angeles,Southwest,17,1834,28,1,2.8,Low,195.37
+923,Boston,Los Angeles,JetBlue,0,4556,53,0,4.9,High,301.47
+924,Seattle,Chicago,American,21,2163,39,1,2.6,Medium,180.32
+925,Seattle,San Francisco,JetBlue,0,1739,77,0,2.5,Medium,150.0
+926,Los Angeles,Miami,American,2,4419,64,0,4.9,High,277.94
+927,Chicago,Seattle,JetBlue,0,1689,14,0,2.2,High,242.4
+928,Seattle,San Francisco,JetBlue,13,4071,69,0,4.6,High,268.01
+929,Boston,Houston,United,3,3083,73,0,3.7,Low,153.22
+930,San Francisco,Atlanta,American,16,4369,22,0,4.8,High,429.48
+931,Miami,San Francisco,United,3,2117,33,0,2.3,Low,150.0
+932,Boston,Seattle,Southwest,21,3307,13,1,4.1,Medium,489.32
+933,Atlanta,San Francisco,JetBlue,14,4649,77,1,5.5,High,377.31
+934,New York,Los Angeles,JetBlue,11,3716,42,0,4.2,Medium,218.19
+935,San Francisco,Chicago,Delta,7,3398,81,0,3.5,Low,166.77
+936,Los Angeles,San Francisco,American,23,1869,90,0,2.8,Medium,150.0
+937,Seattle,Miami,Southwest,9,3390,50,0,3.7,Medium,202.22
+938,Miami,Los Angeles,Southwest,8,4979,87,1,5.2,High,393.34
+939,Seattle,Miami,American,6,1016,89,0,2.0,High,150.0
+940,Los Angeles,New York,Delta,1,3154,18,0,3.7,Low,217.38
+941,Boston,Los Angeles,Delta,0,4141,43,1,4.2,Medium,268.97
+942,Atlanta,New York,American,19,3337,23,0,4.2,High,344.1
+943,New York,Seattle,JetBlue,2,1739,82,0,2.0,High,172.68
+944,Atlanta,Los Angeles,JetBlue,1,2705,89,0,2.7,Low,150.17
+945,San Francisco,Chicago,Southwest,19,4770,41,1,5.0,High,351.83
+946,Boston,Houston,American,21,1314,86,0,2.0,Medium,150.0
+947,New York,Atlanta,JetBlue,6,2008,62,1,2.2,Low,150.0
+948,Houston,Chicago,Delta,19,4146,9,1,5.0,High,600.0
+949,Atlanta,Seattle,American,20,3040,43,1,3.5,Medium,197.88
+950,Seattle,Chicago,Southwest,3,3772,3,1,4.1,Medium,525.09
+951,Denver,Seattle,JetBlue,22,1386,78,0,2.1,Low,150.0
+952,San Francisco,Atlanta,JetBlue,3,4634,75,0,5.3,Medium,228.9
+953,San Francisco,Boston,Delta,2,2346,58,1,2.4,Low,161.69
+954,New York,San Francisco,JetBlue,19,1106,49,0,2.0,Low,150.0
+955,Houston,New York,JetBlue,4,2164,66,0,2.7,Medium,150.0
+956,Miami,Boston,Delta,12,3790,82,1,4.5,High,304.77
+957,Atlanta,Chicago,Delta,21,3787,30,0,4.5,Low,164.5
+958,Chicago,Los Angeles,Southwest,20,1499,65,1,2.0,Medium,166.75
+959,Miami,Boston,American,18,2614,76,1,2.7,Medium,182.91
+960,San Francisco,Boston,JetBlue,5,2530,2,0,3.1,Medium,344.02
+961,San Francisco,New York,JetBlue,3,3418,30,0,3.6,High,239.55
+962,Los Angeles,Denver,Delta,22,4805,3,1,5.4,High,600.0
+963,New York,Houston,Southwest,5,4896,79,1,4.9,Medium,305.95
+964,Denver,San Francisco,JetBlue,8,1434,16,1,2.1,Low,170.84
+965,Houston,Denver,Southwest,9,4428,40,1,5.0,Low,231.92
+966,Chicago,Boston,United,14,2325,31,1,2.7,Low,150.0
+967,Miami,Boston,Delta,21,1629,55,0,2.5,Low,150.0
+968,Atlanta,New York,JetBlue,2,1118,32,0,2.0,High,150.0
+969,New York,Houston,Southwest,20,1332,80,1,2.0,Medium,150.0
+970,Atlanta,Houston,American,14,2885,11,1,3.4,Low,364.47
+971,Boston,Miami,Southwest,8,4402,8,0,5.3,Low,375.51
+972,Los Angeles,Atlanta,Southwest,13,3898,18,1,4.6,High,440.17
+973,Houston,Denver,United,22,3701,48,0,4.0,Medium,193.32
+974,Los Angeles,Miami,JetBlue,21,2965,64,0,3.5,High,222.21
+975,San Francisco,Atlanta,JetBlue,10,2859,38,0,3.4,High,227.63
+976,Los Angeles,Chicago,Delta,8,3573,26,0,3.7,High,381.51
+977,Chicago,Seattle,Southwest,5,4912,20,1,5.1,Medium,430.81
+978,San Francisco,Seattle,American,2,2103,49,0,2.7,High,189.34
+979,Miami,Houston,United,8,3433,27,0,3.8,Medium,269.02
+980,Atlanta,San Francisco,Southwest,1,3695,83,0,4.0,High,240.32
+981,Miami,Los Angeles,American,12,1023,5,0,2.0,High,306.93
+982,Boston,Miami,Delta,12,2349,31,1,2.5,Medium,194.02
+983,San Francisco,Atlanta,United,10,4972,77,1,5.3,High,376.92
+984,San Francisco,Atlanta,JetBlue,1,1179,57,0,2.0,Medium,150.0
+985,Houston,Seattle,JetBlue,8,3687,43,1,4.3,Medium,240.63
+986,San Francisco,Denver,Southwest,8,3549,18,0,4.2,High,346.55
+987,Atlanta,Boston,United,5,4894,36,1,5.4,Low,238.08
+988,Chicago,Denver,American,14,2855,41,0,3.3,Medium,153.66
+989,Boston,Los Angeles,Delta,2,2330,83,1,2.5,Medium,183.88
+990,Houston,Denver,Delta,15,4880,6,1,4.9,Medium,600.0
+991,Denver,Los Angeles,JetBlue,6,3996,67,1,4.8,Medium,245.62
+992,Atlanta,Seattle,JetBlue,19,4007,54,0,4.7,Medium,215.46
+993,Chicago,Seattle,Delta,12,4714,83,0,5.6,Low,204.93
+994,Los Angeles,San Francisco,JetBlue,5,4921,37,0,5.1,Medium,230.9
+995,Miami,Denver,Delta,20,4264,4,0,4.8,High,600.0
+996,Boston,Chicago,Southwest,15,3331,30,1,4.1,Medium,236.25
+997,Seattle,Miami,American,3,1529,43,1,2.4,Low,150.0
+998,Atlanta,Denver,United,4,1865,44,1,2.5,High,224.25
+999,Miami,Denver,Southwest,17,4535,32,0,5.4,High,312.63
+1000,New York,Los Angeles,United,13,1199,27,1,2.0,Low,164.21
+1001,Miami,Chicago,Delta,6,4283,70,0,4.6,High,298.17
+1002,Miami,Seattle,American,19,3636,7,0,3.7,Medium,415.25
+1003,Denver,Los Angeles,Southwest,20,2158,86,1,2.8,Medium,168.11
+1004,Denver,Houston,JetBlue,3,2323,32,1,2.9,Medium,198.52
+1005,San Francisco,Miami,United,14,4269,88,0,5.2,Low,160.34
+1006,Chicago,Los Angeles,United,22,1227,90,1,2.0,High,189.93
+1007,San Francisco,Chicago,JetBlue,8,4046,29,0,4.6,High,404.08
+1008,Atlanta,Seattle,Southwest,3,1289,78,0,2.0,Low,150.0
+1009,San Francisco,Chicago,JetBlue,1,3241,49,1,3.5,High,272.12
+1010,Seattle,Atlanta,United,2,4898,67,0,5.1,Medium,244.93
+1011,Seattle,Boston,JetBlue,2,3466,42,0,3.8,High,259.63
+1012,Atlanta,Boston,United,18,2562,24,0,3.1,Medium,242.09
+1013,Atlanta,Denver,Southwest,23,1379,57,0,2.1,Low,150.0
+1014,Boston,Chicago,American,8,2633,81,1,3.4,Low,171.63
+1015,San Francisco,Denver,Southwest,14,2045,1,0,2.5,High,408.57
+1016,Seattle,Boston,JetBlue,0,1729,9,1,2.1,High,449.59
+1017,Houston,Boston,JetBlue,15,1983,63,0,2.7,Medium,150.0
+1018,Houston,Chicago,Southwest,4,4952,9,1,5.9,Medium,600.0
+1019,Denver,San Francisco,American,20,4157,25,1,4.6,Medium,349.46
+1020,Boston,Atlanta,United,20,4545,7,1,5.1,Medium,595.76
+1021,Houston,Chicago,JetBlue,0,2633,82,1,3.4,Medium,195.14
+1022,Boston,Atlanta,JetBlue,1,1365,19,0,2.0,High,222.74
+1023,New York,Chicago,Southwest,21,1084,27,0,2.0,Medium,170.49
+1024,Seattle,San Francisco,United,12,4491,17,1,4.6,Low,307.14
+1025,San Francisco,Miami,United,8,1852,12,1,2.0,Low,297.28
+1026,Boston,Chicago,JetBlue,4,1667,23,0,2.0,High,223.03
+1027,Boston,Chicago,United,22,2591,76,0,2.6,High,228.08
+1028,Chicago,Seattle,Southwest,10,4192,71,1,4.2,Low,203.54
+1029,San Francisco,Denver,American,12,2648,27,1,2.7,High,350.63
+1030,New York,Denver,Delta,18,2167,31,1,2.4,Medium,158.26
+1031,Chicago,New York,American,0,3650,65,0,3.7,High,244.81
+1032,Atlanta,Seattle,Southwest,16,4082,11,1,4.5,Medium,551.86
+1033,Denver,New York,American,22,4909,55,1,5.6,Medium,303.12
+1034,Seattle,San Francisco,Delta,15,3679,60,1,4.6,Low,203.75
+1035,Los Angeles,Chicago,American,15,1631,40,0,2.0,Medium,150.0
+1036,San Francisco,Houston,JetBlue,13,1493,22,0,2.0,High,244.86
+1037,Los Angeles,Boston,Southwest,12,2222,26,1,2.9,High,324.32
+1038,Atlanta,San Francisco,United,23,3010,32,1,4.0,Medium,192.66
+1039,San Francisco,Atlanta,JetBlue,2,4281,55,0,5.0,Low,181.8
+1040,New York,San Francisco,JetBlue,17,2770,23,1,3.1,Medium,269.4
+1041,Chicago,Boston,Delta,7,4014,78,0,4.3,High,278.83
+1042,Boston,San Francisco,American,0,4302,32,1,5.0,Low,194.67
+1043,Chicago,Boston,Southwest,12,4775,39,0,5.1,Medium,246.63
+1044,Los Angeles,San Francisco,Delta,22,2270,37,1,2.3,High,215.31
+1045,San Francisco,Houston,Delta,15,4701,74,1,4.8,Low,221.47
+1046,Miami,Chicago,American,3,3805,58,1,3.9,Low,182.14
+1047,Seattle,Los Angeles,Southwest,18,3471,82,0,3.9,Medium,196.67
+1048,Denver,San Francisco,JetBlue,17,1537,26,0,2.5,Low,150.0
+1049,Boston,New York,Southwest,11,2470,35,0,3.5,Low,150.0
+1050,Los Angeles,Houston,Delta,10,3725,62,0,4.6,Low,158.03
+1051,Seattle,Miami,Delta,21,1393,11,0,2.0,High,327.26
+1052,Atlanta,New York,United,9,4408,47,0,5.0,Medium,210.03
+1053,Boston,Miami,American,12,2505,51,0,3.5,Low,150.0
+1054,Seattle,Houston,United,1,3099,49,0,3.9,Low,150.0
+1055,San Francisco,Atlanta,Delta,20,1818,22,1,2.7,High,289.0
+1056,Atlanta,Miami,JetBlue,20,3005,61,0,3.9,Medium,155.85
+1057,New York,Chicago,Delta,2,2824,57,0,3.0,High,219.3
+1058,Denver,San Francisco,Southwest,11,4626,55,0,4.7,Medium,229.62
+1059,Los Angeles,Denver,Southwest,17,2589,65,1,3.3,Medium,184.0
+1060,Houston,San Francisco,JetBlue,10,2951,79,0,3.4,Low,150.0
+1061,Miami,Atlanta,JetBlue,2,2099,56,1,3.0,Medium,180.73
+1062,Houston,Atlanta,United,14,3306,20,1,4.0,High,411.83
+1063,Los Angeles,Miami,JetBlue,9,3458,62,1,3.7,Medium,214.83
+1064,Boston,Denver,Delta,20,2732,3,0,2.8,Medium,351.03
+1065,Los Angeles,Atlanta,American,6,1369,49,0,2.0,Medium,150.0
+1066,Los Angeles,Miami,Southwest,5,4098,55,1,4.2,High,339.81
+1067,San Francisco,Atlanta,Southwest,17,2730,11,1,3.4,Low,344.41
+1068,Chicago,Seattle,Delta,1,4321,39,0,4.5,High,281.39
+1069,Miami,Atlanta,American,12,2508,77,0,2.9,High,207.33
+1070,New York,Denver,JetBlue,21,3514,69,0,3.9,High,234.57
+1071,New York,San Francisco,United,6,1763,20,1,2.0,High,308.41
+1072,Seattle,Atlanta,American,9,2778,71,1,3.2,Medium,209.68
+1073,New York,Houston,Delta,22,3583,23,1,4.0,High,448.51
+1074,Miami,Boston,JetBlue,12,2744,33,0,2.9,High,232.77
+1075,Seattle,Los Angeles,JetBlue,3,1380,49,0,2.0,High,170.71
+1076,Seattle,Houston,JetBlue,20,1165,60,0,2.1,Medium,150.0
+1077,Boston,Miami,American,22,3102,40,1,3.8,Low,174.04
+1078,Chicago,New York,JetBlue,11,2399,59,1,3.4,Medium,202.06
+1079,Houston,San Francisco,American,15,4986,37,0,5.9,Medium,227.18
+1080,Atlanta,Miami,Delta,2,2898,49,0,3.6,Medium,182.54
+1081,Boston,Seattle,United,20,3770,72,1,4.5,Medium,223.25
+1082,Denver,Los Angeles,American,14,1918,78,0,2.1,Medium,154.59
+1083,Chicago,San Francisco,Delta,23,3652,62,0,3.9,Low,165.24
+1084,Chicago,Los Angeles,American,6,3810,10,0,4.5,Low,339.11
+1085,Chicago,Houston,Delta,4,3923,43,1,4.9,Medium,267.58
+1086,Los Angeles,Houston,United,1,1635,18,1,2.0,Medium,206.04
+1087,Denver,San Francisco,Southwest,6,4812,61,0,5.5,Low,188.89
+1088,Boston,Seattle,United,0,3028,26,0,3.8,High,310.39
+1089,Denver,Chicago,Southwest,23,3159,20,1,4.2,Medium,294.85
+1090,Houston,Boston,Southwest,18,3578,25,1,3.6,Medium,351.94
+1091,San Francisco,Chicago,JetBlue,7,3651,1,1,4.2,High,600.0
+1092,Denver,Los Angeles,American,15,3149,2,0,4.0,Low,326.16
+1093,Chicago,Seattle,JetBlue,12,1343,65,0,2.0,High,150.0
+1094,Houston,Miami,Delta,2,2190,48,1,2.9,Low,157.42
+1095,San Francisco,Houston,Delta,17,2917,63,0,3.7,Medium,168.15
+1096,Miami,New York,Delta,20,2791,52,0,3.5,High,216.68
+1097,San Francisco,Denver,JetBlue,9,1324,54,0,2.1,High,168.33
+1098,Miami,Seattle,United,15,4715,51,1,5.0,Medium,280.6
+1099,New York,Atlanta,JetBlue,17,4283,48,1,4.4,Medium,252.08
+1100,San Francisco,Miami,JetBlue,14,2956,50,0,3.3,Medium,193.3
+1101,Miami,Denver,United,0,2230,63,1,3.1,Low,158.43
+1102,Atlanta,New York,United,1,1608,40,0,2.2,High,171.29
+1103,Chicago,Boston,United,10,1523,83,1,2.0,Low,150.0
+1104,Los Angeles,Seattle,American,1,3802,76,0,4.7,High,250.53
+1105,San Francisco,Miami,JetBlue,10,4698,10,0,5.4,Low,397.07
+1106,Seattle,Miami,American,23,2230,53,0,2.8,Low,150.0
+1107,Denver,Miami,Southwest,1,4446,5,1,4.8,High,600.0
+1108,Miami,Los Angeles,Southwest,12,2018,16,0,2.7,High,274.18
+1109,Boston,Atlanta,JetBlue,3,3142,50,0,3.5,High,253.14
+1110,Miami,Los Angeles,Delta,6,2751,73,0,3.3,Low,150.0
+1111,San Francisco,Chicago,United,20,2210,21,0,2.6,High,272.36
+1112,Miami,Boston,American,21,3328,25,0,4.3,High,348.16
+1113,Houston,New York,Southwest,16,1195,56,1,2.0,High,193.5
+1114,Boston,Miami,JetBlue,14,3256,33,1,3.4,Medium,215.79
+1115,San Francisco,Chicago,Delta,21,1313,45,1,2.0,Low,150.0
+1116,Los Angeles,Chicago,JetBlue,17,4757,66,1,5.6,Medium,281.69
+1117,Houston,San Francisco,Delta,4,1184,63,1,2.0,High,189.5
+1118,Boston,Chicago,JetBlue,23,3102,82,1,3.5,Low,173.23
+1119,Denver,Seattle,United,18,1440,89,1,2.4,Low,150.0
+1120,Seattle,Houston,United,7,3091,48,1,3.2,High,281.67
+1121,Denver,Boston,Delta,2,2740,90,1,3.0,High,267.84
+1122,Miami,San Francisco,JetBlue,1,2691,8,1,2.8,Medium,408.94
+1123,Miami,Chicago,United,23,1387,84,0,2.3,High,157.26
+1124,New York,Denver,JetBlue,4,2903,50,1,3.5,Low,150.0
+1125,Boston,Miami,JetBlue,15,3706,55,1,4.2,Medium,254.22
+1126,Miami,Boston,United,20,3950,32,1,4.5,Low,191.68
+1127,New York,Boston,Southwest,0,3328,32,1,4.0,High,272.63
+1128,Denver,San Francisco,Southwest,15,4329,62,0,5.2,High,300.67
+1129,New York,Los Angeles,JetBlue,19,2037,5,1,2.4,High,469.58
+1130,Denver,Los Angeles,Southwest,1,2455,47,0,3.4,Medium,150.0
+1131,San Francisco,Boston,American,7,2043,81,0,3.0,High,166.07
+1132,Miami,Atlanta,United,22,3398,87,1,3.5,High,292.8
+1133,Houston,Miami,Southwest,20,1334,4,0,2.0,Low,207.32
+1134,Denver,Seattle,Southwest,4,4148,90,0,4.8,Low,185.42
+1135,Seattle,San Francisco,JetBlue,0,3062,86,1,3.8,Medium,208.54
+1136,Houston,San Francisco,Delta,5,1066,83,1,2.0,Medium,150.0
+1137,Houston,Seattle,Southwest,20,1466,19,0,2.0,High,242.4
+1138,Denver,Boston,Delta,1,4033,34,0,5.0,Low,185.13
+1139,Miami,New York,United,9,3709,78,1,4.5,Low,201.46
+1140,Chicago,Los Angeles,Delta,3,2895,59,1,3.7,Medium,205.58
+1141,Los Angeles,San Francisco,Southwest,14,1735,88,0,2.1,High,170.48
+1142,New York,Seattle,American,19,4220,19,0,5.0,Low,265.41
+1143,Miami,Los Angeles,American,5,1746,33,0,2.6,Medium,150.0
+1144,San Francisco,Atlanta,United,18,4452,32,1,5.4,Low,230.15
+1145,New York,Boston,Southwest,2,2609,78,0,3.2,Medium,166.88
+1146,Denver,Houston,United,3,1185,75,1,2.0,Low,150.0
+1147,Seattle,Boston,JetBlue,3,1341,85,1,2.0,Low,150.0
+1148,Chicago,Houston,JetBlue,15,2704,21,0,3.0,Low,191.72
+1149,Los Angeles,San Francisco,Delta,19,4591,2,1,5.1,High,600.0
+1150,Miami,Denver,United,19,3885,15,1,4.8,Medium,337.19
+1151,Seattle,Chicago,American,7,2219,12,1,3.0,Medium,367.45
+1152,Boston,Miami,United,2,2285,83,1,3.0,Low,150.0
+1153,Chicago,Seattle,Delta,6,3405,50,1,4.2,High,314.06
+1154,Houston,Atlanta,Southwest,13,3965,51,1,4.5,High,312.55
+1155,Chicago,Denver,United,10,2863,76,1,3.2,Medium,206.09
+1156,Atlanta,Chicago,Delta,23,4102,11,0,4.9,Low,375.5
+1157,Seattle,Denver,JetBlue,21,3745,67,0,4.1,Low,160.51
+1158,Atlanta,San Francisco,American,12,2842,25,1,3.8,Medium,299.77
+1159,Atlanta,Seattle,Southwest,10,3555,55,0,4.1,High,257.01
+1160,Miami,New York,United,3,4308,22,1,5.1,High,481.38
+1161,Chicago,New York,United,21,2085,55,1,2.3,Low,150.0
+1162,Miami,Los Angeles,American,18,2398,33,1,2.7,High,253.18
+1163,San Francisco,Miami,JetBlue,17,4959,89,1,5.4,Medium,307.27
+1164,Miami,New York,United,4,4760,39,0,5.5,Low,190.85
+1165,Seattle,Los Angeles,American,10,4569,65,0,4.7,Low,199.0
+1166,Los Angeles,Chicago,American,6,4317,69,1,5.0,Medium,279.24
+1167,San Francisco,Houston,Southwest,1,1766,85,0,2.2,High,158.44
+1168,Los Angeles,San Francisco,American,18,1864,49,1,2.7,Low,150.0
+1169,Chicago,New York,American,5,1758,76,0,2.7,Low,150.0
+1170,Houston,Boston,American,10,1320,40,1,2.0,High,162.44
+1171,Boston,Houston,United,2,4059,53,0,4.1,Low,158.81
+1172,Atlanta,Chicago,American,3,3474,12,1,4.3,High,600.0
+1173,Seattle,Miami,American,8,2062,14,1,2.6,High,335.23
+1174,Los Angeles,Chicago,American,4,4570,82,1,4.7,Medium,256.86
+1175,Boston,Miami,American,13,3758,74,0,3.9,High,273.41
+1176,New York,Los Angeles,JetBlue,5,1435,45,1,2.0,Medium,150.0
+1177,Miami,Seattle,United,22,2776,19,0,3.7,Medium,247.57
+1178,Atlanta,Miami,American,11,3188,35,1,3.4,Low,171.46
+1179,Los Angeles,Atlanta,Delta,17,1073,27,0,2.0,Medium,160.88
+1180,San Francisco,Seattle,Delta,5,1023,51,0,2.0,Medium,150.0
+1181,Seattle,Chicago,Delta,14,2617,90,1,3.2,High,250.23
+1182,Miami,New York,Southwest,7,1477,40,0,2.0,High,166.21
+1183,Denver,Boston,JetBlue,18,1054,1,0,2.0,Low,179.35
+1184,Boston,Miami,Delta,1,1703,22,1,2.0,High,306.36
+1185,Seattle,Houston,JetBlue,4,3686,63,1,3.7,High,299.89
+1186,Los Angeles,Boston,Delta,3,2954,1,0,3.1,High,479.22
+1187,Houston,Los Angeles,Southwest,20,2884,13,1,3.1,High,582.62
+1188,San Francisco,Los Angeles,United,19,3833,9,1,4.6,High,600.0
+1189,New York,Los Angeles,JetBlue,12,2659,90,0,2.7,Low,150.0
+1190,Denver,Houston,United,5,4558,54,0,4.8,Medium,224.13
+1191,Atlanta,San Francisco,Southwest,0,3694,68,1,4.6,Medium,219.24
+1192,Seattle,Los Angeles,JetBlue,15,4955,54,0,5.4,High,318.08
+1193,Denver,Chicago,United,2,4048,84,1,4.4,Low,186.59
+1194,Houston,Denver,Southwest,0,3465,37,1,3.9,Medium,243.16
+1195,Los Angeles,Houston,American,0,3973,56,0,4.7,Medium,196.27
+1196,San Francisco,Atlanta,JetBlue,5,2993,22,0,3.3,High,329.71
+1197,Miami,San Francisco,United,2,2240,23,1,2.6,Low,196.64
+1198,Boston,New York,Southwest,22,3533,48,0,3.7,Medium,180.02
+1199,Los Angeles,New York,American,20,4330,24,0,4.8,Medium,336.19
+1200,Chicago,Seattle,JetBlue,18,4989,18,1,5.6,High,552.29
+1201,New York,Los Angeles,American,9,3526,26,0,4.0,High,365.57
+1202,New York,Boston,Delta,13,2477,63,1,3.1,High,225.04
+1203,Miami,Chicago,JetBlue,22,3828,24,0,3.9,High,372.22
+1204,San Francisco,Los Angeles,Southwest,15,3759,65,0,4.3,Medium,221.12
+1205,Los Angeles,Denver,Southwest,22,4945,15,1,5.0,Medium,434.18
+1206,Los Angeles,Houston,JetBlue,4,3827,58,1,4.1,Low,203.26
+1207,Houston,Boston,Delta,6,3765,73,0,3.8,Low,157.62
+1208,Atlanta,Los Angeles,JetBlue,4,2617,28,1,3.3,Low,207.63
+1209,Chicago,Los Angeles,United,20,4295,24,1,5.2,Medium,360.61
+1210,Boston,Los Angeles,Southwest,8,2239,26,1,2.6,High,336.69
+1211,San Francisco,Seattle,American,16,1358,8,0,2.0,Low,218.96
+1212,Seattle,Denver,Southwest,14,1512,24,1,2.0,High,256.85
+1213,Atlanta,Miami,Delta,13,1553,25,1,2.2,Low,173.37
+1214,Boston,Chicago,JetBlue,7,1056,34,1,2.0,Medium,150.0
+1215,Denver,Boston,Southwest,5,1781,53,0,2.1,Medium,150.0
+1216,Chicago,Seattle,United,19,1458,57,1,2.4,High,187.08
+1217,Boston,Chicago,Delta,22,4342,81,1,4.8,Medium,270.13
+1218,Los Angeles,Houston,Delta,1,1065,80,0,2.0,Low,150.0
+1219,San Francisco,Atlanta,American,19,3850,14,0,3.9,Low,237.63
+1220,Denver,San Francisco,Southwest,5,4975,82,1,5.5,Medium,303.85
+1221,Boston,New York,JetBlue,22,1770,22,0,2.7,Low,150.0
+1222,Miami,Denver,Delta,15,4518,11,1,5.0,Medium,583.82
+1223,New York,Chicago,United,19,1109,38,0,2.0,Low,150.0
+1224,Seattle,San Francisco,United,2,1857,11,1,2.0,Medium,338.68
+1225,Houston,Seattle,JetBlue,20,2970,49,1,3.7,High,273.23
+1226,San Francisco,Houston,United,9,3656,16,0,4.4,High,348.29
+1227,San Francisco,Chicago,American,11,1594,36,1,2.5,Low,150.0
+1228,Houston,Boston,JetBlue,13,3661,9,1,4.1,Medium,525.18
+1229,Seattle,Denver,United,0,1990,44,0,2.7,High,163.06
+1230,Los Angeles,San Francisco,American,17,2784,4,1,3.0,Medium,423.8
+1231,Seattle,Houston,United,7,4449,75,1,5.4,Low,198.04
+1232,Atlanta,Los Angeles,Southwest,6,3564,31,0,3.6,Medium,198.95
+1233,Seattle,Los Angeles,JetBlue,3,4515,62,0,4.8,Medium,237.21
+1234,New York,Chicago,United,16,4235,63,1,5.0,Medium,268.36
+1235,Boston,Los Angeles,United,3,3206,87,1,4.1,High,285.94
+1236,Miami,Denver,American,19,1781,13,1,2.0,Medium,359.29
+1237,Houston,Boston,Southwest,11,1352,2,1,2.0,Medium,305.61
+1238,Los Angeles,Seattle,Southwest,17,2232,8,1,2.2,Medium,388.54
+1239,San Francisco,Boston,American,16,4152,35,1,4.3,High,336.19
+1240,Los Angeles,Seattle,Southwest,7,2898,1,1,3.8,Medium,432.49
+1241,Houston,Chicago,United,14,1606,86,1,2.4,High,182.09
+1242,Denver,Houston,United,20,2941,75,1,3.9,Medium,222.82
+1243,New York,Miami,Southwest,21,2728,6,1,3.2,High,546.68
+1244,New York,Los Angeles,United,6,1089,13,0,2.0,Low,194.76
+1245,Seattle,Houston,Southwest,8,1477,28,0,2.0,Low,150.0
+1246,Houston,Atlanta,American,1,1680,67,1,2.4,Low,150.0
+1247,Chicago,Denver,JetBlue,6,4696,1,0,5.1,High,600.0
+1248,Denver,Boston,American,3,1624,49,0,2.5,Medium,150.0
+1249,Houston,Denver,JetBlue,4,4026,78,1,4.7,Low,200.55
+1250,Los Angeles,Miami,American,21,3877,67,0,3.9,Low,166.38
+1251,Atlanta,New York,Delta,15,2823,35,1,3.4,Medium,200.88
+1252,Houston,Miami,United,15,4947,63,0,5.6,High,328.5
+1253,Denver,Houston,American,5,2986,61,1,3.5,Medium,225.93
+1254,Houston,Atlanta,JetBlue,5,2931,44,0,3.8,High,232.17
+1255,Houston,Denver,Southwest,21,1080,78,1,2.0,Medium,150.0
+1256,Seattle,Atlanta,Southwest,1,4521,55,0,4.7,Medium,222.51
+1257,Chicago,Houston,American,1,2841,44,1,3.1,High,251.48
+1258,Denver,Boston,American,20,3397,48,0,3.7,Low,166.92
+1259,New York,Miami,American,11,1993,88,1,2.1,High,214.08
+1260,Miami,New York,Southwest,9,1824,44,1,2.0,High,204.41
+1261,Chicago,Houston,Delta,6,2207,41,0,3.0,Medium,150.0
+1262,Chicago,San Francisco,American,13,3332,31,0,3.5,Medium,197.38
+1263,Atlanta,Boston,Southwest,8,4397,47,0,4.9,High,297.33
+1264,Miami,Los Angeles,Southwest,10,4415,86,1,4.4,Medium,250.48
+1265,Chicago,Houston,American,19,2604,52,0,3.4,High,214.11
+1266,Los Angeles,San Francisco,JetBlue,14,1208,49,1,2.0,Medium,150.0
+1267,New York,Denver,JetBlue,1,2367,79,0,3.3,Low,150.0
+1268,Chicago,Los Angeles,United,3,1032,8,1,2.0,High,373.28
+1269,New York,Atlanta,Southwest,23,1420,46,1,2.0,High,169.27
+1270,Seattle,New York,United,1,3582,43,1,3.8,Low,192.67
+1271,Houston,Seattle,United,17,4471,13,0,4.8,Low,407.19
+1272,Denver,Seattle,JetBlue,5,3920,1,0,4.6,High,577.0
+1273,Seattle,Chicago,JetBlue,5,2768,59,0,3.6,Medium,168.17
+1274,New York,Boston,Delta,0,2702,90,0,2.9,Medium,159.95
+1275,Chicago,Denver,Southwest,15,4475,52,0,4.9,Medium,212.62
+1276,Miami,Boston,Delta,16,3030,18,1,3.7,High,397.29
+1277,New York,Seattle,American,3,4019,4,0,4.9,Low,377.75
+1278,Chicago,Atlanta,Delta,2,3370,78,0,3.5,Low,150.59
+1279,Boston,Chicago,American,7,3440,16,0,3.6,Low,226.34
+1280,Atlanta,San Francisco,United,23,3994,68,1,4.7,High,313.43
+1281,Los Angeles,Boston,Southwest,14,3270,36,1,4.2,Medium,234.7
+1282,Los Angeles,New York,Delta,18,2191,90,0,2.8,Low,150.0
+1283,San Francisco,Denver,Southwest,18,1151,32,1,2.0,High,175.12
+1284,San Francisco,Los Angeles,United,10,2996,48,0,3.4,Low,150.0
+1285,Seattle,New York,United,13,2637,58,0,3.3,Medium,172.29
+1286,Atlanta,Miami,United,6,2991,80,0,3.0,Medium,186.31
+1287,Denver,Houston,United,23,3102,88,0,3.6,High,233.43
+1288,Los Angeles,New York,JetBlue,21,3420,85,0,4.1,High,253.87
+1289,San Francisco,New York,JetBlue,10,3968,61,0,4.6,High,251.57
+1290,Atlanta,Boston,United,7,3504,66,0,3.6,High,256.17
+1291,Houston,Atlanta,United,3,4830,53,0,5.3,Medium,246.34
+1292,Denver,Miami,Delta,10,3779,85,0,4.1,Medium,213.96
+1293,New York,Atlanta,Southwest,7,4707,25,0,5.3,High,430.7
+1294,Atlanta,Boston,Delta,3,4345,1,1,4.8,Low,464.66
+1295,Miami,Boston,United,7,4553,82,0,4.6,Medium,244.68
+1296,San Francisco,Boston,JetBlue,23,2998,42,1,3.3,High,279.43
+1297,New York,Los Angeles,American,13,1949,3,1,2.9,Low,299.04
+1298,New York,Atlanta,JetBlue,6,3925,82,0,4.3,High,279.81
+1299,San Francisco,Atlanta,JetBlue,12,1248,47,0,2.0,High,150.0
+1300,Boston,Denver,JetBlue,7,3163,6,1,4.1,Medium,473.78
+1301,Boston,Chicago,American,2,1077,42,1,2.0,High,161.28
+1302,Los Angeles,Miami,United,15,2728,87,1,3.6,Medium,196.84
+1303,San Francisco,Los Angeles,United,18,3360,57,0,3.5,Medium,169.13
+1304,San Francisco,Miami,United,15,2293,30,0,2.5,Medium,157.18
+1305,Los Angeles,New York,JetBlue,1,3266,78,1,3.8,High,274.24
+1306,Los Angeles,Atlanta,Southwest,13,1260,63,1,2.0,Low,150.0
+1307,Seattle,Houston,Southwest,4,2097,52,0,2.5,High,173.45
+1308,Denver,Chicago,Delta,6,4657,79,1,5.7,Medium,289.45
+1309,Chicago,Atlanta,Southwest,19,3655,11,0,4.0,Low,353.4
+1310,Los Angeles,Seattle,JetBlue,14,2708,45,0,3.0,Medium,155.51
+1311,Chicago,Boston,United,5,4641,55,0,4.7,Medium,219.74
+1312,Miami,Denver,Southwest,12,2938,61,0,3.7,Low,150.0
+1313,Denver,Los Angeles,American,11,1478,85,0,2.0,High,156.68
+1314,Denver,Miami,American,4,3026,90,0,3.4,Low,150.0
+1315,Atlanta,Boston,United,14,3550,13,0,4.1,Medium,401.86
+1316,Seattle,Houston,Southwest,23,4845,50,1,5.1,Low,243.05
+1317,Boston,New York,JetBlue,6,3646,38,1,3.8,Medium,241.59
+1318,Denver,Houston,JetBlue,20,2420,78,1,2.6,Low,150.0
+1319,Atlanta,Los Angeles,Southwest,11,2836,25,1,3.5,Low,221.99
+1320,Miami,Boston,Delta,8,3857,19,0,3.9,Low,252.35
+1321,San Francisco,Los Angeles,Delta,6,2786,67,1,2.8,Medium,208.35
+1322,Atlanta,San Francisco,American,10,1085,74,1,2.0,High,178.02
+1323,Denver,Los Angeles,United,4,1660,65,1,2.0,High,213.71
+1324,Boston,Denver,American,1,2179,5,1,2.8,Low,312.47
+1325,Los Angeles,New York,United,22,3974,17,1,4.6,High,479.18
+1326,Los Angeles,Miami,United,18,1787,64,0,2.0,Low,150.0
+1327,Atlanta,Chicago,United,1,2922,12,1,3.8,Medium,460.6
+1328,Houston,Los Angeles,United,8,2408,39,1,2.5,Medium,186.98
+1329,Boston,New York,JetBlue,4,2794,87,1,3.7,Medium,217.41
+1330,San Francisco,Chicago,Southwest,3,1950,71,0,2.8,High,182.63
+1331,Houston,New York,United,14,3079,60,0,3.9,High,215.22
+1332,Boston,Chicago,Southwest,14,1899,22,1,2.1,Low,183.35
+1333,Seattle,San Francisco,United,13,3407,58,1,3.9,High,285.65
+1334,San Francisco,Seattle,JetBlue,5,4723,15,0,5.2,High,444.37
+1335,Boston,Atlanta,JetBlue,10,3805,62,1,3.9,Low,211.69
+1336,Boston,Atlanta,Southwest,7,2389,85,0,2.8,High,187.16
+1337,Los Angeles,Miami,Southwest,9,4775,70,1,5.4,Low,238.1
+1338,Seattle,Chicago,American,19,3466,31,0,4.0,Medium,200.21
+1339,Boston,Seattle,American,5,4495,32,1,5.3,High,371.91
+1340,Seattle,Chicago,Delta,20,4450,28,0,4.6,Low,245.12
+1341,Miami,Atlanta,American,19,3929,22,1,4.1,Medium,373.54
+1342,Seattle,Los Angeles,American,5,3690,85,0,4.2,High,254.46
+1343,Chicago,New York,United,18,2918,90,1,3.8,Low,183.99
+1344,San Francisco,Seattle,Delta,17,1537,12,1,2.0,Medium,305.2
+1345,Los Angeles,Boston,American,7,4617,14,1,5.1,High,533.97
+1346,Los Angeles,Miami,American,2,2201,56,0,3.2,Low,150.0
+1347,Los Angeles,Atlanta,Southwest,13,3961,4,0,4.5,Medium,454.86
+1348,Los Angeles,Seattle,Delta,16,3913,21,1,4.2,High,454.95
+1349,Boston,Miami,Delta,15,2598,42,0,3.4,High,213.53
+1350,Los Angeles,Denver,Delta,6,4931,50,1,5.8,High,385.89
+1351,Seattle,Los Angeles,Southwest,18,2707,36,1,3.1,High,241.09
+1352,Chicago,San Francisco,JetBlue,15,4412,29,0,4.6,Low,270.9
+1353,Atlanta,San Francisco,Delta,14,4855,33,0,5.1,Low,209.52
+1354,New York,Atlanta,Delta,8,3757,86,0,3.8,Medium,185.74
+1355,Denver,Seattle,Southwest,0,3672,61,1,4.1,High,318.12
+1356,Atlanta,New York,JetBlue,23,4008,86,1,4.9,High,322.81
+1357,Atlanta,San Francisco,Delta,13,2475,16,1,3.3,Low,195.83
+1358,Seattle,Denver,Delta,23,4260,86,0,4.3,Low,181.11
+1359,Los Angeles,Chicago,United,7,2934,18,1,3.6,Medium,296.8
+1360,Boston,Seattle,JetBlue,7,4275,69,1,5.2,High,360.87
+1361,Seattle,Chicago,American,10,4976,82,1,5.4,Low,252.38
+1362,Boston,Miami,Delta,13,4459,63,0,5.1,High,296.23
+1363,New York,Los Angeles,Southwest,18,1663,12,1,2.5,High,409.2
+1364,Miami,Denver,United,7,3547,89,1,4.3,Low,179.2
+1365,Denver,Los Angeles,American,18,1848,43,1,2.0,Low,150.0
+1366,Miami,Houston,American,4,2156,29,0,2.8,High,277.34
+1367,Seattle,Atlanta,United,18,3829,74,1,4.6,High,331.26
+1368,Los Angeles,New York,Southwest,0,4068,77,0,5.0,Medium,201.35
+1369,Denver,New York,American,13,1353,9,1,2.0,Low,229.18
+1370,Atlanta,New York,American,1,3732,83,1,4.5,Low,197.72
+1371,Houston,Boston,JetBlue,1,2977,44,1,3.1,High,256.54
+1372,Chicago,New York,American,15,1528,49,0,2.1,Medium,150.0
+1373,San Francisco,Miami,Delta,23,1709,49,0,2.0,High,169.25
+1374,Houston,Seattle,Delta,16,1817,84,0,2.6,Medium,150.0
+1375,Los Angeles,Boston,United,1,1640,83,0,2.1,Low,150.0
+1376,Seattle,Chicago,United,13,3481,72,0,3.5,High,233.91
+1377,Atlanta,Chicago,Southwest,16,3015,56,0,3.1,Low,150.0
+1378,Seattle,New York,Southwest,12,1413,30,0,2.0,High,154.66
+1379,Los Angeles,Atlanta,JetBlue,15,4250,29,1,5.1,Low,281.88
+1380,Miami,Boston,United,22,2703,34,1,2.8,Low,158.88
+1381,Denver,Houston,JetBlue,3,4862,15,1,5.5,High,543.42
+1382,Houston,Seattle,Southwest,14,3022,38,0,3.4,Medium,179.05
+1383,Boston,Houston,American,15,2243,12,0,2.6,Low,245.35
+1384,Atlanta,Boston,JetBlue,7,1961,15,0,2.4,Low,150.0
+1385,Denver,Seattle,American,2,1857,12,0,2.7,Low,244.96
+1386,Denver,Miami,JetBlue,17,3280,44,1,4.2,Low,165.82
+1387,Atlanta,Los Angeles,JetBlue,0,1192,76,1,2.0,High,166.59
+1388,New York,Denver,Southwest,22,1074,25,0,2.0,High,192.82
+1389,Denver,Seattle,JetBlue,23,2469,15,0,2.8,Medium,221.6
+1390,Miami,Los Angeles,Southwest,13,4608,74,1,4.9,Medium,270.61
+1391,New York,Atlanta,JetBlue,6,2068,48,0,3.0,Low,150.0
+1392,Chicago,New York,JetBlue,4,2462,17,0,3.0,High,274.32
+1393,Miami,Chicago,United,11,3772,41,0,4.2,Low,170.77
+1394,Miami,Houston,United,9,1649,49,1,2.5,Medium,150.0
+1395,Seattle,Atlanta,Southwest,7,1715,74,1,2.4,High,218.28
+1396,Seattle,New York,JetBlue,20,4391,1,0,5.1,Low,396.16
+1397,New York,Boston,American,2,4520,40,0,5.4,Low,181.59
+1398,Chicago,Los Angeles,Delta,0,4663,8,1,5.3,Medium,600.0
+1399,Chicago,San Francisco,Southwest,15,3062,76,0,3.7,Low,150.0
+1400,Denver,Miami,United,21,1130,69,1,2.0,Medium,150.0
+1401,Boston,Miami,United,9,4304,25,1,4.8,Low,299.64
+1402,Los Angeles,Seattle,Southwest,5,1260,50,0,2.0,Medium,150.0
+1403,Chicago,Los Angeles,United,22,2383,55,0,2.9,Low,150.0
+1404,New York,Atlanta,American,14,2763,41,0,3.1,Low,151.76
+1405,Los Angeles,San Francisco,United,18,1466,47,1,2.0,High,179.87
+1406,Atlanta,New York,Delta,23,3529,87,1,4.2,High,315.75
+1407,Houston,Seattle,Delta,18,1928,17,1,2.2,Low,196.43
+1408,Boston,Houston,JetBlue,0,1494,67,1,2.0,High,196.5
+1409,Boston,Miami,American,14,3301,85,0,3.6,Medium,169.9
+1410,San Francisco,Denver,United,14,1917,78,0,2.2,Medium,155.11
+1411,Seattle,Miami,United,4,2992,76,0,3.5,High,238.83
+1412,Chicago,Denver,Southwest,22,2056,29,1,2.4,Low,176.1
+1413,Seattle,Houston,JetBlue,12,2393,14,0,3.3,High,279.7
+1414,Miami,San Francisco,Delta,5,4214,51,0,5.1,Medium,215.76
+1415,Seattle,Los Angeles,Southwest,11,2455,2,0,3.0,Low,271.93
+1416,Denver,New York,Southwest,20,4151,69,0,4.5,High,297.79
+1417,Denver,San Francisco,United,14,1191,59,0,2.0,Medium,150.0
+1418,Los Angeles,Houston,Delta,22,4154,41,0,5.0,High,283.68
+1419,New York,Atlanta,Southwest,20,4595,19,0,5.1,Low,262.72
+1420,Chicago,Houston,United,0,3281,38,0,3.7,High,222.69
+1421,Chicago,Los Angeles,JetBlue,20,2095,29,1,2.4,High,328.71
+1422,Denver,New York,American,2,4671,64,1,5.1,High,349.5
+1423,New York,Boston,Delta,12,1619,88,0,2.3,Medium,150.0
+1424,Los Angeles,New York,JetBlue,22,4495,59,1,5.3,Low,209.1
+1425,Miami,Houston,United,10,3826,19,0,4.7,Medium,276.49
+1426,San Francisco,Atlanta,American,16,4578,77,1,4.7,Medium,290.06
+1427,Boston,Seattle,Southwest,1,3111,37,0,3.9,High,233.62
+1428,San Francisco,New York,JetBlue,9,3475,19,0,3.8,Medium,288.01
+1429,Denver,Seattle,Southwest,13,3742,86,1,4.4,Medium,235.1
+1430,San Francisco,New York,Southwest,8,1426,90,1,2.0,High,173.57
+1431,Boston,San Francisco,American,22,3893,5,1,4.4,Low,409.77
+1432,Miami,Houston,American,19,1206,77,0,2.0,Medium,150.0
+1433,Houston,Los Angeles,Southwest,17,4795,41,0,5.6,High,321.54
+1434,Atlanta,Houston,Southwest,18,4875,40,1,5.5,Medium,301.13
+1435,Los Angeles,Atlanta,American,6,2793,65,1,3.0,High,258.82
+1436,Seattle,Houston,United,21,4272,89,1,5.0,Medium,245.76
+1437,Boston,Denver,Delta,2,2872,16,0,3.7,High,309.66
+1438,Los Angeles,San Francisco,Southwest,19,4943,36,0,5.6,Medium,253.92
+1439,Miami,New York,American,10,4447,74,0,4.7,Medium,225.9
+1440,Denver,Chicago,JetBlue,23,4095,62,1,4.9,High,344.48
+1441,San Francisco,Miami,JetBlue,1,1454,81,0,2.3,Low,150.0
+1442,Atlanta,Los Angeles,United,16,4992,28,0,5.2,Medium,347.29
+1443,Miami,New York,United,21,1433,64,1,2.1,Medium,150.0
+1444,New York,Houston,JetBlue,11,4201,38,0,4.7,High,268.85
+1445,Houston,Atlanta,United,1,3500,49,0,3.7,High,249.96
+1446,Boston,San Francisco,Southwest,3,3497,8,1,4.0,High,600.0
+1447,Denver,Seattle,American,12,4203,43,0,4.5,Medium,210.6
+1448,New York,San Francisco,Delta,11,4515,20,0,5.1,High,433.11
+1449,New York,Los Angeles,American,14,4880,27,1,5.4,Medium,419.57
+1450,Houston,Denver,American,19,1417,29,1,2.0,Low,165.67
+1451,Miami,Los Angeles,United,1,4373,90,1,5.0,Low,207.71
+1452,Houston,Atlanta,Delta,11,3303,7,1,3.6,Medium,480.8
+1453,Chicago,Houston,Southwest,11,1171,23,0,2.1,Low,150.0
+1454,Miami,Boston,JetBlue,5,3077,63,0,3.9,Medium,189.56
+1455,Miami,Los Angeles,Southwest,20,1431,51,1,2.4,High,180.03
+1456,Seattle,Denver,United,17,1684,39,0,2.0,Medium,150.0
+1457,Los Angeles,Denver,JetBlue,22,3580,85,0,3.8,Medium,199.85
+1458,New York,Denver,Southwest,2,1483,21,1,2.4,Low,154.3
+1459,San Francisco,Boston,American,17,4567,3,1,5.5,Low,457.98
+1460,Boston,Chicago,United,22,1841,71,0,2.3,Low,150.0
+1461,Chicago,Houston,Delta,6,4731,51,0,5.7,Medium,252.0
+1462,Chicago,Miami,American,4,2481,44,1,3.1,High,263.37
+1463,Boston,Miami,Delta,10,1643,55,1,2.0,Medium,165.5
+1464,Atlanta,Seattle,JetBlue,7,3983,87,0,4.6,Low,164.65
+1465,Houston,Boston,Delta,17,2196,61,0,2.4,Medium,150.0
+1466,Atlanta,Seattle,American,3,3900,45,1,4.0,Medium,233.25
+1467,Atlanta,Seattle,Delta,20,2808,51,1,3.2,High,276.56
+1468,Seattle,San Francisco,United,15,4121,51,1,5.1,High,349.51
+1469,Los Angeles,Miami,United,23,3072,10,0,3.7,High,476.23
+1470,Boston,Houston,American,18,3041,68,1,3.5,Low,181.44
+1471,New York,Los Angeles,Southwest,22,4000,37,0,4.4,Low,162.9
+1472,Boston,Houston,Delta,6,4565,37,0,4.7,Low,173.0
+1473,New York,Chicago,American,23,1406,90,0,2.0,Low,150.0
+1474,San Francisco,Denver,Delta,7,1631,25,1,2.0,Low,163.57
+1475,Los Angeles,Boston,American,10,3650,90,0,4.5,Medium,216.09
+1476,Seattle,Chicago,Delta,11,2489,71,0,2.5,High,189.49
+1477,Denver,Los Angeles,Southwest,8,2370,51,1,3.2,Medium,198.63
+1478,Boston,Chicago,American,16,4355,13,0,4.6,Medium,491.95
+1479,Denver,San Francisco,United,21,1564,17,0,2.1,High,244.74
+1480,Boston,San Francisco,Southwest,13,1503,42,1,2.0,Medium,159.1
+1481,Boston,Seattle,United,8,4475,75,0,5.3,Low,196.04
+1482,Miami,Boston,Southwest,1,1826,7,1,2.8,High,430.41
+1483,Los Angeles,Miami,United,2,2798,39,0,3.5,Medium,150.0
+1484,Boston,Atlanta,Southwest,11,4971,59,1,5.2,High,374.21
+1485,New York,Seattle,Delta,11,2702,84,0,3.6,Low,150.0
+1486,Seattle,Houston,United,14,4150,21,1,4.7,High,467.86
+1487,Chicago,San Francisco,Delta,15,4149,74,0,4.2,High,285.1
+1488,Denver,Miami,American,16,1026,18,0,2.0,Low,150.0
+1489,San Francisco,Los Angeles,Delta,16,2004,57,0,2.6,Medium,150.0
+1490,Seattle,Miami,United,3,4419,90,1,4.7,Low,199.69
+1491,Los Angeles,San Francisco,Southwest,15,4314,62,0,4.7,Low,168.92
+1492,Boston,Los Angeles,Delta,22,2940,38,1,3.2,Medium,221.52
+1493,Los Angeles,Chicago,JetBlue,17,2398,19,1,3.0,Low,212.1
+1494,Houston,Miami,Southwest,21,2174,27,1,2.7,Low,195.67
+1495,Boston,Denver,American,17,3068,28,1,3.3,High,398.76
+1496,Denver,New York,American,9,1701,26,0,2.3,High,260.37
+1497,Boston,Houston,United,14,1349,84,0,2.2,Low,150.0
+1498,Atlanta,Seattle,Southwest,19,2089,2,0,2.2,Medium,306.66
+1499,Los Angeles,Chicago,Delta,11,2525,47,0,3.1,High,219.9
+1500,Boston,Los Angeles,Delta,21,3929,74,0,4.2,Medium,227.13
+1501,Miami,Houston,American,22,4091,14,1,4.3,High,463.98
+1502,Seattle,Atlanta,Southwest,2,2699,87,0,3.5,High,211.76
+1503,Houston,Boston,Southwest,6,2477,19,1,3.3,Medium,274.11
+1504,Seattle,Atlanta,American,14,3578,49,0,3.8,High,251.44
+1505,Chicago,New York,Delta,2,3723,55,1,4.3,Medium,258.34
+1506,Los Angeles,Miami,American,2,2005,87,1,3.0,Low,150.0
+1507,Atlanta,Miami,Southwest,12,1620,22,0,2.0,Medium,166.99
+1508,Los Angeles,Chicago,Delta,5,4085,8,1,4.8,Medium,527.9
+1509,Atlanta,New York,JetBlue,9,4086,13,1,5.1,Medium,542.39
+1510,Atlanta,Boston,American,2,3169,46,0,3.4,Medium,181.53
+1511,Houston,San Francisco,Southwest,3,2727,61,0,3.2,Low,150.0
+1512,Seattle,Atlanta,Southwest,5,4224,23,1,4.3,Medium,360.15
+1513,Seattle,Atlanta,United,8,1934,7,0,2.8,Medium,289.8
+1514,Chicago,Houston,United,3,1565,16,1,2.0,High,266.44
+1515,Houston,Los Angeles,American,22,4284,66,1,4.7,Medium,282.28
+1516,Los Angeles,San Francisco,Delta,4,2756,84,0,2.9,High,217.43
+1517,Chicago,Los Angeles,JetBlue,15,2693,44,1,2.9,Medium,209.32
+1518,Miami,Chicago,JetBlue,4,4760,76,1,5.0,Medium,270.83
+1519,Houston,Los Angeles,Delta,6,2676,56,0,2.8,Medium,165.39
+1520,Chicago,New York,United,16,4678,20,0,4.9,Medium,346.55
+1521,Denver,New York,Southwest,20,2879,81,0,3.2,High,231.48
+1522,Chicago,Houston,United,0,4898,52,0,5.5,Medium,229.05
+1523,Los Angeles,Chicago,American,9,4491,32,0,5.1,Medium,209.7
+1524,Chicago,Houston,United,13,3114,5,0,3.5,Low,294.85
+1525,San Francisco,Boston,Delta,21,4254,16,1,4.5,Medium,360.97
+1526,San Francisco,Seattle,American,17,3794,31,0,3.9,Low,175.88
+1527,Denver,Los Angeles,Delta,4,2481,51,0,2.6,Medium,150.0
+1528,Denver,Boston,American,15,4865,63,0,5.6,Medium,232.47
+1529,San Francisco,Denver,Southwest,11,1121,39,0,2.0,High,150.0
+1530,Denver,Miami,United,13,2812,89,0,3.6,Low,150.0
+1531,Denver,Los Angeles,Delta,14,1596,77,0,2.0,Medium,150.0
+1532,Seattle,New York,American,23,4154,23,0,4.8,Medium,291.29
+1533,Seattle,Los Angeles,United,20,1040,84,1,2.0,Low,150.0
+1534,Chicago,Houston,JetBlue,0,3939,49,0,4.5,High,260.72
+1535,San Francisco,Denver,Delta,9,4302,89,1,4.6,Low,198.15
+1536,Los Angeles,Chicago,Southwest,6,3119,86,0,4.0,Low,152.03
+1537,San Francisco,Los Angeles,American,2,4865,85,1,5.4,High,373.36
+1538,San Francisco,Seattle,Delta,0,1285,12,1,2.1,High,365.31
+1539,Miami,Los Angeles,Delta,7,1347,60,0,2.0,Medium,150.0
+1540,Miami,New York,JetBlue,16,2385,84,1,2.7,Medium,183.04
+1541,Denver,San Francisco,Southwest,20,2289,49,0,2.8,Medium,150.86
+1542,New York,Atlanta,JetBlue,10,2645,36,1,3.3,Low,150.0
+1543,Seattle,Chicago,American,13,4163,81,1,5.0,Medium,257.09
+1544,Atlanta,Denver,United,18,1673,84,0,2.3,Medium,150.0
+1545,Los Angeles,Boston,Delta,10,2777,57,0,3.1,Medium,183.19
+1546,Miami,Boston,American,20,1251,48,0,2.0,Medium,150.0
+1547,San Francisco,Boston,American,20,2610,2,1,3.2,High,532.2
+1548,San Francisco,New York,Southwest,10,4109,16,0,4.8,High,406.96
+1549,New York,Boston,Delta,15,1151,15,1,2.0,High,240.31
+1550,New York,Boston,JetBlue,18,3704,11,1,4.5,Low,415.8
+1551,Seattle,Chicago,United,21,4778,16,0,5.0,Low,270.47
+1552,Miami,Seattle,Delta,22,3627,63,1,3.9,High,302.39
+1553,Los Angeles,Houston,Delta,16,1618,83,1,2.0,High,212.05
+1554,Los Angeles,Chicago,United,17,4696,86,1,4.9,Medium,298.92
+1555,Denver,Miami,American,14,3353,66,1,3.6,Medium,217.84
+1556,Denver,Miami,JetBlue,14,1236,29,0,2.0,Low,150.0
+1557,Atlanta,San Francisco,Delta,9,3587,3,1,4.2,Low,402.7
+1558,Boston,Chicago,American,18,3921,76,1,4.4,Low,209.97
+1559,San Francisco,New York,Southwest,4,4272,74,0,4.3,Low,182.41
+1560,Denver,New York,American,9,3704,74,0,4.6,Medium,197.78
+1561,Atlanta,Denver,United,5,4587,62,1,4.8,High,375.64
+1562,New York,Denver,JetBlue,8,3129,36,1,3.8,Medium,217.57
+1563,San Francisco,Houston,United,7,4984,89,1,5.4,High,390.51
+1564,Denver,Miami,Southwest,15,2211,13,1,3.0,High,488.39
+1565,Houston,San Francisco,American,11,2717,76,0,3.1,Medium,167.07
+1566,Seattle,Boston,Delta,9,2646,24,0,3.0,Low,173.11
+1567,Denver,Atlanta,Southwest,1,4628,50,0,5.0,High,299.16
+1568,San Francisco,Denver,United,4,3788,62,0,4.3,Medium,187.42
+1569,Atlanta,New York,American,11,3870,83,1,4.6,High,319.25
+1570,Chicago,Los Angeles,United,9,3267,90,0,4.2,High,222.18
+1571,New York,Miami,Delta,14,4578,56,0,4.7,Medium,237.73
+1572,San Francisco,Boston,Southwest,5,2246,39,1,2.5,Low,150.0
+1573,Los Angeles,Chicago,Southwest,19,3955,74,0,4.2,Medium,219.91
+1574,Seattle,Boston,JetBlue,5,4042,17,0,4.4,High,401.86
+1575,Los Angeles,Houston,United,22,2284,13,0,3.3,High,434.72
+1576,Atlanta,Los Angeles,JetBlue,17,4724,42,1,5.2,Medium,288.62
+1577,Chicago,Houston,Southwest,9,2409,9,1,2.6,Low,336.11
+1578,New York,Atlanta,American,5,1032,69,0,2.0,Low,150.0
+1579,Houston,New York,JetBlue,5,4387,24,0,5.0,Low,272.52
+1580,San Francisco,Boston,American,22,2145,52,1,2.7,High,219.35
+1581,San Francisco,Seattle,JetBlue,22,4687,90,0,5.5,Medium,220.95
+1582,Atlanta,San Francisco,United,21,3161,3,1,4.0,Medium,467.56
+1583,Atlanta,Denver,United,4,3500,51,1,4.5,High,302.97
+1584,Denver,San Francisco,Southwest,5,4770,72,1,5.1,Medium,288.93
+1585,Chicago,Seattle,United,7,1601,69,1,2.4,Medium,160.88
+1586,Seattle,Denver,JetBlue,3,3868,68,0,4.0,Medium,220.64
+1587,Seattle,Atlanta,JetBlue,1,2654,63,0,3.6,Low,150.0
+1588,Miami,Seattle,American,10,2827,9,1,2.9,Medium,443.74
+1589,Boston,Los Angeles,Delta,18,3637,67,1,4.3,Low,201.38
+1590,Boston,Miami,JetBlue,4,1840,75,1,2.0,High,215.95
+1591,Seattle,Chicago,American,14,4635,69,0,4.7,Low,189.19
+1592,Denver,New York,Southwest,8,3229,84,1,4.2,Medium,225.23
+1593,New York,Seattle,United,11,3557,16,1,4.0,High,422.9
+1594,Seattle,Denver,United,5,4229,27,1,4.5,Medium,375.77
+1595,Los Angeles,Houston,JetBlue,6,3532,85,0,4.4,Low,150.0
+1596,Seattle,New York,United,17,3670,16,0,3.9,Low,213.46
+1597,Los Angeles,Miami,Southwest,22,2811,24,0,3.7,High,318.85
+1598,Atlanta,New York,Delta,1,3856,77,1,4.1,Medium,254.05
+1599,Boston,San Francisco,JetBlue,21,2414,89,0,2.7,High,190.62
+1600,Miami,Atlanta,Southwest,10,4635,24,1,5.2,Low,321.58
+1601,Miami,Seattle,American,11,4325,1,0,4.6,High,600.0
+1602,Denver,Los Angeles,Delta,4,4201,72,1,4.3,Low,196.48
+1603,Chicago,Houston,JetBlue,11,3657,58,0,3.7,Medium,200.23
+1604,Seattle,Chicago,United,14,2656,41,1,3.3,Low,150.0
+1605,Los Angeles,Houston,JetBlue,17,4176,16,0,5.0,Medium,305.52
+1606,Denver,Houston,American,5,1808,6,1,2.8,High,445.1
+1607,Chicago,Houston,United,17,4608,17,1,5.5,High,521.21
+1608,Seattle,Miami,Delta,9,2235,74,0,2.4,High,202.18
+1609,Miami,Atlanta,JetBlue,3,1345,27,0,2.0,Medium,182.55
+1610,Boston,New York,Southwest,0,1151,84,1,2.1,High,160.8
+1611,Chicago,Houston,American,12,3201,21,1,4.1,High,418.01
+1612,Denver,Seattle,JetBlue,15,2370,12,1,2.6,Medium,384.89
+1613,Los Angeles,Boston,Southwest,4,2597,72,0,3.4,High,226.84
+1614,Miami,Seattle,JetBlue,14,3970,33,0,4.2,Low,170.0
+1615,Atlanta,Chicago,American,10,3944,5,1,4.7,Low,418.41
+1616,Boston,Chicago,JetBlue,4,4031,11,1,4.1,Low,424.39
+1617,Seattle,Houston,United,0,4603,16,1,4.7,High,527.46
+1618,Chicago,Denver,United,23,1516,65,1,2.3,High,202.97
+1619,Atlanta,Seattle,Southwest,17,3131,39,1,3.3,High,284.6
+1620,Los Angeles,Seattle,United,16,3215,47,0,3.3,Medium,191.53
+1621,Boston,Denver,Delta,10,2162,70,1,2.6,Medium,162.02
+1622,Atlanta,New York,Delta,20,1875,22,1,2.6,Medium,230.37
+1623,Seattle,Denver,JetBlue,22,1380,55,0,2.1,High,166.78
+1624,New York,Denver,Delta,9,3095,85,0,3.2,Low,157.08
+1625,Seattle,Denver,Delta,15,3260,1,0,4.2,Low,313.15
+1626,Miami,Chicago,American,9,2278,32,1,2.5,Medium,167.15
+1627,Chicago,Denver,American,18,3135,39,1,3.1,Medium,202.64
+1628,Houston,Denver,Delta,21,2395,6,0,3.3,Low,246.5
+1629,Seattle,San Francisco,American,4,4100,67,0,4.9,Medium,195.72
+1630,San Francisco,Atlanta,Delta,18,3603,38,1,4.1,Medium,225.19
+1631,Houston,Miami,Southwest,23,1655,85,1,2.0,Medium,169.55
+1632,Houston,Chicago,American,14,1095,69,1,2.0,Low,150.0
+1633,Chicago,San Francisco,Delta,10,1114,57,0,2.0,High,150.0
+1634,Chicago,New York,Delta,22,4646,18,1,4.8,High,518.3
+1635,Los Angeles,Boston,JetBlue,3,4262,74,1,4.3,Medium,247.5
+1636,Miami,New York,Southwest,23,3211,63,1,3.4,Medium,218.48
+1637,Los Angeles,Houston,Southwest,15,3426,89,1,3.6,High,312.07
+1638,Atlanta,Denver,JetBlue,1,2059,41,0,2.9,High,177.76
+1639,Atlanta,Houston,JetBlue,4,1988,67,0,2.8,Low,150.0
+1640,Atlanta,New York,JetBlue,21,4408,46,1,5.0,Low,217.64
+1641,New York,Atlanta,United,17,4170,78,1,4.4,Low,223.91
+1642,Seattle,San Francisco,Delta,3,2244,69,1,2.5,High,221.44
+1643,Denver,New York,United,9,3975,66,0,4.2,Medium,195.09
+1644,Chicago,Seattle,American,0,2731,27,1,2.8,Medium,296.35
+1645,Denver,Boston,JetBlue,12,3069,89,1,3.3,Medium,223.01
+1646,Boston,Houston,Delta,19,1452,13,0,2.1,Medium,242.84
+1647,Chicago,New York,Delta,7,3998,85,1,4.8,Low,213.26
+1648,Chicago,Seattle,American,14,1245,6,0,2.0,High,312.27
+1649,Chicago,Seattle,Southwest,11,4447,31,1,4.8,Low,228.24
+1650,Denver,Seattle,Delta,2,2527,5,0,2.5,High,455.9
+1651,Chicago,New York,Southwest,10,2063,25,1,2.5,Medium,245.7
+1652,San Francisco,New York,Delta,1,3568,19,1,4.4,Low,254.19
+1653,New York,Chicago,United,19,3078,39,0,3.8,High,246.38
+1654,Boston,Denver,JetBlue,20,2451,28,1,2.8,Medium,257.67
+1655,Seattle,Chicago,Southwest,6,1507,18,0,2.0,Low,150.0
+1656,Houston,Los Angeles,United,18,1195,78,0,2.0,High,150.0
+1657,San Francisco,Atlanta,Delta,16,4098,71,1,4.6,Medium,273.71
+1658,Denver,Seattle,JetBlue,7,3666,28,1,4.6,High,457.34
+1659,Miami,Los Angeles,United,8,4855,76,0,5.8,Medium,240.67
+1660,San Francisco,Seattle,JetBlue,6,1510,46,1,2.0,Medium,150.0
+1661,Houston,Boston,Delta,0,2838,36,0,3.4,High,222.89
+1662,Atlanta,Denver,Delta,2,2220,17,1,2.9,Medium,247.17
+1663,Houston,Los Angeles,United,17,3344,80,1,4.1,High,280.21
+1664,Miami,Seattle,Delta,14,4018,55,1,4.8,Low,211.8
+1665,San Francisco,Miami,American,21,1021,10,1,2.0,High,361.66
+1666,Houston,Seattle,JetBlue,21,2856,71,0,3.3,Low,150.0
+1667,Seattle,Chicago,Delta,2,2388,33,0,2.9,High,200.23
+1668,Denver,Chicago,Delta,16,1967,34,0,2.5,Low,150.0
+1669,San Francisco,Boston,American,12,4298,49,0,5.1,High,292.06
+1670,San Francisco,Denver,JetBlue,6,4054,84,0,4.3,Low,165.29
+1671,Miami,Seattle,Southwest,15,3382,21,0,4.0,High,332.27
+1672,Boston,Chicago,American,10,3316,52,0,3.7,Low,162.36
+1673,Atlanta,New York,American,19,3927,59,0,4.2,High,279.7
+1674,Atlanta,Denver,JetBlue,19,4663,11,0,5.3,Low,419.68
+1675,Boston,Seattle,American,16,4840,33,1,5.3,High,384.21
+1676,Chicago,Houston,JetBlue,1,3571,87,1,3.9,Medium,222.06
+1677,Houston,Denver,American,21,3725,55,0,4.1,High,251.61
+1678,Denver,Chicago,JetBlue,11,3184,89,0,3.5,High,227.96
+1679,Chicago,Boston,JetBlue,12,4459,19,0,4.7,Low,275.26
+1680,Miami,Boston,Southwest,4,3439,69,1,3.5,Low,188.57
+1681,New York,Miami,Delta,22,1957,27,1,2.4,High,321.23
+1682,San Francisco,Chicago,JetBlue,13,2434,10,0,3.1,Medium,346.76
+1683,Seattle,Chicago,United,11,2225,81,1,2.4,Medium,180.4
+1684,Atlanta,New York,Southwest,12,2165,35,0,3.0,Medium,150.0
+1685,Los Angeles,Denver,Southwest,11,3731,82,0,4.5,Medium,183.24
+1686,Atlanta,Boston,Delta,0,4214,90,1,5.0,High,352.69
+1687,Los Angeles,Denver,American,9,4338,83,0,5.0,Low,163.98
+1688,Miami,New York,American,11,3928,25,0,4.2,High,373.72
+1689,Los Angeles,Chicago,JetBlue,11,3346,48,1,3.6,Medium,233.65
+1690,Chicago,Denver,Southwest,9,3754,73,0,3.8,Low,177.05
+1691,Miami,Seattle,JetBlue,14,1573,85,0,2.0,Low,150.0
+1692,San Francisco,Denver,United,17,3925,83,0,4.4,High,250.5
+1693,Atlanta,Houston,American,2,2546,66,0,3.0,High,192.81
+1694,Chicago,Denver,JetBlue,6,3128,78,1,3.6,Medium,218.46
+1695,Boston,Los Angeles,JetBlue,23,4020,21,1,4.5,Medium,372.37
+1696,Los Angeles,San Francisco,Southwest,14,2014,54,1,2.9,High,228.36
+1697,Houston,Chicago,United,23,1431,20,0,2.0,High,226.49
+1698,San Francisco,Seattle,United,13,2342,41,1,2.8,High,231.0
+1699,Seattle,Los Angeles,JetBlue,14,3115,56,1,3.2,Medium,195.79
+1700,New York,Houston,United,9,3385,49,0,4.3,Low,150.0
+1701,Boston,Seattle,United,5,1788,4,0,2.7,Medium,283.22
+1702,New York,Seattle,Southwest,23,4370,78,1,5.3,High,353.95
+1703,Boston,Chicago,Southwest,13,4188,32,1,4.5,Medium,269.29
+1704,Atlanta,Los Angeles,United,23,2479,10,1,2.5,Low,310.2
+1705,Seattle,Boston,JetBlue,13,2860,35,1,3.3,High,269.84
+1706,Houston,San Francisco,American,4,1401,16,1,2.0,Medium,191.91
+1707,Boston,New York,JetBlue,18,1600,69,1,2.3,Low,150.0
+1708,Los Angeles,Miami,JetBlue,19,3914,15,1,4.3,Low,280.5
+1709,Seattle,Houston,American,2,2743,88,0,3.3,Low,150.0
+1710,Houston,New York,Southwest,4,4393,71,0,4.7,Medium,212.17
+1711,New York,Los Angeles,JetBlue,6,2687,53,1,3.2,Medium,200.59
+1712,Seattle,Houston,United,9,1335,9,0,2.0,Low,183.82
+1713,Los Angeles,Miami,United,15,1377,43,1,2.3,Medium,160.53
+1714,Seattle,Los Angeles,Southwest,16,1254,82,0,2.1,Low,150.0
+1715,Chicago,New York,Southwest,10,2740,12,0,3.2,High,444.09
+1716,Chicago,New York,Southwest,2,4639,47,0,5.0,High,288.11
+1717,New York,Boston,Delta,18,1532,43,0,2.0,Medium,150.0
+1718,Miami,San Francisco,Delta,12,2950,35,1,3.9,High,258.56
+1719,San Francisco,Boston,United,2,1879,19,1,2.0,Medium,217.46
+1720,Chicago,Denver,JetBlue,0,2827,29,0,3.8,High,321.23
+1721,San Francisco,Boston,Delta,13,1319,36,1,2.0,High,189.23
+1722,San Francisco,Chicago,JetBlue,20,2512,2,0,3.2,Low,269.13
+1723,Denver,Boston,American,8,3772,13,0,4.0,High,561.43
+1724,New York,Seattle,United,13,3155,49,1,3.2,Medium,222.92
+1725,Los Angeles,Atlanta,Delta,5,2649,29,0,2.9,High,284.33
+1726,New York,Boston,United,17,3409,49,0,3.9,High,250.34
+1727,Miami,Los Angeles,American,14,3289,14,0,3.3,Low,221.4
+1728,Houston,San Francisco,American,22,3125,16,1,3.5,Low,229.57
+1729,Chicago,Denver,United,18,4190,23,0,5.0,Low,232.11
+1730,Atlanta,Houston,Delta,4,2617,68,0,3.1,Low,150.0
+1731,Denver,Chicago,United,6,4571,40,1,5.2,Medium,261.16
+1732,Atlanta,San Francisco,JetBlue,5,2080,76,1,2.4,Low,150.0
+1733,Boston,Los Angeles,JetBlue,12,3393,63,1,3.4,Low,166.04
+1734,Los Angeles,New York,JetBlue,9,3043,13,1,3.6,Low,371.96
+1735,Miami,New York,JetBlue,17,3606,68,0,3.7,High,252.93
+1736,Houston,New York,JetBlue,15,2734,45,1,3.2,High,267.4
+1737,Miami,Seattle,American,1,2802,90,0,3.3,Low,150.0
+1738,Los Angeles,Miami,Delta,9,3822,74,1,4.6,Low,212.64
+1739,New York,Los Angeles,Delta,18,4813,37,0,4.8,High,320.39
+1740,Houston,Los Angeles,Southwest,9,4882,71,1,5.7,Medium,306.34
+1741,Boston,Seattle,United,15,3005,35,0,3.7,Low,150.0
+1742,Denver,Chicago,American,17,3997,78,1,4.6,Medium,256.79
+1743,San Francisco,Boston,American,23,4986,13,1,5.1,Medium,600.0
+1744,Los Angeles,Chicago,United,14,2707,7,0,3.7,Low,263.9
+1745,Los Angeles,Seattle,United,7,4374,22,0,5.3,High,417.19
+1746,San Francisco,Atlanta,JetBlue,0,1667,41,1,2.0,Low,150.0
+1747,Denver,Los Angeles,American,0,1591,50,1,2.3,Low,150.0
+1748,Atlanta,Seattle,American,4,3071,24,1,3.5,Medium,305.71
+1749,New York,Denver,United,8,1520,45,0,2.2,Low,150.0
+1750,Atlanta,Denver,United,9,2985,87,1,3.3,Medium,207.58
+1751,Denver,San Francisco,Delta,20,3912,69,0,4.1,Medium,221.99
+1752,Houston,New York,JetBlue,20,2874,71,1,3.8,Low,176.22
+1753,Chicago,Boston,Southwest,15,1529,77,1,2.0,Low,150.0
+1754,Miami,Chicago,JetBlue,3,4965,52,0,5.3,Medium,227.92
+1755,Boston,Denver,American,20,3885,62,1,4.3,Low,208.31
+1756,New York,Boston,Delta,21,3102,76,1,3.1,Low,162.71
+1757,Denver,Chicago,United,9,4535,17,0,4.8,Medium,310.77
+1758,Seattle,New York,Southwest,13,3167,34,0,4.1,Low,150.0
+1759,Houston,Los Angeles,American,5,1483,2,0,2.0,Medium,272.82
+1760,Denver,Seattle,Southwest,15,3844,88,1,4.4,Low,203.68
+1761,Boston,Houston,JetBlue,22,1870,66,0,2.3,Medium,150.0
+1762,Chicago,Houston,Delta,20,2865,20,1,3.7,High,365.09
+1763,Los Angeles,Boston,JetBlue,7,2938,85,1,3.1,High,263.1
+1764,Atlanta,Los Angeles,United,0,1133,17,1,2.0,Low,150.0
+1765,Seattle,Atlanta,Delta,3,4057,19,1,4.3,Medium,370.02
+1766,Los Angeles,Miami,JetBlue,8,1642,49,0,2.6,Low,150.0
+1767,Atlanta,Miami,Southwest,15,4866,73,0,4.9,Medium,226.32
+1768,Atlanta,Miami,Delta,2,3289,35,1,3.4,Medium,213.61
+1769,Atlanta,Houston,Delta,19,2512,7,1,3.4,Medium,391.23
+1770,Atlanta,Los Angeles,United,23,4775,82,0,5.0,Low,203.3
+1771,Atlanta,New York,United,11,4898,48,1,5.4,Low,235.43
+1772,New York,Boston,Southwest,18,1486,32,0,2.0,Medium,150.0
+1773,Boston,Denver,Southwest,15,3464,87,0,3.9,High,243.28
+1774,San Francisco,Atlanta,Delta,18,4491,78,1,5.5,Low,236.8
+1775,New York,San Francisco,American,13,2673,54,0,3.6,Low,150.0
+1776,Boston,Chicago,JetBlue,8,1451,59,0,2.0,Low,150.0
+1777,Seattle,New York,Delta,20,1495,24,0,2.0,High,209.82
+1778,Miami,Seattle,Southwest,21,2513,57,1,3.0,High,256.09
+1779,New York,Miami,Delta,15,3341,46,1,4.2,High,297.82
+1780,Seattle,Boston,United,22,2186,60,1,2.8,High,240.77
+1781,Los Angeles,Boston,JetBlue,3,1164,65,0,2.1,Low,150.0
+1782,Seattle,Miami,Delta,11,3141,37,0,4.0,Low,150.63
+1783,Houston,Denver,United,16,1627,36,0,2.6,Low,150.0
+1784,Los Angeles,San Francisco,JetBlue,23,1482,55,1,2.0,Low,150.0
+1785,Denver,Houston,JetBlue,18,2521,67,0,3.1,Medium,166.02
+1786,Seattle,Los Angeles,American,0,2248,30,0,3.1,High,193.15
+1787,Chicago,New York,United,8,2533,40,0,3.3,High,186.94
+1788,New York,Houston,JetBlue,5,2242,82,0,2.6,Medium,150.0
+1789,Seattle,Chicago,American,18,2204,12,1,2.9,High,510.62
+1790,Atlanta,Miami,American,1,2990,40,1,3.5,Medium,194.33
+1791,Seattle,Los Angeles,Delta,4,1114,53,1,2.0,Medium,150.0
+1792,Chicago,San Francisco,Southwest,10,4240,41,0,5.1,Low,171.67
+1793,San Francisco,Los Angeles,Southwest,14,1585,12,1,2.2,Low,252.48
+1794,San Francisco,Miami,JetBlue,22,1582,82,0,2.3,Low,150.0
+1795,Chicago,Boston,JetBlue,4,4210,11,1,5.0,High,600.0
+1796,Chicago,San Francisco,JetBlue,11,3415,10,0,4.2,Medium,398.4
+1797,Los Angeles,San Francisco,Delta,5,2727,31,1,3.0,Medium,215.49
+1798,San Francisco,Miami,American,1,1199,12,1,2.0,Medium,276.39
+1799,New York,Los Angeles,Southwest,8,4837,22,0,5.3,High,425.49
+1800,Miami,Atlanta,United,11,4662,74,0,4.9,Low,204.2
+1801,Houston,Boston,Southwest,13,2249,8,0,3.2,Medium,334.2
+1802,New York,Chicago,American,20,4641,11,1,4.9,Low,489.29
+1803,Houston,Seattle,American,11,2161,37,1,3.1,Low,150.0
+1804,New York,Boston,United,1,1883,71,1,2.9,Medium,182.69
+1805,Seattle,New York,Delta,9,1749,64,1,2.0,Medium,174.67
+1806,Miami,Chicago,Southwest,9,4355,2,1,4.9,Medium,568.85
+1807,Atlanta,San Francisco,JetBlue,16,4029,55,1,4.8,Low,197.05
+1808,Boston,New York,Delta,20,3002,87,1,3.3,Medium,196.56
+1809,Atlanta,Miami,JetBlue,2,1008,66,0,2.0,Medium,150.0
+1810,San Francisco,Miami,Southwest,16,1501,18,0,2.1,Medium,174.84
+1811,Miami,San Francisco,United,6,3242,62,0,4.1,Low,150.0
+1812,New York,Miami,Delta,20,2428,64,0,2.6,Medium,158.94
+1813,Houston,Seattle,Southwest,5,1276,66,0,2.2,High,150.0
+1814,Miami,Seattle,JetBlue,3,4565,88,1,5.0,Medium,284.48
+1815,Seattle,Denver,Southwest,19,1183,87,1,2.0,Low,150.0
+1816,New York,Seattle,American,5,2710,69,1,2.8,High,254.41
+1817,Seattle,Chicago,American,17,2970,90,1,3.5,Low,181.47
+1818,Miami,Los Angeles,Southwest,10,3347,16,1,3.7,High,397.96
+1819,Los Angeles,Houston,JetBlue,10,2268,52,0,3.0,High,183.32
+1820,Seattle,Miami,American,21,3317,2,1,3.7,Medium,463.59
+1821,Boston,Atlanta,Southwest,9,2852,79,0,3.2,Medium,161.08
+1822,Boston,San Francisco,Southwest,8,4687,25,0,4.8,Low,273.48
+1823,San Francisco,Denver,JetBlue,21,2383,1,1,2.5,Medium,410.51
+1824,Boston,Houston,American,22,4200,55,1,4.7,High,332.22
+1825,Seattle,Atlanta,JetBlue,22,2545,90,1,3.5,High,238.6
+1826,Chicago,New York,JetBlue,11,2946,69,0,3.0,Medium,187.67
+1827,San Francisco,Boston,JetBlue,3,4417,45,1,4.7,Low,228.72
+1828,San Francisco,Atlanta,American,17,3949,32,1,4.8,Low,207.26
+1829,Seattle,Boston,American,18,4414,85,1,4.8,Low,221.19
+1830,Atlanta,New York,Delta,11,3480,68,1,4.3,Low,173.0
+1831,Miami,San Francisco,United,4,1543,88,1,2.0,High,201.86
+1832,Los Angeles,Denver,Southwest,0,4120,78,0,4.6,Low,162.78
+1833,Boston,Houston,United,4,1567,6,0,2.0,Low,204.01
+1834,Los Angeles,San Francisco,JetBlue,16,3067,78,0,4.0,High,215.54
+1835,Boston,Miami,Delta,9,3606,58,0,3.7,Low,161.61
+1836,Denver,Los Angeles,Delta,11,2887,22,1,3.1,Low,250.9
+1837,Chicago,Boston,Southwest,15,4119,87,1,5.0,High,330.32
+1838,Atlanta,New York,Southwest,13,2842,68,1,3.3,Medium,203.22
+1839,Miami,Atlanta,United,10,3732,29,0,4.7,Low,245.85
+1840,Seattle,Denver,United,5,2839,23,1,3.4,Low,237.87
+1841,Los Angeles,Atlanta,American,3,1610,10,1,2.0,High,417.11
+1842,Los Angeles,Denver,United,6,4548,47,0,5.4,Low,199.07
+1843,Seattle,Denver,United,4,3981,18,0,4.3,High,381.1
+1844,Miami,Chicago,JetBlue,16,2332,66,1,2.9,High,219.12
+1845,Miami,Los Angeles,Delta,7,1365,46,1,2.0,Medium,150.0
+1846,San Francisco,Seattle,United,6,4276,7,1,4.4,Medium,571.92
+1847,Denver,Chicago,American,17,3559,55,1,3.9,High,323.44
+1848,Boston,Chicago,United,19,3721,64,0,4.1,Medium,195.11
+1849,Chicago,Houston,JetBlue,22,3554,49,0,3.6,Low,152.52
+1850,San Francisco,Houston,Southwest,16,2677,22,1,2.8,Medium,267.52
+1851,Seattle,Chicago,JetBlue,17,2586,48,1,3.4,Low,150.0
+1852,San Francisco,New York,American,22,1953,15,0,2.0,Low,157.3
+1853,New York,Boston,Southwest,17,4687,44,0,5.2,High,288.52
+1854,Seattle,Los Angeles,Delta,22,2619,87,1,3.1,Low,168.67
+1855,Denver,Boston,American,3,2388,32,0,2.5,High,189.7
+1856,Boston,Houston,American,13,3215,70,0,4.2,High,234.65
+1857,Miami,Chicago,United,14,1187,16,0,2.0,Low,150.0
+1858,New York,Denver,American,2,4924,38,0,5.6,Medium,244.54
+1859,Los Angeles,Miami,Delta,3,3746,39,0,4.7,Low,171.65
+1860,Boston,Seattle,Delta,4,4645,62,0,4.6,Low,197.95
+1861,Seattle,Los Angeles,Delta,0,2814,38,0,3.0,Low,150.0
+1862,Atlanta,Los Angeles,American,15,4014,34,0,4.1,Medium,192.04
+1863,Chicago,Boston,JetBlue,11,2136,28,1,3.1,Low,179.59
+1864,New York,Atlanta,American,9,3645,1,0,4.0,Medium,439.83
+1865,Chicago,Boston,United,22,1362,81,1,2.0,Medium,152.91
+1866,Denver,Atlanta,Delta,11,4546,73,0,5.4,High,300.0
+1867,San Francisco,Seattle,United,4,1678,51,1,2.0,Medium,150.0
+1868,New York,Miami,Delta,14,3896,28,1,4.5,Medium,349.71
+1869,Chicago,Atlanta,United,19,1101,40,1,2.0,High,179.85
+1870,Los Angeles,San Francisco,Southwest,16,3342,83,0,4.2,Medium,170.57
+1871,Houston,New York,Southwest,10,3580,66,1,3.9,Low,173.96
+1872,Seattle,Denver,Delta,5,4261,5,1,4.3,Low,451.44
+1873,Seattle,Denver,United,22,4160,60,0,4.7,Medium,217.37
+1874,Boston,Atlanta,American,9,3897,80,0,4.9,Low,165.79
+1875,Denver,Boston,JetBlue,0,2265,63,1,2.9,Medium,191.62
+1876,New York,Los Angeles,American,23,3298,8,1,4.1,Low,388.26
+1877,Denver,Boston,American,3,3642,46,1,3.8,High,305.96
+1878,Chicago,San Francisco,JetBlue,7,1507,1,1,2.0,Low,238.43
+1879,San Francisco,Chicago,JetBlue,4,3637,79,0,4.0,Medium,178.51
+1880,Seattle,Denver,United,22,3291,59,0,4.3,Low,156.94
+1881,Seattle,Denver,JetBlue,4,1348,43,1,2.0,High,201.77
+1882,San Francisco,Denver,Southwest,22,1788,39,0,2.4,Medium,150.0
+1883,Los Angeles,Miami,JetBlue,7,4912,46,1,5.5,High,375.93
+1884,Denver,Los Angeles,American,9,3534,14,0,4.1,High,347.53
+1885,Chicago,Denver,Delta,4,3219,1,0,4.1,High,490.55
+1886,Atlanta,Los Angeles,Southwest,6,3362,45,0,3.6,Low,150.0
+1887,Seattle,Miami,JetBlue,4,4103,24,1,4.2,Low,282.8
+1888,Boston,Atlanta,JetBlue,2,1216,52,0,2.0,Low,150.0
+1889,Seattle,Chicago,Delta,13,4921,46,1,5.2,Low,221.71
+1890,Miami,Boston,United,22,3335,2,1,4.0,Medium,463.34
+1891,Houston,Miami,American,3,3137,13,1,3.8,Low,351.78
+1892,Los Angeles,Boston,Delta,2,1775,56,0,2.0,Low,150.0
+1893,New York,San Francisco,United,0,4074,63,1,4.7,Medium,249.55
+1894,Chicago,Denver,American,15,2949,26,0,3.6,Low,199.19
+1895,San Francisco,Denver,JetBlue,13,3058,11,1,3.1,Low,355.2
+1896,Atlanta,San Francisco,United,1,4673,68,0,5.5,Medium,225.56
+1897,Boston,New York,Delta,6,1076,66,1,2.0,Medium,150.0
+1898,Atlanta,Chicago,Southwest,3,1492,20,0,2.2,Medium,161.6
+1899,Los Angeles,Miami,Delta,1,3696,53,0,4.5,High,267.33
+1900,Miami,Boston,Delta,21,4834,16,0,5.2,Medium,322.69
+1901,Miami,Chicago,Southwest,16,3178,63,0,3.7,Low,150.0
+1902,San Francisco,Denver,United,18,1736,1,0,2.0,High,351.53
+1903,Houston,Denver,United,1,4941,20,1,5.6,High,542.67
+1904,Denver,Boston,Delta,15,1077,85,0,2.0,Low,150.0
+1905,Miami,New York,Delta,3,2126,33,0,2.9,Medium,150.0
+1906,San Francisco,Boston,United,8,4222,29,1,4.5,Medium,370.36
+1907,Houston,Seattle,Southwest,1,1842,61,1,2.8,Medium,158.54
+1908,Los Angeles,Houston,American,2,2004,51,0,2.3,Medium,150.0
+1909,Chicago,New York,Southwest,9,4398,48,1,4.7,Low,196.16
+1910,Los Angeles,San Francisco,JetBlue,21,3890,39,0,4.1,Medium,190.97
+1911,San Francisco,Miami,Delta,0,4436,47,1,4.6,High,331.62
+1912,Chicago,Seattle,United,3,4635,55,1,4.8,High,350.23
+1913,San Francisco,New York,Southwest,3,3373,24,0,3.5,Medium,275.49
+1914,Los Angeles,Seattle,JetBlue,19,2819,69,0,3.4,High,234.15
+1915,Seattle,Miami,JetBlue,6,1346,35,0,2.0,High,150.0
+1916,Seattle,Miami,Delta,18,4305,14,0,4.4,High,405.93
+1917,Los Angeles,Miami,American,6,3185,57,0,3.6,Low,158.08
+1918,Atlanta,San Francisco,American,5,3485,85,1,3.6,Medium,247.15
+1919,Atlanta,Los Angeles,JetBlue,21,2312,57,0,2.4,Medium,150.0
+1920,Miami,Houston,Southwest,11,2645,21,1,3.4,High,352.48
+1921,Miami,Chicago,JetBlue,0,3412,18,0,4.1,High,349.28
+1922,Chicago,Miami,Delta,2,1184,46,0,2.0,Low,150.0
+1923,Chicago,San Francisco,Delta,4,3013,56,0,3.7,Low,153.29
+1924,Seattle,Houston,American,23,4530,1,1,5.0,Low,453.32
+1925,Atlanta,Miami,JetBlue,8,4825,46,1,4.9,High,376.05
+1926,Houston,Boston,United,18,1095,26,1,2.0,Low,150.0
+1927,Los Angeles,Denver,United,11,2392,15,0,3.3,Low,188.91
+1928,Houston,Los Angeles,Southwest,11,2790,25,1,3.3,Low,237.9
+1929,Chicago,Houston,Southwest,5,1739,37,1,2.3,High,203.15
+1930,Houston,San Francisco,American,16,2699,6,0,3.6,Low,263.22
+1931,San Francisco,Houston,Delta,23,1098,18,1,2.0,High,260.84
+1932,New York,Boston,United,19,4521,51,0,5.0,Low,178.71
+1933,Seattle,San Francisco,United,7,3162,54,1,3.2,High,278.87
+1934,Atlanta,Seattle,United,16,2299,43,1,2.5,Medium,172.98
+1935,Denver,Seattle,United,18,2564,5,1,2.8,Medium,403.97
+1936,Seattle,New York,American,2,2053,21,1,2.1,High,319.71
+1937,San Francisco,Atlanta,JetBlue,3,1372,86,1,2.0,Low,150.0
+1938,Atlanta,Chicago,United,18,1469,26,1,2.3,Low,178.32
+1939,Chicago,Los Angeles,Delta,0,1406,62,1,2.0,Low,150.0
+1940,Denver,Miami,United,16,3219,86,0,3.4,Medium,186.21
+1941,Los Angeles,Atlanta,Southwest,6,1688,35,0,2.2,Low,150.0
+1942,Los Angeles,Boston,Delta,22,2168,16,0,2.8,High,255.89
+1943,Miami,Chicago,JetBlue,6,1589,54,1,2.0,High,186.05
+1944,Boston,Atlanta,United,9,1748,63,1,2.5,Medium,150.0
+1945,San Francisco,Denver,American,5,2046,71,1,2.4,Medium,176.14
+1946,Atlanta,New York,American,17,4146,64,1,4.3,High,338.99
+1947,Boston,Chicago,United,0,1367,88,0,2.0,Medium,150.0
+1948,Boston,Houston,Southwest,23,1631,17,1,2.6,High,300.88
+1949,Denver,Houston,American,3,2256,42,0,2.7,High,176.37
+1950,Los Angeles,New York,Delta,6,4900,52,0,5.2,High,322.55
+1951,Chicago,Houston,Southwest,16,2668,65,1,3.6,High,265.16
+1952,Seattle,New York,JetBlue,22,3779,50,1,4.3,High,329.85
+1953,Los Angeles,San Francisco,JetBlue,15,1693,17,0,2.4,Medium,189.89
+1954,San Francisco,New York,American,11,1241,15,1,2.0,Low,150.0
+1955,San Francisco,Seattle,Southwest,22,3516,14,1,4.3,Medium,311.08
+1956,Atlanta,Houston,American,18,4936,3,0,5.9,Medium,510.17
+1957,Seattle,Miami,JetBlue,5,2332,17,1,2.7,Medium,279.82
+1958,Chicago,Seattle,American,14,1743,20,1,2.2,High,274.59
+1959,Atlanta,San Francisco,Southwest,21,1111,45,1,2.1,Low,150.0
+1960,Denver,Atlanta,United,3,3921,65,0,4.1,High,251.1
+1961,Chicago,Boston,JetBlue,5,1239,2,0,2.1,High,320.22
+1962,Chicago,Los Angeles,United,11,2220,88,1,2.5,Low,150.0
+1963,Boston,New York,Southwest,12,2597,31,1,3.2,High,263.31
+1964,Atlanta,Houston,JetBlue,13,1404,7,0,2.4,Medium,247.21
+1965,New York,Seattle,American,6,2310,87,1,3.2,High,248.53
+1966,Los Angeles,San Francisco,American,16,1583,44,0,2.3,Low,150.0
+1967,Atlanta,Denver,American,7,2690,55,1,3.1,Low,174.75
+1968,Chicago,San Francisco,JetBlue,13,4657,77,1,5.4,Low,219.48
+1969,Miami,Chicago,JetBlue,3,2327,2,1,3.0,Low,315.79
+1970,Chicago,San Francisco,American,10,2056,56,1,2.8,Low,155.87
+1971,Chicago,Denver,American,3,2538,62,1,3.3,High,253.33
+1972,Seattle,Atlanta,United,14,4856,38,1,5.2,Low,236.28
+1973,Houston,Seattle,JetBlue,3,4390,37,1,4.4,Low,202.65
+1974,Seattle,Boston,American,16,4684,63,1,5.2,Low,228.2
+1975,Atlanta,Chicago,Southwest,4,1495,11,1,2.3,Medium,321.96
+1976,Miami,Seattle,American,15,1212,55,0,2.0,Medium,150.0
+1977,Los Angeles,Chicago,JetBlue,11,1829,32,1,2.0,Low,150.0
+1978,Miami,San Francisco,American,22,1981,80,1,2.3,High,219.62
+1979,Houston,New York,United,9,4080,20,0,4.7,Medium,295.7
+1980,Atlanta,Boston,Delta,17,3445,66,1,4.2,Medium,225.13
+1981,Miami,New York,JetBlue,23,3400,24,0,3.9,Medium,265.28
+1982,Chicago,Los Angeles,JetBlue,1,1968,32,1,2.5,Low,150.0
+1983,Miami,Denver,Delta,2,3019,36,1,3.9,High,262.69
+1984,Denver,Houston,American,10,3083,15,1,4.1,High,387.94
+1985,Atlanta,Houston,United,15,4081,34,0,4.7,Medium,194.8
+1986,Los Angeles,Houston,American,3,3066,90,0,3.7,Medium,176.51
+1987,Atlanta,Houston,Delta,12,2577,32,0,3.0,Low,150.0
+1988,Chicago,Miami,United,9,4888,86,0,5.8,Medium,230.41
+1989,Denver,Boston,Southwest,14,1471,55,1,2.3,High,176.48
+1990,Denver,Atlanta,Southwest,19,2103,26,0,2.6,Medium,198.04
+1991,Chicago,New York,United,23,1248,61,0,2.0,High,150.0
+1992,Chicago,New York,Southwest,9,2303,14,0,2.9,Medium,224.63
+1993,Denver,San Francisco,United,21,2903,90,1,3.4,Low,183.42
+1994,Denver,Chicago,American,14,3265,65,0,4.0,High,246.35
+1995,Seattle,Chicago,American,7,2667,79,1,2.7,Medium,199.82
+1996,Denver,Seattle,Delta,17,1268,24,1,2.0,High,258.22
+1997,New York,Seattle,American,13,2983,25,0,3.4,High,340.37
+1998,New York,Houston,American,9,1118,76,0,2.0,Medium,150.0
+1999,Los Angeles,Miami,Delta,13,2669,81,0,3.5,Medium,161.26
+2000,New York,Denver,JetBlue,6,3594,82,1,4.1,Low,168.54

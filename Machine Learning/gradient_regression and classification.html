@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Boosting: Complete Manual Implementation Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #764ba2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        h4 {
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .intro-box {
+            background: #f0f4ff;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .formula-box {
+            background: #fff9e6;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .example-box {
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .warning-box {
+            background: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f0f4ff;
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .highlight {
+            background: #ffeb3b;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .calculation {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        
+        .nav-buttons {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .nav-buttons a {
+            display: block;
+            padding: 10px 15px;
+            margin: 5px 0;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .nav-buttons a:hover {
+            background: #764ba2;
+            transform: translateX(-5px);
+        }
+        
+        .tip-box {
+            background: #e1f5fe;
+            border-left: 5px solid #03a9f4;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .tip-box strong {
+            color: #0277bd;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-buttons {
+                display: none;
+            }
+            
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+        
+        .analogy {
+            background: #fce4ec;
+            border-left: 5px solid #e91e63;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Gradient Boosting</h1>
+            <p>Complete Manual Implementation Guide with Step-by-Step Calculations</p>
+        </header>
+        
+        <div class="content">
+            <div class="intro-box">
+                <h3>📚 What You'll Learn</h3>
+                <p>This comprehensive guide will teach you gradient boosting from scratch with manual calculations for both regression and classification problems. Every step is explained with real examples!</p>
+            </div>
+            
+            <h2 id="intro">What is Gradient Boosting?</h2>
+            <p>Imagine you're trying to predict something (like house prices). You make your first guess, but it's not perfect. Instead of starting over, you look at your <strong>mistakes (errors)</strong> and train a new model to predict those mistakes. You add this correction to your original guess. Then you repeat this process many times, each time correcting the remaining errors.</p>
+            
+            <div class="analogy">
+                <strong>🎯 Simple Analogy:</strong> Like a teacher grading your test, showing you what you got wrong, and you learn from those mistakes to do better next time. Each iteration makes you smarter!
+            </div>
+            
+            <div class="formula-box">
+                <strong>Core Formula:</strong><br>
+                F<sub>m</sub>(x) = F<sub>m-1</sub>(x) + η × h<sub>m</sub>(x)
+                <br><br>
+                where:<br>
+                • F<sub>m</sub>(x) = ensemble prediction at iteration m<br>
+                • η (eta) = learning rate (0 < η ≤ 1)<br>
+                • h<sub>m</sub>(x) = new weak learner fitting the residuals
+            </div>
+            
+            <!-- REGRESSION SECTION -->
+            <h2 id="regression">Part 1: Gradient Boosting for REGRESSION</h2>
+            
+            <h3>📊 Our Dataset</h3>
+            <p>Let's predict house prices based on size:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>House</th>
+                        <th>Size (sqft)</th>
+                        <th>Price ($1000s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>A</td><td>600</td><td>150</td></tr>
+                    <tr><td>B</td><td>800</td><td>200</td></tr>
+                    <tr><td>C</td><td>1000</td><td>250</td></tr>
+                    <tr><td>D</td><td>1200</td><td>280</td></tr>
+                    <tr><td>E</td><td>1400</td><td>320</td></tr>
+                </tbody>
+            </table>
+            
+            <h3>🔍 Understanding the Loss Function</h3>
+            <p><strong>Loss Function</strong> = A mathematical way to measure how wrong our predictions are.</p>
+            
+            <p>For regression, we use <strong>Mean Squared Error (MSE)</strong>:</p>
+            
+            <div class="formula-box">
+                L(y, F) = (1/2) × (y - F)²
+                <br><br>
+                Where:<br>
+                • y = actual value (true price)<br>
+                • F = predicted value (our guess)<br>
+                • The (1/2) is for mathematical convenience
+            </div>
+            
+            <div class="example-box">
+                <strong>Example:</strong> If actual price = 200 and predicted = 240
+                <div class="calculation">
+                    L = (1/2) × (200 - 240)²<br>
+                    L = (1/2) × (-40)²<br>
+                    L = (1/2) × 1600<br>
+                    L = <span class="highlight">800</span>
+                </div>
+            </div>
+            
+            <h3>📐 Understanding Gradient</h3>
+            <p><strong>What is a gradient?</strong> The gradient tells us the direction and rate of steepest increase of a function. In machine learning, we want to <strong>minimize</strong> loss, so we go in the <strong>opposite direction</strong> (negative gradient).</p>
+            
+            <div class="formula-box">
+                <strong>Mathematical Derivation:</strong><br><br>
+                Starting with: L(y, F) = (1/2) × (y - F)²<br><br>
+                Taking derivative with respect to F:<br>
+                ∂L/∂F = (1/2) × 2 × (y - F) × (-1)<br>
+                ∂L/∂F = -(y - F)<br>
+                ∂L/∂F = F - y<br><br>
+                <strong>Negative gradient:</strong><br>
+                -∂L/∂F = -(F - y) = y - F = <span class="highlight">residual</span>
+            </div>
+            
+            <div class="tip-box">
+                <strong>💡 Why is this important?</strong> The negative gradient tells us: "If you want to reduce your error, move your prediction in the direction of the residual!"
+            </div>
+            
+            <div class="example-box">
+                <strong>Intuitive Example:</strong>
+                <ul>
+                    <li>Actual price (y) = 200</li>
+                    <li>Predicted (F) = 240</li>
+                    <li>Residual = 200 - 240 = -40</li>
+                </ul>
+                <p>This negative residual tells us: <strong>"Your prediction is too high by 40, reduce it!"</strong></p>
+            </div>
+            
+            <h3><span class="step-number">Step 0</span> Initialize Model</h3>
+            <p><strong>Rule:</strong> Start with the simplest prediction possible.</p>
+            <p>For MSE loss, the best constant prediction is the <strong>mean</strong> of all target values.</p>
+            
+            <div class="calculation">
+                F₀(x) = mean of all y values<br>
+                F₀(x) = (150 + 200 + 250 + 280 + 320) ÷ 5<br>
+                F₀(x) = 1200 ÷ 5<br>
+                F₀(x) = <span class="highlight">240</span>
+            </div>
+            
+            <h4>Initial Predictions Table:</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>House</th>
+                        <th>Size</th>
+                        <th>Actual Price (y)</th>
+                        <th>Initial Prediction F₀</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>A</td><td>600</td><td>150</td><td>240</td></tr>
+                    <tr><td>B</td><td>800</td><td>200</td><td>240</td></tr>
+                    <tr><td>C</td><td>1000</td><td>250</td><td>240</td></tr>
+                    <tr><td>D</td><td>1200</td><td>280</td><td>240</td></tr>
+                    <tr><td>E</td><td>1400</td><td>320</td><td>240</td></tr>
+                </tbody>
+            </table>
+            
+            <h4>Calculate Initial Loss (MSE):</h4>
+            <div class="calculation">
+                MSE = (1/n) × Σ(y - F₀)²<br><br>
+                House A: (150 - 240)² = (-90)² = 8,100<br>
+                House B: (200 - 240)² = (-40)² = 1,600<br>
+                House C: (250 - 240)² = (10)² = 100<br>
+                House D: (280 - 240)² = (40)² = 1,600<br>
+                House E: (320 - 240)² = (80)² = 6,400<br><br>
+                MSE = (8,100 + 1,600 + 100 + 1,600 + 6,400) ÷ 5<br>
+                MSE = 17,800 ÷ 5 = <span class="highlight">3,560</span>
+            </div>
+            
+            <h3><span class="step-number">Step 1.1</span> Calculate Residuals</h3>
+            <p><strong>Residual = What we got wrong = Actual - Predicted</strong></p>
+            
+            <div class="formula-box">
+                Residual = y - F₀(x)
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>House</th>
+                        <th>Actual (y)</th>
+                        <th>Predicted F₀</th>
+                        <th>Residual (r₁)</th>
+                        <th>Calculation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>A</td><td>150</td><td>240</td><td class="highlight">-90</td><td>150 - 240</td></tr>
+                    <tr><td>B</td><td>200</td><td>240</td><td class="highlight">-40</td><td>200 - 240</td></tr>
+                    <tr><td>C</td><td>250</td><td>240</td><td class="highlight">+10</td><td>250 - 240</td></tr>
+                    <tr><td>D</td><td>280</td><td>240</td><td class="highlight">+40</td><td>280 - 240</td></tr>
+                    <tr><td>E</td><td>320</td><td>240</td><td class="highlight">+80</td><td>320 - 240</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="tip-box">
+                <strong>📌 Interpretation:</strong><br>
+                • Negative residual = We predicted too high (need to decrease)<br>
+                • Positive residual = We predicted too low (need to increase)
+            </div>
+            
+            <h3><span class="step-number">Step 1.2</span> Build Decision Tree</h3>
+            <p><strong>Goal:</strong> Find the best split that predicts these residuals.</p>
+            
+            <h4>Try Split 1: Size ≤ 700</h4>
+            <div class="calculation">
+                <strong>Left Branch (Size ≤ 700):</strong><br>
+                • Houses: A (size=600)<br>
+                • Residuals: -90<br>
+                • Prediction = mean(-90) = <span class="highlight">-90</span><br><br>
+                
+                <strong>Right Branch (Size > 700):</strong><br>
+                • Houses: B, C, D, E<br>
+                • Residuals: -40, 10, 40, 80<br>
+                • Prediction = (−40 + 10 + 40 + 80) ÷ 4 = 90 ÷ 4 = <span class="highlight">22.5</span>
+            </div>
+            
+            <div class="calculation">
+                <strong>Calculate MSE for this split:</strong><br><br>
+                Left: (−90 − (−90))² = 0<br>
+                Right: (−40 − 22.5)² + (10 − 22.5)² + (40 − 22.5)² + (80 − 22.5)²<br>
+                = 3,906.25 + 156.25 + 306.25 + 3,306.25 = 7,675<br><br>
+                MSE = (0 + 7,675) ÷ 5 = <span class="highlight">1,535</span>
+            </div>
+            
+            <h4>Try Split 2: Size ≤ 900</h4>
+            <div class="calculation">
+                <strong>Left Branch (Size ≤ 900):</strong><br>
+                • Houses: A, B<br>
+                • Residuals: -90, -40<br>
+                • Prediction = (−90 + (−40)) ÷ 2 = −130 ÷ 2 = <span class="highlight">-65</span><br><br>
+                
+                <strong>Right Branch (Size > 900):</strong><br>
+                • Houses: C, D, E<br>
+                • Residuals: 10, 40, 80<br>
+                • Prediction = (10 + 40 + 80) ÷ 3 = 130 ÷ 3 = <span class="highlight">43.33</span>
+            </div>
+            
+            <div class="calculation">
+                <strong>Calculate MSE:</strong><br><br>
+                Left: (−90 − (−65))² + (−40 − (−65))² = 625 + 625 = 1,250<br>
+                Right: (10 − 43.33)² + (40 − 43.33)² + (80 − 43.33)²<br>
+                = 1,111.11 + 11.11 + 1,344.69 = 2,466.91<br><br>
+                MSE = (1,250 + 2,466.91) ÷ 5 = <span class="highlight">743.38</span> ✓ <strong>BEST!</strong>
+            </div>
+            
+            <h4>Try Split 3: Size ≤ 1100</h4>
+            <div class="calculation">
+                <strong>Left:</strong> Houses A, B, C → Prediction = -40<br>
+                <strong>Right:</strong> Houses D, E → Prediction = 60<br>
+                MSE = <span class="highlight">1,160</span>
+            </div>
+            
+            <div class="example-box">
+                <strong>🎯 Best Split: Size ≤ 900 (lowest MSE = 743.38)</strong><br><br>
+                <strong>Tree h₁(x):</strong><br>
+                • If Size ≤ 900: predict <strong>-65</strong><br>
+                • If Size > 900: predict <strong>43.33</strong>
+            </div>
+            
+            <h3><span class="step-number">Step 1.3</span> Update Predictions with Learning Rate</h3>
+            <p><strong>Learning Rate (η) = 0.1</strong></p>
+            <p>The learning rate controls how much we trust each new tree. Smaller values make the model learn slowly but more reliably.</p>
+            
+            <div class="formula-box">
+                F₁(x) = F₀(x) + η × h₁(x)
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>House</th>
+                        <th>Size</th>
+                        <th>F₀</th>
+                        <th>h₁(x)</th>
+                        <th>η × h₁(x)</th>
+                        <th>F₁ = F₀ + η×h₁</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>A</td><td>600</td><td>240</td><td>-65</td><td>0.1 × (−65) = -6.5</td><td class="highlight">233.5</td></tr>
+                    <tr><td>B</td><td>800</td><td>240</td><td>-65</td><td>-6.5</td><td class="highlight">233.5</td></tr>
+                    <tr><td>C</td><td>1000</td><td>240</td><td>43.33</td><td>0.1 × 43.33 = 4.33</td><td class="highlight">244.33</td></tr>
+                    <tr><td>D</td><td>1200</td><td>240</td><td>43.33</td><td>4.33</td><td class="highlight">244.33</td></tr>
+                    <tr><td>E</td><td>1400</td><td>240</td><td>43.33</td><td>4.33</td><td class="highlight">244.33</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="tip-box">
+                <strong>🎉 Notice: Predictions improved!</strong><br>
+                • Houses A & B: 240 → 233.5 (moved closer to actual 150 and 200)<br>
+                • Houses C, D, E: 240 → 244.33 (moved closer to actual 250, 280, 320)
+            </div>
+            
+            <h3><span class="step-number">Step 1.4</span> Calculate New MSE</h3>
+            <div class="calculation">
+                House A: (150 − 233.5)² = 6,972.25<br>
+                House B: (200 − 233.5)² = 1,122.25<br>
+                House C: (250 − 244.33)² = 32.15<br>
+                House D: (280 − 244.33)² = 1,272.35<br>
+                House E: (320 − 244.33)² = 5,725.95<br><br>
+                MSE = 15,124.95 ÷ 5 = <span class="highlight">3,025</span><br><br>
+                <strong>✅ Improvement: MSE decreased from 3,560 to 3,025!</strong>
+            </div>
+            
+            <h3><span class="step-number">Step 2</span> Build Second Tree</h3>
+            
+            <h4>Calculate New Residuals:</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>House</th>
+                        <th>Actual (y)</th>
+                        <th>Predicted F₁</th>
+                        <th>Residual (r₂)</th>
+                        <th>Calculation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>A</td><td>150</td><td>233.5</td><td class="highlight">-83.5</td><td>150 - 233.5</td></tr>
+                    <tr><td>B</td><td>200</td><td>233.5</td><td class="highlight">-33.5</td><td>200 - 233.5</td></tr>
+                    <tr><td>C</td><td>250</td><td>244.33</td><td class="highlight">+5.67</td><td>250 - 244.33</td></tr>
+                    <tr><td>D</td><td>280</td><td>244.33</td><td class="highlight">+35.67</td><td>280 - 244.33</td></tr>
+                    <tr><td>E</td><td>320</td><td>244.33</td><td class="highlight">+75.67</td><td>320 - 244.33</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="tip-box">
+                <strong>✨ Notice: Residuals are smaller! We're getting better.</strong>
+            </div>
+            
+            <h4>Build Tree h₂:</h4>
+            <div class="calculation">
+                Using split at Size ≤ 900:<br><br>
+                <strong>Left:</strong> mean(-83.5, -33.5) = <span class="highlight">-58.5</span><br>
+                <strong>Right:</strong> mean(5.67, 35.67, 75.67) = <span class="highlight">39.00</span>
+            </div>
+            
+            <h4>Update Predictions:</h4>
+            <div class="formula-box">
+                F₂(x) = F₁(x) + η × h₂(x)
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>House</th>
+                        <th>F₁</th>
+                        <th>h₂(x)</th>
+                        <th>η × h₂</th>
+                        <th>F₂</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>A</td><td>233.5</td><td>-58.5</td><td>-5.85</td><td class="highlight">227.65</td></tr>
+                    <tr><td>B</td><td>233.5</td><td>-58.5</td><td>-5.85</td><td class="highlight">227.65</td></tr>
+                    <tr><td>C</td><td>244.33</td><td>39.00</td><td>3.90</td><td class="highlight">248.23</td></tr>
+                    <tr><td>D</td><td>244.33</td><td>39.00</td><td>3.90</td><td class="highlight">248.23</td></tr>
+                    <tr><td>E</td><td>244.33</td><td>39.00</td><td>3.90</td><td class="highlight">248.23</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="calculation">
+                <strong>New MSE:</strong><br>
+                MSE = <span class="highlight">2,592</span><br><br>
+                <strong>🎯 Improvement: 3,025 → 2,592</strong>
+            </div>
+            
+            <div class="example-box">
+                <h4>📊 Summary of Regression Process:</h4>
+                <strong>Final Model after M trees:</strong>
+                <div class="formula-box">
+                    F<sub>M</sub>(x) = F₀ + η×h₁(x) + η×h₂(x) + ... + η×h<sub>M</sub>(x)<br>
+                    F<sub>M</sub>(x) = 240 + 0.1×h₁(x) + 0.1×h₂(x) + ...
+                </div>
+                
+                <strong>For a new house with Size = 950:</strong>
+                <ol>
+                    <li>Start with F₀ = 240</li>
+                    <li>Tree 1: Size > 900, so add 0.1 × 43.33 = 4.33</li>
+                    <li>Tree 2: Size > 900, so add 0.1 × 39.00 = 3.90</li>
+                    <li>Prediction = 240 + 4.33 + 3.90 = <span class="highlight">248.23</span></li>
+                </ol>
+            </div>
+            
+            <!-- CLASSIFICATION SECTION -->
+            <h2 id="classification">Part 2: Gradient Boosting for CLASSIFICATION</h2>
+            
+            <h3>📊 Our Dataset</h3>
+            <p>Predicting if a customer will buy (1) or not (0):</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Age</th>
+                        <th>Income ($1000)</th>
+                        <th>Buy (y)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>25</td><td>30</td><td>0</td></tr>
+                    <tr><td>2</td><td>35</td><td>50</td><td>0</td></tr>
+                    <tr><td>3</td><td>45</td><td>60</td><td>1</td></tr>
+                    <tr><td>4</td><td>55</td><td>80</td><td>1</td></tr>
+                    <tr><td>5</td><td>65</td><td>100</td><td>1</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="warning-box">
+                <strong>Signs to stop:</strong><br>
+                1. Validation error stops decreasing<br>
+                2. Residuals become very small<br>
+                3. Reached maximum number of trees<br><br>
+                
+                <strong>Typical values:</strong><br>
+                • 50-100 trees for small datasets<br>
+                • 500-1000 trees for larger datasets<br>
+                • More trees with smaller learning rate
+            </div>
+            
+            <!-- ALGORITHM SUMMARY -->
+            <h2 id="summary">Complete Algorithm Summary</h2>
+            
+            <div class="formula-box">
+                <h3>Regression Algorithm:</h3>
+                <strong>1. Initialize:</strong> F₀(x) = mean(y)<br><br>
+                
+                <strong>2. For m = 1 to M (number of trees):</strong><br>
+                &nbsp;&nbsp;&nbsp;a. Calculate residuals: r<sub>m</sub> = y - F<sub>m-1</sub>(x)<br>
+                &nbsp;&nbsp;&nbsp;b. Fit tree h<sub>m</sub> to predict residuals r<sub>m</sub><br>
+                &nbsp;&nbsp;&nbsp;c. Update: F<sub>m</sub>(x) = F<sub>m-1</sub>(x) + η × h<sub>m</sub>(x)<br><br>
+                
+                <strong>3. Final prediction:</strong> F<sub>M</sub>(x)
+            </div>
+            
+            <div class="formula-box">
+                <h3>Classification Algorithm:</h3>
+                <strong>1. Initialize:</strong><br>
+                &nbsp;&nbsp;&nbsp;p = (count of class 1) / (total samples)<br>
+                &nbsp;&nbsp;&nbsp;F₀(x) = log(p / (1-p))<br><br>
+                
+                <strong>2. For m = 1 to M (number of trees):</strong><br>
+                &nbsp;&nbsp;&nbsp;a. Calculate probabilities: p = 1/(1 + e<sup>-F<sub>m-1</sub></sup>)<br>
+                &nbsp;&nbsp;&nbsp;b. Calculate residuals: r<sub>m</sub> = y - p<br>
+                &nbsp;&nbsp;&nbsp;c. Fit tree h<sub>m</sub> to predict residuals r<sub>m</sub><br>
+                &nbsp;&nbsp;&nbsp;d. Update: F<sub>m</sub>(x) = F<sub>m-1</sub>(x) + η × h<sub>m</sub>(x)<br><br>
+                
+                <strong>3. Final prediction:</strong><br>
+                &nbsp;&nbsp;&nbsp;p<sub>final</sub> = 1/(1 + e<sup>-F<sub>M</sub></sup>)<br>
+                &nbsp;&nbsp;&nbsp;class = 1 if p<sub>final</sub> > 0.5, else 0
+            </div>
+            
+            <!-- PRACTICAL TIPS -->
+            <h2 id="tips">Practical Tips & Hyperparameters</h2>
+            
+            <h3>🎛️ Hyperparameters to Tune:</h3>
+            
+            <div class="tip-box">
+                <strong>1. n_estimators (M):</strong> Number of trees<br>
+                • Start with 100<br>
+                • More trees = better fit but slower training<br>
+                • Too many = risk of overfitting
+            </div>
+            
+            <div class="tip-box">
+                <strong>2. learning_rate (η):</strong> Step size<br>
+                • Typical: 0.01 to 0.3<br>
+                • Lower rate = need more trees but better generalization<br>
+                • Higher rate = faster training but may miss optimal solution
+            </div>
+            
+            <div class="tip-box">
+                <strong>3. max_depth:</strong> Maximum depth of each tree<br>
+                • Typical: 3 to 8<br>
+                • Deeper = more complex interactions<br>
+                • Too deep = overfitting risk
+            </div>
+            
+            <div class="tip-box">
+                <strong>4. subsample:</strong> Fraction of data for each tree<br>
+                • Typical: 0.8 (use 80% of data)<br>
+                • Adds randomness, reduces overfitting<br>
+                • Similar to Random Forest's bagging
+            </div>
+            
+            <div class="tip-box">
+                <strong>5. min_samples_split:</strong> Minimum samples to split a node<br>
+                • Typical: 2 to 20<br>
+                • Higher = simpler trees, less overfitting<br>
+                • Lower = more complex trees
+            </div>
+            
+            <h3>⚖️ Trade-off Between Learning Rate and Number of Trees:</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Strategy</th>
+                        <th>Learning Rate</th>
+                        <th>Number of Trees</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Slow & Accurate</td>
+                        <td>0.01</td>
+                        <td>1000+</td>
+                        <td class="highlight">Best generalization</td>
+                    </tr>
+                    <tr>
+                        <td>Balanced</td>
+                        <td>0.1</td>
+                        <td>100-500</td>
+                        <td class="highlight">Good compromise</td>
+                    </tr>
+                    <tr>
+                        <td>Fast & Simple</td>
+                        <td>0.3</td>
+                        <td>50-100</td>
+                        <td class="highlight">Quick training, may underfit</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="warning-box">
+                <strong>⚠️ Golden Rule:</strong> Lower learning rate requires more trees for the same performance. Find the optimal balance through cross-validation!
+            </div>
+            
+            <h3>🚀 Regularization Techniques:</h3>
+            
+            <div class="example-box">
+                <strong>1. Shrinkage (Learning Rate):</strong><br>
+                Use small learning rate (0.01-0.1) to prevent overfitting<br><br>
+                
+                <strong>2. Subsampling:</strong><br>
+                Train each tree on random subset of data (stochastic gradient boosting)<br><br>
+                
+                <strong>3. Tree Constraints:</strong><br>
+                • Limit max_depth (3-8 typical)<br>
+                • Set min_samples_leaf (5-20 typical)<br>
+                • Limit max_features per split<br><br>
+                
+                <strong>4. Early Stopping:</strong><br>
+                Stop training when validation error stops improving<br><br>
+                
+                <strong>5. Feature Subsampling:</strong><br>
+                Use random subset of features for each tree (like Random Forest)
+            </div>
+            
+            <h3>🎯 Comparison with Other Algorithms:</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Algorithm</th>
+                        <th>Pros</th>
+                        <th>Cons</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Gradient Boosting</strong></td>
+                        <td>• Excellent accuracy<br>• Handles complex patterns<br>• Feature importance</td>
+                        <td>• Can overfit<br>• Slower training<br>• Sequential (not parallel)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Random Forest</strong></td>
+                        <td>• Less overfitting<br>• Parallel training<br>• Robust</td>
+                        <td>• Slightly less accurate<br>• Many trees needed<br>• Large memory</td>
+                    </tr>
+                    <tr>
+                        <td><strong>XGBoost/LightGBM</strong></td>
+                        <td>• Optimized GBM<br>• Very fast<br>• Built-in regularization</td>
+                        <td>• More hyperparameters<br>• Can be complex to tune</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- CONCLUSION -->
+            <h2 id="conclusion">🎓 Conclusion</h2>
+            
+            <div class="example-box">
+                <h3>Why Gradient Boosting Works:</h3>
+                <p><strong>Gradient boosting is powerful because it systematically corrects errors:</strong></p>
+                <ol>
+                    <li><strong>Iterative Improvement:</strong> Each tree fixes mistakes of previous trees</li>
+                    <li><strong>Gradient Descent:</strong> Follows optimal direction to minimize loss</li>
+                    <li><strong>Ensemble Power:</strong> Combines many weak learners into strong predictor</li>
+                    <li><strong>Flexibility:</strong> Works with any differentiable loss function</li>
+                    <li><strong>Feature Learning:</strong> Automatically discovers complex patterns</li>
+                </ol>
+            </div>
+            
+            <div class="tip-box">
+                <h3>When to Use Gradient Boosting:</h3>
+                <strong>✅ Use when:</strong><br>
+                • You need high accuracy<br>
+                • Have structured/tabular data<br>
+                • Can afford training time<br>
+                • Have enough data (1000+ samples)<br>
+                • Need feature importance<br><br>
+                
+                <strong>❌ Avoid when:</strong><br>
+                • Very high-dimensional sparse data (try linear models)<br>
+                • Real-time predictions required (inference is fast, but consider simpler models)<br>
+                • Very small datasets (< 100 samples)<br>
+                • Need extreme interpretability (use linear/tree models)
+            </div>
+            
+            <div class="analogy">
+                <h3>🎯 Final Analogy:</h3>
+                <p><strong>Gradient boosting is like a team of specialists:</strong></p>
+                <p>The first expert makes a reasonable guess. The second expert studies the first expert's mistakes and provides corrections. The third expert studies the remaining mistakes and provides more corrections. This continues until the team's combined wisdom produces an excellent answer!</p>
+                <p>Each expert (tree) is weak individually, but together they form a powerful ensemble. And they don't work randomly—they follow the "gradient" (optimal direction) to improve as efficiently as possible.</p>
+            </div>
+            
+            <div class="example-box">
+                <h3>📚 Further Learning:</h3>
+                <p><strong>Popular Implementations:</strong></p>
+                <ul>
+                    <li><strong>Scikit-learn GradientBoostingClassifier/Regressor:</strong> Good for learning and small datasets</li>
+                    <li><strong>XGBoost:</strong> Industry standard, extremely fast and accurate</li>
+                    <li><strong>LightGBM:</strong> Microsoft's version, even faster for large datasets</li>
+                    <li><strong>CatBoost:</strong> Yandex's version, handles categorical features automatically</li>
+                </ul>
+                
+                <p><strong>Key Papers:</strong></p>
+                <ul>
+                    <li>Friedman (2001): "Greedy Function Approximation: A Gradient Boosting Machine"</li>
+                    <li>Chen & Guestrin (2016): "XGBoost: A Scalable Tree Boosting System"</li>
+                </ul>
+            </div>
+            
+            <div class="warning-box">
+                <h3>⚡ Quick Reference Formulas:</h3>
+                
+                <h4>Regression:</h4>
+                <code>
+                Initialize: F₀ = mean(y)<br>
+                Loop: r = y - F, fit tree h, update F += η×h<br>
+                Predict: F_final(x)
+                </code>
+                
+                <h4>Classification:</h4>
+                <code>
+                Initialize: F₀ = log(p/(1-p))<br>
+                Loop: p = sigmoid(F), r = y - p, fit tree h, update F += η×h<br>
+                Predict: class = 1 if sigmoid(F_final) > 0.5 else 0
+                </code>
+            </div>
+            
+            <h3>🔍 Understanding Classification Loss Function</h3>
+            <p>For binary classification, we use <strong>Log Loss</strong> (Binary Cross-Entropy):</p>
+            
+            <div class="formula-box">
+                L(y, p) = -[y × log(p) + (1-y) × log(1-p)]
+                <br><br>
+                Where:<br>
+                • y = actual class (0 or 1)<br>
+                • p = predicted probability of class 1
+            </div>
+            
+            <div class="tip-box">
+                <strong>📌 Why this formula?</strong><br>
+                • When y=1: Loss = -log(p) → we want p close to 1<br>
+                • When y=0: Loss = -log(1-p) → we want p close to 0
+            </div>
+            
+            <h3>📐 The Logistic (Sigmoid) Function</h3>
+            <p>In classification, we work with <strong>log-odds</strong> (also called logits), not probabilities directly.</p>
+            
+            <div class="formula-box">
+                <strong>Logistic Function:</strong><br>
+                p = 1 / (1 + e<sup>-F</sup>)
+                <br><br>
+                Where:<br>
+                • F = log-odds (raw prediction)<br>
+                • p = probability (0 to 1)<br>
+                • e = 2.71828... (Euler's number)
+            </div>
+            
+            <h4>Example Sigmoid Calculations:</h4>
+            
+            <div class="calculation">
+                <strong>If F = 0:</strong><br>
+                p = 1 / (1 + e<sup>-0</sup>)<br>
+                p = 1 / (1 + 1)<br>
+                p = 1 / 2<br>
+                p = <span class="highlight">0.5</span>
+            </div>
+            
+            <div class="calculation">
+                <strong>If F = 2:</strong><br>
+                p = 1 / (1 + e<sup>-2</sup>)<br>
+                p = 1 / (1 + 0.135)<br>
+                p = 1 / 1.135<br>
+                p = <span class="highlight">0.88</span> (high probability of class 1)
+            </div>
+            
+            <div class="calculation">
+                <strong>If F = -2:</strong><br>
+                p = 1 / (1 + e<sup>2</sup>)<br>
+                p = 1 / (1 + 7.389)<br>
+                p = 1 / 8.389<br>
+                p = <span class="highlight">0.12</span> (low probability of class 1)
+            </div>
+            
+            <h3>🧮 Understanding the Gradient for Classification</h3>
+            
+            <div class="formula-box">
+                <strong>Loss Function:</strong><br>
+                L(y, p) = -[y × log(p) + (1-y) × log(1-p)]
+            </div>
+            
+            <p>Since p = 1/(1 + e<sup>-F</sup>), we need to find ∂L/∂F</p>
+            
+            <div class="warning-box">
+                <strong>⚠️ Detailed Derivative (calculus involved):</strong><br><br>
+                ∂L/∂F = ∂L/∂p × ∂p/∂F (chain rule)<br><br>
+                
+                <strong>First part:</strong><br>
+                ∂L/∂p = -[y/p - (1-y)/(1-p)]<br><br>
+                
+                <strong>Second part (derivative of sigmoid):</strong><br>
+                ∂p/∂F = p × (1-p)<br><br>
+                
+                <strong>Combining:</strong><br>
+                ∂L/∂F = -[y/p - (1-y)/(1-p)] × p × (1-p)<br>
+                ∂L/∂F = -[y(1-p) - (1-y)p]<br>
+                ∂L/∂F = -[y - yp - p + yp]<br>
+                ∂L/∂F = -[y - p]<br>
+                ∂L/∂F = p - y
+            </div>
+            
+            <div class="formula-box">
+                <strong>Negative gradient (what we use):</strong><br>
+                -∂L/∂F = y - p = <span class="highlight">residual</span>
+            </div>
+            
+            <div class="tip-box">
+                <strong>🎯 Interpretation:</strong> Same as regression! The residual tells us how to adjust our predictions.
+            </div>
+            
+            <h3><span class="step-number">Step 0</span> Initialize Model</h3>
+            <p><strong>Rule:</strong> Start with log-odds based on class distribution.</p>
+            
+            <h4>Calculate Initial Probability:</h4>
+            <div class="calculation">
+                p = (number of class 1) / (total samples)<br>
+                p = 3 / 5<br>
+                p = <span class="highlight">0.6</span>
+            </div>
+            
+            <h4>Calculate Log-odds (F₀):</h4>
+            <div class="calculation">
+                F₀ = log(p / (1-p))<br>
+                F₀ = log(0.6 / 0.4)<br>
+                F₀ = log(1.5)<br>
+                F₀ = <span class="highlight">0.405</span>
+            </div>
+            
+            <h4>Verify this converts back to p = 0.6:</h4>
+            <div class="calculation">
+                p = 1 / (1 + e<sup>-0.405</sup>)<br>
+                p = 1 / (1 + 0.667)<br>
+                p = 1 / 1.667<br>
+                p = <span class="highlight">0.6</span> ✓
+            </div>
+            
+            <h4>Initial Predictions Table:</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Age</th>
+                        <th>Actual (y)</th>
+                        <th>Log-odds F₀</th>
+                        <th>Probability p₀</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>25</td><td>0</td><td>0.405</td><td>0.6</td></tr>
+                    <tr><td>2</td><td>35</td><td>0</td><td>0.405</td><td>0.6</td></tr>
+                    <tr><td>3</td><td>45</td><td>1</td><td>0.405</td><td>0.6</td></tr>
+                    <tr><td>4</td><td>55</td><td>1</td><td>0.405</td><td>0.6</td></tr>
+                    <tr><td>5</td><td>65</td><td>1</td><td>0.405</td><td>0.6</td></tr>
+                </tbody>
+            </table>
+            
+            <h3><span class="step-number">Step 1.1</span> Calculate Residuals</h3>
+            
+            <div class="formula-box">
+                Residual = y - p₀
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Actual (y)</th>
+                        <th>Probability p₀</th>
+                        <th>Residual</th>
+                        <th>Calculation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>0</td><td>0.6</td><td class="highlight">-0.6</td><td>0 - 0.6</td></tr>
+                    <tr><td>2</td><td>0</td><td>0.6</td><td class="highlight">-0.6</td><td>0 - 0.6</td></tr>
+                    <tr><td>3</td><td>1</td><td>0.6</td><td class="highlight">+0.4</td><td>1 - 0.6</td></tr>
+                    <tr><td>4</td><td>1</td><td>0.6</td><td class="highlight">+0.4</td><td>1 - 0.6</td></tr>
+                    <tr><td>5</td><td>1</td><td>0.6</td><td class="highlight">+0.4</td><td>1 - 0.6</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="tip-box">
+                <strong>📌 Interpretation:</strong><br>
+                • Customers 1, 2: probability too high (we predict 0.6, should be 0)<br>
+                • Customers 3, 4, 5: probability too low (we predict 0.6, should be 1)
+            </div>
+            
+            <h3><span class="step-number">Step 1.2</span> Build Decision Tree</h3>
+            <p><strong>Goal:</strong> Find the best split to predict residuals.</p>
+            
+            <h4>Try Split at Age = 40:</h4>
+            
+            <div class="calculation">
+                <strong>Left Branch (Age ≤ 40):</strong><br>
+                • Customers: 1, 2<br>
+                • Residuals: -0.6, -0.6<br>
+                • Prediction = mean(-0.6, -0.6) = <span class="highlight">-0.6</span><br><br>
+                
+                <strong>Right Branch (Age > 40):</strong><br>
+                • Customers: 3, 4, 5<br>
+                • Residuals: 0.4, 0.4, 0.4<br>
+                • Prediction = mean(0.4, 0.4, 0.4) = <span class="highlight">0.4</span>
+            </div>
+            
+            <h4>Calculate MSE for this split:</h4>
+            <div class="calculation">
+                <strong>Left:</strong><br>
+                Customer 1: (-0.6 - (-0.6))² = 0<br>
+                Customer 2: (-0.6 - (-0.6))² = 0<br><br>
+                
+                <strong>Right:</strong><br>
+                Customer 3: (0.4 - 0.4)² = 0<br>
+                Customer 4: (0.4 - 0.4)² = 0<br>
+                Customer 5: (0.4 - 0.4)² = 0<br><br>
+                
+                MSE = (0 + 0 + 0 + 0 + 0) ÷ 5 = <span class="highlight">0</span> (perfect split! 🎯)
+            </div>
+            
+            <div class="example-box">
+                <strong>🌳 Tree h₁:</strong><br>
+                • If Age ≤ 40: predict <strong>-0.6</strong><br>
+                • If Age > 40: predict <strong>0.4</strong>
+            </div>
+            
+            <h3><span class="step-number">Step 1.3</span> Update Log-odds</h3>
+            <p><strong>Learning rate η = 0.1</strong></p>
+            
+            <div class="formula-box">
+                F₁(x) = F₀(x) + η × h₁(x)
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Age</th>
+                        <th>F₀</th>
+                        <th>h₁</th>
+                        <th>η × h₁</th>
+                        <th>F₁ = F₀ + η×h₁</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>25</td><td>0.405</td><td>-0.6</td><td>0.1 × (-0.6) = -0.06</td><td class="highlight">0.345</td></tr>
+                    <tr><td>2</td><td>35</td><td>0.405</td><td>-0.6</td><td>-0.06</td><td class="highlight">0.345</td></tr>
+                    <tr><td>3</td><td>45</td><td>0.405</td><td>0.4</td><td>0.1 × 0.4 = 0.04</td><td class="highlight">0.445</td></tr>
+                    <tr><td>4</td><td>55</td><td>0.405</td><td>0.4</td><td>0.04</td><td class="highlight">0.445</td></tr>
+                    <tr><td>5</td><td>65</td><td>0.405</td><td>0.4</td><td>0.04</td><td class="highlight">0.445</td></tr>
+                </tbody>
+            </table>
+            
+            <h3><span class="step-number">Step 1.4</span> Convert to Probabilities</h3>
+            
+            <div class="formula-box">
+                p₁ = 1 / (1 + e<sup>-F₁</sup>)
+            </div>
+            
+            <h4>For Customers 1 & 2 (F₁ = 0.345):</h4>
+            <div class="calculation">
+                p₁ = 1 / (1 + e<sup>-0.345</sup>)<br>
+                p₁ = 1 / (1 + 0.708)<br>
+                p₁ = 1 / 1.708<br>
+                p₁ = <span class="highlight">0.585</span>
+            </div>
+            
+            <h4>For Customers 3, 4, 5 (F₁ = 0.445):</h4>
+            <div class="calculation">
+                p₁ = 1 / (1 + e<sup>-0.445</sup>)<br>
+                p₁ = 1 / (1 + 0.641)<br>
+                p₁ = 1 / 1.641<br>
+                p₁ = <span class="highlight">0.609</span>
+            </div>
+            
+            <h4>Updated Predictions:</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>y</th>
+                        <th>Old p₀</th>
+                        <th>New p₁</th>
+                        <th>Progress</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>0</td><td>0.6</td><td>0.585</td><td>↓ Improved! (moved away from 1)</td></tr>
+                    <tr><td>2</td><td>0</td><td>0.6</td><td>0.585</td><td>↓ Improved!</td></tr>
+                    <tr><td>3</td><td>1</td><td>0.6</td><td>0.609</td><td>↑ Improved! (moved toward 1)</td></tr>
+                    <tr><td>4</td><td>1</td><td>0.6</td><td>0.609</td><td>↑ Improved!</td></tr>
+                    <tr><td>5</td><td>1</td><td>0.6</td><td>0.609</td><td>↑ Improved!</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="tip-box">
+                <strong>🎉 All predictions moved in the right direction!</strong>
+            </div>
+            
+            <h3><span class="step-number">Step 1.5</span> Calculate New Residuals</h3>
+            
+            <div class="formula-box">
+                Residual₂ = y - p₁
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>y</th>
+                        <th>p₁</th>
+                        <th>Residual₂</th>
+                        <th>Calculation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>0</td><td>0.585</td><td class="highlight">-0.585</td><td>0 - 0.585</td></tr>
+                    <tr><td>2</td><td>0</td><td>0.585</td><td class="highlight">-0.585</td><td>0 - 0.585</td></tr>
+                    <tr><td>3</td><td>1</td><td>0.609</td><td class="highlight">+0.391</td><td>1 - 0.609</td></tr>
+                    <tr><td>4</td><td>1</td><td>0.609</td><td class="highlight">+0.391</td><td>1 - 0.609</td></tr>
+                    <tr><td>5</td><td>1</td><td>0.609</td><td class="highlight">+0.391</td><td>1 - 0.609</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="tip-box">
+                <strong>✨ Notice: Residuals got smaller! We're improving.</strong>
+            </div>
+            
+            <h3><span class="step-number">Step 2</span> Build Second Tree</h3>
+            
+            <h4>Step 2.1: Build Tree on New Residuals</h4>
+            <p>Using the same split at Age = 40:</p>
+            
+            <div class="calculation">
+                <strong>Left (Age ≤ 40):</strong><br>
+                Prediction = mean(-0.585, -0.585) = <span class="highlight">-0.585</span><br><br>
+                
+                <strong>Right (Age > 40):</strong><br>
+                Prediction = mean(0.391, 0.391, 0.391) = <span class="highlight">0.391</span>
+            </div>
+            
+            <div class="example-box">
+                <strong>🌳 Tree h₂:</strong><br>
+                • If Age ≤ 40: predict <strong>-0.585</strong><br>
+                • If Age > 40: predict <strong>0.391</strong>
+            </div>
+            
+            <h4>Step 2.2: Update Log-odds</h4>
+            
+            <div class="formula-box">
+                F₂ = F₁ + η × h₂
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>F₁</th>
+                        <th>h₂</th>
+                        <th>η × h₂</th>
+                        <th>F₂</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>0.345</td><td>-0.585</td><td>-0.0585</td><td class="highlight">0.2865</td></tr>
+                    <tr><td>2</td><td>0.345</td><td>-0.585</td><td>-0.0585</td><td class="highlight">0.2865</td></tr>
+                    <tr><td>3</td><td>0.445</td><td>0.391</td><td>0.0391</td><td class="highlight">0.4841</td></tr>
+                    <tr><td>4</td><td>0.445</td><td>0.391</td><td>0.0391</td><td class="highlight">0.4841</td></tr>
+                    <tr><td>5</td><td>0.445</td><td>0.391</td><td>0.0391</td><td class="highlight">0.4841</td></tr>
+                </tbody>
+            </table>
+            
+            <h4>Step 2.3: Convert to Probabilities</h4>
+            
+            <div class="calculation">
+                <strong>Customers 1 & 2 (F₂ = 0.2865):</strong><br>
+                p₂ = 1 / (1 + e<sup>-0.2865</sup>)<br>
+                p₂ = 1 / (1 + 0.751)<br>
+                p₂ = <span class="highlight">0.571</span><br><br>
+                
+                <strong>Customers 3, 4, 5 (F₂ = 0.4841):</strong><br>
+                p₂ = 1 / (1 + e<sup>-0.4841</sup>)<br>
+                p₂ = 1 / (1 + 0.616)<br>
+                p₂ = <span class="highlight">0.619</span>
+            </div>
+            
+            <h4>Progress Tracking:</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>y</th>
+                        <th>p₀ (Init)</th>
+                        <th>p₁ (After Tree 1)</th>
+                        <th>p₂ (After Tree 2)</th>
+                        <th>Progress</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>0</td><td>0.600</td><td>0.585</td><td class="highlight">0.571</td><td>Getting closer to 0 ✓</td></tr>
+                    <tr><td>2</td><td>0</td><td>0.600</td><td>0.585</td><td class="highlight">0.571</td><td>Getting closer to 0 ✓</td></tr>
+                    <tr><td>3</td><td>1</td><td>0.600</td><td>0.609</td><td class="highlight">0.619</td><td>Getting closer to 1 ✓</td></tr>
+                    <tr><td>4</td><td>1</td><td>0.600</td><td>0.609</td><td class="highlight">0.619</td><td>Getting closer to 1 ✓</td></tr>
+                    <tr><td>5</td><td>1</td><td>0.600</td><td>0.609</td><td class="highlight">0.619</td><td>Getting closer to 1 ✓</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="tip-box">
+                <strong>🎯 With more iterations, probabilities will get even closer to actual values!</strong>
+            </div>
+            
+            <h3><span class="step-number">Step 3+</span> Continue Iterations</h3>
+            
+            <p>The process continues for M iterations (typically 50-500 trees for classification):</p>
+            
+            <div class="calculation">
+                For iteration m = 3, 4, 5, ..., M:<br>
+                1. Calculate probabilities: p<sub>m-1</sub> = 1/(1 + e<sup>-F<sub>m-1</sub></sup>)<br>
+                2. Calculate residuals: r<sub>m</sub> = y - p<sub>m-1</sub><br>
+                3. Fit tree h<sub>m</sub> to residuals<br>
+                4. Update: F<sub>m</sub> = F<sub>m-1</sub> + η × h<sub>m</sub><br>
+                5. Repeat until convergence or M iterations reached
+            </div>
+            
+            <h3>🎓 Final Classification Model</h3>
+            
+            <div class="example-box">
+                <h4>After M trees, the complete model is:</h4>
+                
+                <div class="formula-box">
+                    <strong>Step 1: Calculate Log-odds</strong><br>
+                    F<sub>M</sub>(x) = F₀ + η×h₁(x) + η×h₂(x) + ... + η×h<sub>M</sub>(x)
+                    <br><br>
+                    <strong>Step 2: Convert to Probability</strong><br>
+                    p(x) = 1 / (1 + e<sup>-F<sub>M</sub>(x)</sup>)
+                    <br><br>
+                    <strong>Step 3: Make Prediction</strong><br>
+                    class = 1 if p(x) > 0.5, else 0
+                </div>
+                
+                <h4>Example: Predict for new customer (Age = 50):</h4>
+                <ol>
+                    <li>Start with F₀ = 0.405</li>
+                    <li>Tree 1: Age > 40, so add 0.1 × 0.4 = 0.04 → F₁ = 0.445</li>
+                    <li>Tree 2: Age > 40, so add 0.1 × 0.391 = 0.0391 → F₂ = 0.4841</li>
+                    <li>Calculate probability: p = 1/(1 + e<sup>-0.4841</sup>) = 0.619</li>
+                    <li>Since 0.619 > 0.5, predict: <span class="highlight">Customer will BUY (class = 1)</span></li>
+                </ol>
+            </div>
+            
+            <!-- KEY CONCEPTS SECTION -->
+            <h2 id="concepts">Key Concepts Explained Simply</h2>
+            
+            <h3>1️⃣ Why Start with Mean (Regression) or Log-odds (Classification)?</h3>
+            
+            <div class="analogy">
+                <strong>Regression:</strong> The mean minimizes squared error when you have no other information.<br><br>
+                <strong>Example:</strong> If you must guess one number for everyone's house price, the mean gives the smallest average error.
+            </div>
+            
+            <div class="analogy">
+                <strong>Classification:</strong> Log-odds represents the initial probability based on class proportions.<br><br>
+                <strong>Example:</strong> If 3 out of 5 people bought, your best initial guess is 60% probability.
+            </div>
+            
+            <h3>2️⃣ Why Do We Use Learning Rate?</h3>
+            
+            <p>Think of it like taking small, careful steps instead of giant leaps.</p>
+            
+            <div class="example-box">
+                <strong>Without learning rate (η = 1):</strong><br>
+                • Tree says "adjust by -60"<br>
+                • We adjust by -60 (might overshoot!)<br><br>
+                
+                <strong>With learning rate (η = 0.1):</strong><br>
+                • Tree says "adjust by -60"<br>
+                • We adjust by -6 (safer, more stable)<br><br>
+                
+                <strong>✅ Benefit:</strong> Prevents overfitting and makes the model generalize better to new data.
+            </div>
+            
+            <h3>3️⃣ Why Sequential (Not Parallel)?</h3>
+            
+            <p>Each tree learns from the mistakes of all previous trees.</p>
+            
+            <div class="analogy">
+                <strong>🎓 Analogy: Like doing homework corrections</strong><br>
+                • Attempt 1: Get some wrong<br>
+                • Attempt 2: Focus on what you got wrong in Attempt 1<br>
+                • Attempt 3: Focus on remaining mistakes from Attempt 2<br>
+                • And so on...<br><br>
+                You can't do Attempt 2 until you see Attempt 1's mistakes!
+            </div>
+            
+            <h3>4️⃣ What Makes It "Gradient" Boosting?</h3>
+            
+            <p>The word "gradient" comes from calculus. We're following the negative gradient (steepest descent) of the loss function.</p>
+            
+            <div class="tip-box">
+                <strong>Simple version:</strong> We always move in the direction that reduces error the most.<br><br>
+                <strong>Mathematical version:</strong> The residuals (y - F) are exactly the negative gradient of MSE loss.
+            </div>
+            
+            <h3>5️⃣ When to Stop Adding Trees?</h3>
+            
+            <div class="warning-box">
+                <strong>Signs to
