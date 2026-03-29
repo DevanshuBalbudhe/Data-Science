@@ -1,0 +1,48 @@
+python -m venv name_env
+
+name_env\Scripts\activate
+
+python --version
+
+deactivate
+
+rmdir /s /q name_env
+
+
+-- conda env
+
+conda create -n myproject38 python=3.8 pip -y
+
+conda activate myproject38
+
+conda deactivate
+
+conda remove -n myproject38 --all -y
+
+-- git version
+
+echo "# gitcode" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Amitmakode/gitcode.git
+git push -u origin main
+
+
+-- …or push an existing repository from the command line
+git remote add origin https://github.com/Amitmakode/gitcode.git
+git branch -M main
+git push -u origin main
+
+
+git pull origin main
+
+git status
+git stash
+git pull
+git stash pop
+
+
+
+
