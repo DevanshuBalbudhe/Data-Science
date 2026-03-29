@@ -1,0 +1,91 @@
+use class11 ;
+
+CREATE TABLE courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100)
+);
+
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    `name` VARCHAR(100),
+    course_id INT,
+    FOREIGN KEY (course_id)
+        REFERENCES courses(course_id)
+        ON DELETE CASCADE
+        ON UPDATE cascade
+);
+
+INSERT INTO courses (course_id, course_name) VALUES
+(101, 'Mathematics'),
+(102, 'Science'),
+(103, 'History'),
+(104, 'History'),
+(105, 'History');
+
+INSERT INTO students (student_id, `name`, course_id) VALUES
+(5, 'John Doe', null),
+(3, 'Jane Smith', 102);
+
+
+select * from courses ;
+
+select * from students ;
+
+delete from courses
+where course_id = 105 ;
+
+update courses
+set course_id = 106 where course_id = 101 ;
+
+
+-- index
+
+create table if not exists course1 (
+course_id int ,
+course_name varchar(50),
+course_desc varchar(60),
+course_tag varchar(50));
+
+insert into course1 values(101 , 'fsda' , 'full stack data analytics' , 'Analytics'),
+(102 , 'fsds' , 'full stack data analytics' , 'Analytics'),
+(103 , 'fsds' , 'full stack data science' , 'DS'),
+(104 , 'big data' , 'full stack big data' , 'BD'),
+(105 , 'mern' , 'web dev' , 'mern'),
+(106 , 'blockchain' , 'full stack blockchain' , 'BC'),
+(101 , 'java' , 'full stack java' , 'java'),
+(102 , 'testing' , 'full testing ' , 'testing '),
+(105 , 'cybersecurity' , 'full stack cybersecurity' , 'cybersecurity'),
+(109 , 'c' , 'c language' , 'c'),
+(108 , 'c++' , 'C++ language' , 'language');
+
+
+show index from course1 ;
+
+explain select * from course1 where course_name = "java" ;
+
+select count(*) from course1 ;
+
+CREATE INDEX index1 ON course1 (course_id);
+
+explain select * from course1 where course_id = 102 ;
+
+
+create table if not exists course2 (
+course_id int ,
+course_name varchar(50),
+course_desc varchar(60),
+course_tag varchar(50),
+index(course_id, course_name));
+
+
+DROP INDEX index_name ON composite_index;
+
+
+
+create table if not exists course2 (
+course_id int ,
+course_name varchar(50),
+course_desc varchar(60),
+course_tag varchar(50),
+primary key (course_id, course_name));
+
